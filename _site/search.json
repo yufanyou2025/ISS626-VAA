@@ -4,7 +4,56 @@
     "href": "index.html",
     "title": "ISS626-VAA",
     "section": "",
-    "text": "Welcome to ISS626 Visual Analytics and Applications. In this website, you will find my coursework prepared for this course"
+    "text": "Welcome to ISS626 Visual Analytics and Applications. In this website, you will find my coursework prepared for this course\nThe first hands-on exercise is split into two linked parts. Exercise 1A focuses on importing and processing Singapore geospatial data, while Exercise 1B uses the prepared data for thematic mapping and geo-visualisation.\n\nExercise 1A: Geospatial Data Science\nExercise 1B: Thematic Mapping and GeoVisualisation"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "",
+    "text": "This exercise follows the first chapter of the course workbook. I used the current public releases where possible, then worked through the same core ideas: importing several geometry types, checking the coordinate reference system (CRS), bringing all layers into SVY21, and using spatial operations to answer small planning questions.\nBefore rendering the page, run Rscript scripts/download_data.R from the project root. The raw-data sources and the reason for using the current GeoJSON releases are recorded in the data-provenance note."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#overview",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#overview",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "",
+    "text": "This exercise follows the first chapter of the course workbook. I used the current public releases where possible, then worked through the same core ideas: importing several geometry types, checking the coordinate reference system (CRS), bringing all layers into SVY21, and using spatial operations to answer small planning questions.\nBefore rendering the page, run Rscript scripts/download_data.R from the project root. The raw-data sources and the reason for using the current GeoJSON releases are recorded in the data-provenance note."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#importing-the-layers",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#importing-the-layers",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "Importing the layers",
+    "text": "Importing the layers\nThe subzone boundary is a polygon layer, cycling paths are line features, and pre-schools are point features. All three files arrive in WGS84, so I transform them to SVY21 (EPSG:3414) immediately. This makes later buffering and area calculations meaningful in metres.\n\n\nShow R code\nmpsz &lt;- st_read(file.path(geo_dir, \"masterplan_subzones.geojson\"), quiet = TRUE) |&gt;\n  st_transform(3414)\n\ncyclingpath &lt;- st_read(file.path(geo_dir, \"cycling_paths.geojson\"), quiet = TRUE) |&gt;\n  st_transform(3414)\n\npreschool &lt;- st_read(file.path(geo_dir, \"preschools.geojson\"), quiet = TRUE) |&gt;\n  st_transform(3414)\n\ntibble(\n  layer = c(\"Planning subzones\", \"Cycling paths\", \"Pre-schools\"),\n  features = c(nrow(mpsz), nrow(cyclingpath), nrow(preschool)),\n  geometry = c(as.character(st_geometry_type(mpsz)[1]),\n               as.character(st_geometry_type(cyclingpath)[1]),\n               as.character(st_geometry_type(preschool)[1]))\n)\n\n\n# A tibble: 3 x 3\n  layer             features geometry       \n  &lt;chr&gt;                &lt;int&gt; &lt;chr&gt;          \n1 Planning subzones      323 MULTIPOLYGON   \n2 Cycling paths         8523 MULTILINESTRING\n3 Pre-schools           2290 POINT          \n\n\nThe original coordinate system is geographical WGS84. After transformation, the CRS below confirms that the layers are in Singapore’s projected coordinate system.\n\n\nShow R code\nst_crs(mpsz)$input\n\n\n[1] \"EPSG:3414\"\n\n\nShow R code\nst_crs(preschool)$input\n\n\n[1] \"EPSG:3414\"\n\n\nShow R code\nglimpse(mpsz)\n\n\nRows: 323\nColumns: 14\n$ OBJECTID_1   &lt;int&gt; 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 3~\n$ SUBZONE_NO   &lt;int&gt; 2, 2, 3, 4, 5, 4, 10, 12, 4, 6, 1, 1, 3, 8, 3, 7, 9, 2, 1~\n$ SUBZONE_N    &lt;chr&gt; \"PEOPLE'S PARK\", \"BUKIT MERAH\", \"CHINATOWN\", \"PHILLIP\", \"~\n$ SUBZONE_C    &lt;chr&gt; \"OTSZ02\", \"BMSZ02\", \"OTSZ03\", \"DTSZ04\", \"DTSZ05\", \"OTSZ04~\n$ CA_IND       &lt;chr&gt; \"Y\", \"N\", \"Y\", \"Y\", \"Y\", \"Y\", \"N\", \"Y\", \"N\", \"Y\", \"Y\", \"Y~\n$ PLN_AREA_N   &lt;chr&gt; \"OUTRAM\", \"BUKIT MERAH\", \"OUTRAM\", \"DOWNTOWN CORE\", \"DOWN~\n$ PLN_AREA_C   &lt;chr&gt; \"OT\", \"BM\", \"OT\", \"DT\", \"DT\", \"OT\", \"BM\", \"DT\", \"BM\", \"DT~\n$ REGION_N     &lt;chr&gt; \"CENTRAL REGION\", \"CENTRAL REGION\", \"CENTRAL REGION\", \"CE~\n$ REGION_C     &lt;chr&gt; \"CR\", \"CR\", \"CR\", \"CR\", \"CR\", \"CR\", \"CR\", \"CR\", \"CR\", \"CR~\n$ INC_CRC      &lt;chr&gt; \"B4120D23006C932A\", \"1C51019439A68700\", \"0FF1661344C84AED~\n$ FMEL_UPD_D   &lt;chr&gt; \"20160511160621\", \"20160511160621\", \"20160511160621\", \"20~\n$ SHAPE_1.AREA &lt;dbl&gt; 93140.44, 411722.82, 587222.68, 39437.94, 188767.49, 1330~\n$ SHAPE_1.LEN  &lt;dbl&gt; 1822.1927, 3074.9632, 4297.5999, 871.5549, 1872.7522, 160~\n$ geometry     &lt;MULTIPOLYGON [m]&gt; MULTIPOLYGON (((29099.02 29..., MULTIPOLYGON~"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#a-quick-spatial-check",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#a-quick-spatial-check",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "A quick spatial check",
+    "text": "A quick spatial check\nThe first plot is deliberately simple. It is useful for checking that the boundary and points are drawing in the same place before moving to a more polished map.\n\n\nShow R code\nplot(st_geometry(mpsz), col = \"grey97\", border = \"grey65\", main = \"Pre-schools within Singapore planning subzones\")\nplot(st_geometry(preschool), add = TRUE, pch = 16, cex = 0.28, col = \"#1b6ca8\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#converting-an-aspatial-table-into-points",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#converting-an-aspatial-table-into-points",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "Converting an aspatial table into points",
+    "text": "Converting an aspatial table into points\nInside Airbnb supplies a regular CSV, but it contains longitude and latitude. After checking for missing coordinates, st_as_sf() converts the table into points and st_transform() puts it into the same CRS as the other layers.\n\n\nShow R code\nlistings &lt;- read_csv(file.path(asp_dir, \"singapore_listings.csv\"), show_col_types = FALSE) |&gt;\n  filter(!is.na(longitude), !is.na(latitude))\n\nlistings_sf &lt;- st_as_sf(listings, coords = c(\"longitude\", \"latitude\"), crs = 4326) |&gt;\n  st_transform(3414)\n\nlistings_sf\n\n\nSimple feature collection with 3247 features and 17 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 5881.388 ymin: 22827.7 xmax: 44899.77 ymax: 48821.86\nProjected CRS: SVY21 / Singapore TM\n# A tibble: 3,247 x 18\n        id name            host_id host_profile_id host_name neighbourhood_group\n *   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;              \n 1   71609 Ensuite Room (~  3.67e5         1.46e18 Belinda   East Region        \n 2   71896 B&B  Room 1 ne~  3.67e5         1.46e18 Belinda   East Region        \n 3   71903 Room 2-near Ai~  3.67e5         1.46e18 Belinda   East Region        \n 4  294281 5 mins walk fr~  1.52e6         1.46e18 Elizbeth  Central Region     \n 5  344803 Budget short s~  3.67e5         1.46e18 Belinda   East Region        \n 6  369141 5mins from New~  1.52e6         1.46e18 Elizbeth  Central Region     \n 7  369145 5 mins walk fr~  1.52e6         1.46e18 Elizbeth  Central Region     \n 8 4069756 DORMS - In the~  1.75e7         1.46e18 Royal     Central Region     \n 9 4211375 Near NTU Amazi~  1.23e7         1.46e18 Mia       West Region        \n10 4271250 City Ctr_River~  2.22e7         1.46e18 Yong Xing Central Region     \n# i 3,237 more rows\n# i 12 more variables: neighbourhood &lt;chr&gt;, room_type &lt;chr&gt;, price &lt;dbl&gt;,\n#   minimum_nights &lt;dbl&gt;, number_of_reviews &lt;dbl&gt;, last_review &lt;date&gt;,\n#   reviews_per_month &lt;dbl&gt;, calculated_host_listings_count &lt;dbl&gt;,\n#   availability_365 &lt;dbl&gt;, number_of_reviews_ltm &lt;dbl&gt;, license &lt;chr&gt;,\n#   geometry &lt;POINT [m]&gt;\n\n\n\n\nShow R code\nplot(st_geometry(mpsz), col = \"grey97\", border = \"grey65\", main = \"Singapore listings over planning subzones\")\nplot(st_geometry(listings_sf), add = TRUE, pch = 16, cex = 0.22, col = rgb(0.85, 0.2, 0.2, 0.35))\n\n\n\n\n\n\n\n\n\nThe point cloud is expected to be uneven because listings follow housing and tourism activity rather than the size of a planning subzone."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#buffering-cycling-paths",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#buffering-cycling-paths",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "Buffering cycling paths",
+    "text": "Buffering cycling paths\nFor a manageable local example, I selected cycling paths that meet Tampines West and added a 5-metre buffer. Working in SVY21 matters here: a five-unit buffer is now a five-metre buffer, not five decimal degrees.\n\n\nShow R code\ntampines_west &lt;- mpsz |&gt; filter(SUBZONE_N == \"TAMPINES WEST\")\ncycling_tampines &lt;- st_filter(cyclingpath, tampines_west)\ncycling_buffer &lt;- st_buffer(cycling_tampines, dist = 5)\n\nbuffer_area_m2 &lt;- sum(st_area(cycling_buffer))\nbuffer_area_m2\n\n\n119453.6 [m^2]\n\n\n\n\nShow R code\nplot(st_geometry(tampines_west), col = \"grey95\", border = \"grey35\", main = \"Five-metre cycling-path buffer in Tampines West\")\nplot(st_geometry(cycling_buffer), add = TRUE, col = rgb(0.2, 0.6, 0.8, 0.35), border = NA)\nplot(st_geometry(cycling_tampines), add = TRUE, col = \"#176b87\", lwd = 0.8)\n\n\n\n\n\n\n\n\n\nThe displayed area is a sum of feature buffers, so overlapping buffer sections can be counted more than once. That is acceptable for demonstrating the operation; a land-acquisition estimate would dissolve overlapping buffers first."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#counting-pre-schools-by-subzone",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html#counting-pre-schools-by-subzone",
+    "title": "Hands-on Exercise 1A: Geospatial Data Science with R",
+    "section": "Counting pre-schools by subzone",
+    "text": "Counting pre-schools by subzone\nst_intersects() returns the pre-school points that fall inside each subzone. Counting those matches and dividing by the polygon area gives both an absolute count and a comparable density.\n\n\nShow R code\nmpsz_preschools &lt;- mpsz |&gt;\n  mutate(\n    preschool_count = lengths(st_intersects(mpsz, preschool)),\n    area_km2 = as.numeric(st_area(geometry)) / 1e6,\n    preschool_density = preschool_count / area_km2\n  )\n\nmpsz_preschools |&gt;\n  st_drop_geometry() |&gt;\n  select(SUBZONE_N, PLN_AREA_N, preschool_count, preschool_density) |&gt;\n  arrange(desc(preschool_count)) |&gt;\n  slice_head(n = 10)\n\n\n              SUBZONE_N  PLN_AREA_N preschool_count preschool_density\n1         TAMPINES EAST    TAMPINES              72         16.590534\n2        WOODLANDS EAST   WOODLANDS              54         21.147745\n3              ALJUNIED     GEYLANG              40         13.516401\n4         TAMPINES WEST    TAMPINES              38         10.934591\n5           BEDOK NORTH       BEDOK              38         11.861421\n6               FRANKEL       BEDOK              36          8.377664\n7  SENGKANG TOWN CENTRE    SENGKANG              33         22.672499\n8                YUNNAN JURONG WEST              32         14.503888\n9              HONG KAH JURONG WEST              30         16.727409\n10          BEDOK SOUTH       BEDOK              29          9.675350\n\n\n\n\nShow R code\nggplot(mpsz_preschools, aes(x = preschool_density)) +\n  geom_histogram(bins = 24, fill = \"#62a8ac\", colour = \"white\") +\n  labs(\n    title = \"Pre-school density is uneven across subzones\",\n    x = \"Pre-schools per square kilometre\",\n    y = \"Number of subzones\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nThe histogram makes a useful distinction: a large subzone can have many centres but still have moderate density, while a compact residential subzone can stand out once area is taken into account. That is why both measures are worth keeping."
   },
   {
     "objectID": "about.html",
@@ -12,5 +61,82 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/data-provenance.html",
+    "href": "Hands-on_Ex/Hands-on_Ex01/data-provenance.html",
+    "title": "Data provenance",
+    "section": "",
+    "text": "Data provenance\nThis exercise was prepared on 28 August 2026. Raw downloads are excluded from the repository and can be recreated with Rscript scripts/download_data.R.\n\n\n\nDataset\nUse in the exercise\nSource\n\n\n\n\nMaster Plan 2014 Subzone Boundary (No Sea)\nPlanning-subzone polygons\ndata.gov.sg\n\n\nCycling Path Network\nLine features for the buffer example\ndata.gov.sg\n\n\nPre-Schools Location\nPoint features for the count and density analysis\ndata.gov.sg\n\n\nSingapore listings\nExample aspatial point data\nInside Airbnb\n\n\nSingapore residents by planning area/subzone, age, sex and dwelling type, 2011–2020\nAttribute table for the thematic maps\nSingapore Department of Statistics\n\n\n\nThe current data.gov.sg releases are supplied as GeoJSON rather than the shapefile/KML formats used in the original workbook. The workflow still demonstrates the same sf import, projection, overlay, buffer, join, and mapping operations. Results will naturally vary if a source dataset is refreshed.\nThe historical 2011–2020 CSV has been retired from its former SingStat URL. The download script tries that URL first and then uses an unmodified public course-data mirror if needed."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "",
+    "text": "This page extends Exercise 1A by joining a resident-population table to planning subzones and mapping the result. The focus is not just on making a coloured map: the classifications, palette, and supporting chart all change what is easy to notice.\nThe population table covers 2011–2020, so I use 2020 as the last available year. The public data sources and download instructions are listed in the data-provenance note."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#overview",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#overview",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "",
+    "text": "This page extends Exercise 1A by joining a resident-population table to planning subzones and mapping the result. The focus is not just on making a coloured map: the classifications, palette, and supporting chart all change what is easy to notice.\nThe population table covers 2011–2020, so I use 2020 as the last available year. The public data sources and download instructions are listed in the data-provenance note."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#preparing-the-demographic-table",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#preparing-the-demographic-table",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Preparing the demographic table",
+    "text": "Preparing the demographic table\nThe source table is disaggregated by sex and dwelling type, so I sum those rows first. I then group the age bands into young residents (0–24), economically active residents (25–64), and older residents (65 and above). The dependency ratio is the combined young and older population divided by the economically active population.\n\n\nShow R code\npopdata &lt;- read_csv(file.path(asp_dir, \"respopagesextod2011to2020.csv\"), show_col_types = FALSE)\n\nyoung_ages &lt;- c(\"0_to_4\", \"5_to_9\", \"10_to_14\", \"15_to_19\", \"20_to_24\")\nactive_ages &lt;- c(\"25_to_29\", \"30_to_34\", \"35_to_39\", \"40_to_44\", \"45_to_49\", \"50_to_54\", \"55_to_59\", \"60_to_64\")\n\npopulation_2020 &lt;- popdata |&gt;\n  filter(Time == 2020) |&gt;\n  mutate(\n    cohort = case_when(\n      AG %in% young_ages ~ \"young\",\n      AG %in% active_ages ~ \"active\",\n      TRUE ~ \"aged\"\n    )\n  ) |&gt;\n  group_by(PA, SZ, cohort) |&gt;\n  summarise(population = sum(Pop), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = cohort, values_from = population, values_fill = 0) |&gt;\n  mutate(\n    total = young + active + aged,\n    dependency = if_else(active &gt; 0, (young + aged) / active, NA_real_),\n    PA = str_to_upper(PA),\n    SZ = str_to_upper(SZ)\n  )\n\npopulation_2020\n\n\n# A tibble: 332 x 7\n   PA         SZ                     active  aged young total dependency\n   &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1 ANG MO KIO ANG MO KIO TOWN CENTRE   2760   760  1290  4810      0.743\n 2 ANG MO KIO CHENG SAN               16460  6050  5640 28150      0.710\n 3 ANG MO KIO CHONG BOON              15000  6470  5100 26570      0.771\n 4 ANG MO KIO KEBUN BAHRU             13010  5120  4620 22750      0.749\n 5 ANG MO KIO SEMBAWANG HILLS          3630  1310  1880  6820      0.879\n 6 ANG MO KIO SHANGRI-LA               9050  3610  3330 15990      0.767\n 7 ANG MO KIO TAGORE                   4480  1530  1940  7950      0.775\n 8 ANG MO KIO TOWNSVILLE              11950  5100  4190 21240      0.777\n 9 ANG MO KIO YIO CHU KANG                0     0     0     0     NA    \n10 ANG MO KIO YIO CHU KANG EAST        2410   750  1110  4270      0.772\n# i 322 more rows"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#joining-population-to-the-map",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#joining-population-to-the-map",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Joining population to the map",
+    "text": "Joining population to the map\n\n\nShow R code\nmpsz_pop &lt;- st_read(file.path(geo_dir, \"masterplan_subzones.geojson\"), quiet = TRUE) |&gt;\n  st_transform(3414) |&gt;\n  mutate(\n    PLN_AREA_N = str_to_upper(PLN_AREA_N),\n    SUBZONE_N = str_to_upper(SUBZONE_N)\n  ) |&gt;\n  left_join(population_2020, by = c(\"PLN_AREA_N\" = \"PA\", \"SUBZONE_N\" = \"SZ\"))\n\nsum(!is.na(mpsz_pop$dependency))\n\n\n[1] 231\n\n\nThe join does not force missing subzones to zero. A missing value can mean that a subzone was not represented in the resident table, and treating that as a population of zero would hide the difference."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#a-first-choropleth-map",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#a-first-choropleth-map",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "A first choropleth map",
+    "text": "A first choropleth map\n\n\nShow R code\ndependency_map &lt;- tm_shape(mpsz_pop) +\n  tm_polygons(\n    fill = \"dependency\",\n    fill.scale = tm_scale_intervals(style = \"quantile\", n = 5, values = \"YlOrRd\"),\n    fill.legend = tm_legend(title = \"Dependency ratio\"),\n    col = \"white\",\n    lwd = 0.15\n  ) +\n  tm_title(\"Resident dependency ratio by planning subzone, 2020\") +\n  tm_layout(frame = FALSE)\n\ndependency_map\n\n\n\n\n\n\n\n\n\nQuantiles make the visual emphasis relative: each class contains a similar number of subzones. That is useful when looking for a ranking, but it should not be read as equally sized differences in the underlying ratio."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#comparing-classifications-and-palettes",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#comparing-classifications-and-palettes",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Comparing classifications and palettes",
+    "text": "Comparing classifications and palettes\n\n\nShow R code\nequal_map &lt;- tm_shape(mpsz_pop) +\n  tm_polygons(fill = \"dependency\", fill.scale = tm_scale_intervals(style = \"equal\", n = 5, values = \"Blues\"), col = \"white\", lwd = 0.1) +\n  tm_title(\"Equal intervals\")\n\nquantile_map &lt;- tm_shape(mpsz_pop) +\n  tm_polygons(fill = \"dependency\", fill.scale = tm_scale_intervals(style = \"quantile\", n = 5, values = \"YlOrRd\"), col = \"white\", lwd = 0.1) +\n  tm_title(\"Quantiles\")\n\njenks_map &lt;- tm_shape(mpsz_pop) +\n  tm_polygons(fill = \"dependency\", fill.scale = tm_scale_intervals(style = \"fisher\", n = 5, values = \"Purples\"), col = \"white\", lwd = 0.1) +\n  tm_title(\"Fisher-Jenks\")\n\ntmap_arrange(equal_map, quantile_map, jenks_map, ncol = 3)\n\n\n\n\n\n\n\n\n\nThe broad geography is stable across the three views, but the boundaries between classes move. For a short exercise, I prefer the quantile version because it avoids giving most subzones the same pale colour; in a formal report I would also show the numeric class breaks."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#small-multiples-and-a-selected-planning-area",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#small-multiples-and-a-selected-planning-area",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Small multiples and a selected planning area",
+    "text": "Small multiples and a selected planning area\nThe three age groups can be compared as small multiples. I also map Tampines on its own because selecting a single planning area makes its internal variation easier to see.\n\n\nShow R code\nmpsz_long &lt;- mpsz_pop |&gt;\n  select(SUBZONE_N, young, active, aged, geometry) |&gt;\n  pivot_longer(cols = c(young, active, aged), names_to = \"cohort\", values_to = \"population\")\n\ntm_shape(mpsz_long) +\n  tm_polygons(\n    fill = \"population\",\n    fill.scale = tm_scale_intervals(style = \"quantile\", n = 5, values = \"BuGn\"),\n    col = \"white\",\n    lwd = 0.1\n  ) +\n  tm_facets(by = \"cohort\", ncol = 3) +\n  tm_title(\"Population cohorts by subzone, 2020\") +\n  tm_layout(frame = FALSE)\n\n\n\n\n\n\n\n\n\n\n\nShow R code\ntampines &lt;- mpsz_pop |&gt; filter(PLN_AREA_N == \"TAMPINES\")\n\ntm_shape(tampines) +\n  tm_polygons(\n    fill = \"dependency\",\n    fill.scale = tm_scale_intervals(style = \"quantile\", n = 4, values = \"YlGnBu\"),\n    fill.legend = tm_legend(title = \"Dependency ratio\"),\n    col = \"white\"\n  ) +\n  tm_title(\"Dependency ratio within Tampines\") +\n  tm_layout(frame = FALSE)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#complementing-a-map-with-a-chart",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#complementing-a-map-with-a-chart",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Complementing a map with a chart",
+    "text": "Complementing a map with a chart\nThe map answers where dependency is higher. The bar chart adds a quick comparison of the planning areas with the largest resident population, which is helpful because a high ratio in a small subzone and a high ratio in a large subzone do not imply the same service demand.\n\n\nShow R code\nplanning_area_totals &lt;- mpsz_pop |&gt;\n  st_drop_geometry() |&gt;\n  group_by(PLN_AREA_N) |&gt;\n  summarise(total = sum(total, na.rm = TRUE), .groups = \"drop\") |&gt;\n  slice_max(total, n = 10) |&gt;\n  arrange(total)\n\npopulation_chart &lt;- ggplot(planning_area_totals, aes(x = total / 1000, y = fct_reorder(PLN_AREA_N, total))) +\n  geom_col(fill = \"#2a788e\") +\n  labs(title = \"Largest planning areas by resident population\", x = \"Residents (thousands)\", y = NULL) +\n  theme_minimal()\n\nmap_for_composition &lt;- ggplot(mpsz_pop) +\n  geom_sf(aes(fill = dependency), colour = \"white\", linewidth = 0.08) +\n  scale_fill_viridis_c(option = \"C\", na.value = \"grey90\", name = \"Dependency\\nratio\") +\n  labs(title = \"Dependency ratio, 2020\") +\n  theme_void()\n\nmap_for_composition + population_chart + plot_layout(widths = c(1.25, 1))"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#interactive-version-and-submission-image",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#interactive-version-and-submission-image",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Interactive version and submission image",
+    "text": "Interactive version and submission image\nThe interactive map keeps the same measure but adds a popup for the subzone name, total population and dependency ratio. I also save the static map as a PNG so it can be submitted to eLearn as an image rather than a text-only URL.\n\n\n\nFinished thematic map for eLearn submission\n\n\n\n\nShow R code\ntmap_mode(\"view\")\ntm_shape(mpsz_pop) +\n  tm_polygons(\n    fill = \"dependency\",\n    fill.scale = tm_scale_intervals(style = \"quantile\", n = 5, values = \"YlOrRd\"),\n    popup = c(\"SUBZONE_N\", \"total\", \"dependency\"),\n    id = \"SUBZONE_N\"\n  )"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#reflection",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html#reflection",
+    "title": "Hands-on Exercise 1B: Thematic Mapping and GeoVisualisation",
+    "section": "Reflection",
+    "text": "Reflection\nThe two strongest lessons for me were practical rather than cosmetic. First, matching the CRS before buffering or overlaying is essential; a layer can look plausible on screen and still be wrong for distance-based work. Second, a choropleth is sensitive to classification choices. I found the map much easier to read after comparing the alternatives instead of treating the first colour scheme as the final answer."
   }
 ]

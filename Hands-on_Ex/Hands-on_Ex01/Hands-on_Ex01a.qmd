@@ -1,0 +1,170 @@
+---
+title: "Hands-on Exercise 1A: Geospatial Data Science with R"
+subtitle: "Importing, checking and processing Singapore geospatial data"
+date: last-modified
+format:
+  html:
+    code-fold: true
+    code-summary: "Show R code"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+This exercise follows the first chapter of the course workbook. I used the current public releases where possible, then worked through the same core ideas: importing several geometry types, checking the coordinate reference system (CRS), bringing all layers into SVY21, and using spatial operations to answer small planning questions.
+
+Before rendering the page, run `Rscript scripts/download_data.R` from the project root. The raw-data sources and the reason for using the current GeoJSON releases are recorded in [the data-provenance note](data-provenance.md).
+
+```{r}
+#| label: setup
+#| include: false
+library(sf)
+library(tidyverse)
+
+data_dir <- file.path("Hands-on_Ex", "Hands-on_Ex01", "data")
+geo_dir <- file.path(data_dir, "geospatial")
+asp_dir <- file.path(data_dir, "aspatial")
+required_files <- c(
+  file.path(geo_dir, "masterplan_subzones.geojson"),
+  file.path(geo_dir, "cycling_paths.geojson"),
+  file.path(geo_dir, "preschools.geojson"),
+  file.path(asp_dir, "singapore_listings.csv")
+)
+if (!all(file.exists(required_files))) {
+  stop("Data files are missing. Run `Rscript scripts/download_data.R` from the project root first.")
+}
+```
+
+## Importing the layers
+
+The subzone boundary is a polygon layer, cycling paths are line features, and pre-schools are point features. All three files arrive in WGS84, so I transform them to SVY21 (`EPSG:3414`) immediately. This makes later buffering and area calculations meaningful in metres.
+
+```{r}
+#| label: import-layers
+mpsz <- st_read(file.path(geo_dir, "masterplan_subzones.geojson"), quiet = TRUE) |>
+  st_transform(3414)
+
+cyclingpath <- st_read(file.path(geo_dir, "cycling_paths.geojson"), quiet = TRUE) |>
+  st_transform(3414)
+
+preschool <- st_read(file.path(geo_dir, "preschools.geojson"), quiet = TRUE) |>
+  st_transform(3414)
+
+tibble(
+  layer = c("Planning subzones", "Cycling paths", "Pre-schools"),
+  features = c(nrow(mpsz), nrow(cyclingpath), nrow(preschool)),
+  geometry = c(as.character(st_geometry_type(mpsz)[1]),
+               as.character(st_geometry_type(cyclingpath)[1]),
+               as.character(st_geometry_type(preschool)[1]))
+)
+```
+
+The original coordinate system is geographical WGS84. After transformation, the CRS below confirms that the layers are in Singapore's projected coordinate system.
+
+```{r}
+#| label: check-crs
+st_crs(mpsz)$input
+st_crs(preschool)$input
+glimpse(mpsz)
+```
+
+## A quick spatial check
+
+The first plot is deliberately simple. It is useful for checking that the boundary and points are drawing in the same place before moving to a more polished map.
+
+```{r}
+#| label: quick-overlay
+#| fig-width: 8
+#| fig-height: 6
+plot(st_geometry(mpsz), col = "grey97", border = "grey65", main = "Pre-schools within Singapore planning subzones")
+plot(st_geometry(preschool), add = TRUE, pch = 16, cex = 0.28, col = "#1b6ca8")
+```
+
+## Converting an aspatial table into points
+
+Inside Airbnb supplies a regular CSV, but it contains longitude and latitude. After checking for missing coordinates, `st_as_sf()` converts the table into points and `st_transform()` puts it into the same CRS as the other layers.
+
+```{r}
+#| label: convert-listings
+listings <- read_csv(file.path(asp_dir, "singapore_listings.csv"), show_col_types = FALSE) |>
+  filter(!is.na(longitude), !is.na(latitude))
+
+listings_sf <- st_as_sf(listings, coords = c("longitude", "latitude"), crs = 4326) |>
+  st_transform(3414)
+
+listings_sf
+```
+
+```{r}
+#| label: listings-overlay
+#| fig-width: 8
+#| fig-height: 6
+plot(st_geometry(mpsz), col = "grey97", border = "grey65", main = "Singapore listings over planning subzones")
+plot(st_geometry(listings_sf), add = TRUE, pch = 16, cex = 0.22, col = rgb(0.85, 0.2, 0.2, 0.35))
+```
+
+The point cloud is expected to be uneven because listings follow housing and tourism activity rather than the size of a planning subzone.
+
+## Buffering cycling paths
+
+For a manageable local example, I selected cycling paths that meet Tampines West and added a 5-metre buffer. Working in SVY21 matters here: a five-unit buffer is now a five-metre buffer, not five decimal degrees.
+
+```{r}
+#| label: cycling-buffer
+tampines_west <- mpsz |> filter(SUBZONE_N == "TAMPINES WEST")
+cycling_tampines <- st_filter(cyclingpath, tampines_west)
+cycling_buffer <- st_buffer(cycling_tampines, dist = 5)
+
+buffer_area_m2 <- sum(st_area(cycling_buffer))
+buffer_area_m2
+```
+
+```{r}
+#| label: buffer-map
+#| fig-width: 8
+#| fig-height: 6
+plot(st_geometry(tampines_west), col = "grey95", border = "grey35", main = "Five-metre cycling-path buffer in Tampines West")
+plot(st_geometry(cycling_buffer), add = TRUE, col = rgb(0.2, 0.6, 0.8, 0.35), border = NA)
+plot(st_geometry(cycling_tampines), add = TRUE, col = "#176b87", lwd = 0.8)
+```
+
+The displayed area is a sum of feature buffers, so overlapping buffer sections can be counted more than once. That is acceptable for demonstrating the operation; a land-acquisition estimate would dissolve overlapping buffers first.
+
+## Counting pre-schools by subzone
+
+`st_intersects()` returns the pre-school points that fall inside each subzone. Counting those matches and dividing by the polygon area gives both an absolute count and a comparable density.
+
+```{r}
+#| label: preschool-counts
+mpsz_preschools <- mpsz |>
+  mutate(
+    preschool_count = lengths(st_intersects(mpsz, preschool)),
+    area_km2 = as.numeric(st_area(geometry)) / 1e6,
+    preschool_density = preschool_count / area_km2
+  )
+
+mpsz_preschools |>
+  st_drop_geometry() |>
+  select(SUBZONE_N, PLN_AREA_N, preschool_count, preschool_density) |>
+  arrange(desc(preschool_count)) |>
+  slice_head(n = 10)
+```
+
+```{r}
+#| label: preschool-eda
+#| fig-width: 8
+#| fig-height: 4.5
+ggplot(mpsz_preschools, aes(x = preschool_density)) +
+  geom_histogram(bins = 24, fill = "#62a8ac", colour = "white") +
+  labs(
+    title = "Pre-school density is uneven across subzones",
+    x = "Pre-schools per square kilometre",
+    y = "Number of subzones"
+  ) +
+  theme_minimal()
+```
+
+The histogram makes a useful distinction: a large subzone can have many centres but still have moderate density, while a compact residential subzone can stand out once area is taken into account. That is why both measures are worth keeping.

@@ -1,5 +1,7 @@
 project:
   type: website
+  output-dir: _site
+  execute-dir: project
 
 website:
   title: "ISS626-VAA"
@@ -7,8 +9,10 @@ website:
     left:
       - text: "Hands-on Exercise"
         menu:
-          - text: "Hands-on Exercise 1"
-            href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
+          - text: "Hands-on Exercise 1A: Geospatial Data Science"
+            href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html"
+          - text: "Hands-on Exercise 1B: Thematic Mapping"
+            href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html"
     right:
       - href: index.qmd
         text: Home
@@ -21,5 +25,3 @@ format:
     toc: true
     
 editor: visual
-
-    

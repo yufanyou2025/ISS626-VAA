@@ -3,3 +3,8 @@ title: "ISS626-VAA"
 ---
 
 Welcome to **ISS626 Visual Analytics and Applications.** In this website, you will find my coursework prepared for this course
+
+The first hands-on exercise is split into two linked parts. Exercise 1A focuses on importing and processing Singapore geospatial data, while Exercise 1B uses the prepared data for thematic mapping and geo-visualisation.
+
+- [Exercise 1A: Geospatial Data Science](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.qmd)
+- [Exercise 1B: Thematic Mapping and GeoVisualisation](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.qmd)

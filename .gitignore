@@ -7,3 +7,6 @@
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Public source data are downloaded by scripts/download_data.R.
+Hands-on_Ex/Hands-on_Ex01/data/
