@@ -1,0 +1,23 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Segoe UI", "Noto Sans Thai", Arial, sans-serif;
+$presentation-font-size-root: 30px;
+$presentation-heading-color: #20394f;
+$body-color: #23313c;
+$body-bg: #ffffff;
+$link-color: #176f82;
+$presentation-h2-font-size: 1.45em;
+
+/*-- scss:rules --*/
+.reveal .slides { text-align: left; }
+.reveal .slides h2 { margin-bottom: 0.7em; }
+.reveal .slides p { line-height: 1.4; }
+.reveal .slide-logo { max-height: 0; }
+.reveal .footer { font-size: 15px; color: #687681; }
+.reveal #title-slide { text-align: left; }
+.reveal .slides .source { font-size: 17px; color: #52616d; line-height: 1.25; }
+.reveal .slides .takeaway { font-size: 24px; line-height: 1.25; }
+.reveal .slides p:has(> img) { margin: 0.1em 0; }
+.reveal .slides img { object-fit: contain; margin: 0; max-height: 420px; }
+.reveal .slides table { font-size: 23px; }
+.reveal .slides table th, .reveal .slides table td { padding: 0.5em; }
+.reveal .slides h2 { font-size: 1.25em; margin-bottom: 0.35em; }

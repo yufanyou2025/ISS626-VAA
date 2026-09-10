@@ -2,11 +2,25 @@ project:
   type: website
   output-dir: _site
   execute-dir: project
+  resources:
+    - "!Take-home_Ex/Take-home_Ex01/data/"
+    - "!Take-home_Ex/Take-home_Ex01/notes/"
+    - "!Take-home_Ex/Take-home_Ex01/README.md"
+    - "!Take-home_Ex/Take-home_Ex01/WORKBOOK.md"
+    - "!Take-home_Ex/Take-home_Ex01/SUBMISSION.md"
 
 website:
   title: "ISS626-VAA"
   navbar:
     left:
+      - text: "Take-home Exercise"
+        menu:
+          - text: "Exercise 1: Technical Report"
+            href: "Take-home_Ex/Take-home_Ex01/technical-report.qmd"
+          - text: "Exercise 1: Executive Summary"
+            href: "Take-home_Ex/Take-home_Ex01/executive-summary.qmd"
+          - text: "GitHub repository"
+            href: "https://github.com/yufanyou2025/ISS626-VAA"
       - text: "Hands-on Exercise"
         menu:
           - text: "Hands-on Exercise 1A: Geospatial Data Science"

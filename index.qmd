@@ -8,3 +8,11 @@ The first hands-on exercise is split into two linked parts. Exercise 1A focuses 
 
 - [Exercise 1A: Geospatial Data Science](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.qmd)
 - [Exercise 1B: Thematic Mapping and GeoVisualisation](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.qmd)
+
+## Take-home Exercise 1
+
+**Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.
+
+- [Technical report](Take-home_Ex/Take-home_Ex01/technical-report.qmd)
+- [Executive summary](Take-home_Ex/Take-home_Ex01/executive-summary.qmd)
+- [Source project on GitHub](https://github.com/yufanyou2025/ISS626-VAA)

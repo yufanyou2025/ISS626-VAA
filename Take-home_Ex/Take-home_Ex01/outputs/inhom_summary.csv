@@ -1,0 +1,13 @@
+distance_km,value,curve
+1,-0.31170795292221,All records; bandwidth 3 km
+3,-1.7083165139720617,All records; bandwidth 3 km
+5,-2.8523484929096967,All records; bandwidth 3 km
+10,1.9230849357679927,All records; bandwidth 3 km
+1,0.8203035659546762,All records; bandwidth 6 km
+3,0.21204136878264898,All records; bandwidth 6 km
+5,-0.23065316389051532,All records; bandwidth 6 km
+10,-0.14939064047692227,All records; bandwidth 6 km
+1,-0.5062632175755639,Unique locations; bandwidth 3 km
+3,-1.9183332145361427,Unique locations; bandwidth 3 km
+5,-3.149769570973643,Unique locations; bandwidth 3 km
+10,0.4969832546447942,Unique locations; bandwidth 3 km

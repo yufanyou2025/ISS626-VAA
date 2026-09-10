@@ -1,0 +1,6 @@
+stage,removed,retained
+Original input,0,12762
+Remove identical rows,24,12738
+Valid dates in Jan-Sep 2024,0,12738
+Usable coordinate pair,9498,3240
+Inside six-province window,2710,530

@@ -1,0 +1,10 @@
+package,version
+sf,1.1.2
+dplyr,1.2.1
+readr,2.2.0
+ggplot2,4.0.3
+spatstat.geom,3.8.2
+spatstat.explore,3.8.2
+spatstat.random,3.5.1
+jsonlite,2.0.0
+digest,0.6.39

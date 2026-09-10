@@ -10,3 +10,8 @@
 
 # Public source data are downloaded by scripts/download_data.R.
 Hands-on_Ex/Hands-on_Ex01/data/
+
+# Take-home source data remain local; see its data/README.md.
+Take-home_Ex/Take-home_Ex01/data/raw/
+Take-home_Ex/Take-home_Ex01/data/processed/
+.local-preview/

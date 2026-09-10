@@ -1,0 +1,21 @@
+{
+  "access_date": "2026-09-10",
+  "status": "Original inputs; not cleaned or analysed",
+  "files": [
+    {
+      "path": "data/raw/thailand-road-accident-fatalities-2024.zip",
+      "bytes": 312598,
+      "sha256": "c0532927eee3ac3366f654b672a946213dc532c11952b52c5a27a74bf8a0fd68"
+    },
+    {
+      "path": "data/raw/kaggle/thailand_road_accident_fatalities_2024.csv",
+      "bytes": 2129244,
+      "sha256": "523e8027d55b2d5e6d015cee20bc33727713230dc80e88dfa64191ad6d80b14c"
+    },
+    {
+      "path": "data/raw/geoBoundaries-THA-ADM1.geojson",
+      "bytes": 4032763,
+      "sha256": "145beb11e52785a42e16997c92a65426b3df8d009941db6b012ec8e411f3e33c"
+    }
+  ]
+}
