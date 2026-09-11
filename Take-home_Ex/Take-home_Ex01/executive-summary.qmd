@@ -143,6 +143,6 @@ Missing locations, incomplete-year coverage, uncertain event identity, and plana
 [Technical report and references](technical-report.html) · [GitHub project](https://github.com/yufanyou2025/ISS626-VAA)
 
 ::: {.source}
-Main sources: Kaggle / DDC compilation; geoBoundaries / OpenStreetMap; Thailand NSO; sf and spatstat documentation. Assistance declaration appears in the technical report.
+Main sources: Kaggle / DDC compilation; geoBoundaries / OpenStreetMap; Thailand NSO; sf and spatstat documentation.
 :::
 

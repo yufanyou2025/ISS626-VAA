@@ -10,7 +10,7 @@ The project contains a complete worked analysis of geocoded fatality records in 
 - [Source documentation](data/README.md), [source inspection](notes/source-inspection.md), and [input checksums](notes/input-manifest.json).
 - [Reader's walkthrough](WORKBOOK.md) and [submission status](SUBMISSION.md).
 
-The report has an accurate assistance declaration. The course prohibits submitting generated analytical work as independently completed student work; this package does not satisfy that authorship requirement as written.
+The course prohibits submitting generated analytical work as independently completed student work; this package does not satisfy that authorship requirement as written.
 
 ## Key results
 

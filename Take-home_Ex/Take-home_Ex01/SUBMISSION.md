@@ -22,7 +22,6 @@ These are the production addresses. A deployment and public-link check must succ
 - [x] Report, slides, and coursework home render; 60 local resource references passed the initial structural check.
 - [x] All 12 slides were visually reviewed; the report-to-slides navigation and slide-to-report link work locally.
 - [x] Raw datasets are excluded from Git and the published site.
-- [x] Report source contains an accurate assistance declaration.
 
 ## Interpretation to retain
 

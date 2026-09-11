@@ -299,8 +299,3 @@ sessionInfo()
 6. Pebesma, E. [Simple Features for R](https://r-spatial.github.io/sf/articles/sf1.html).
 7. Baddeley, A., Rubak, E., and Turner, R. [spatstat documentation and learning resources](https://spatstat.org/).
 8. spatstat.explore. [Kinhom documentation](https://rdrr.io/cran/spatstat.explore/man/Kinhom.html) and [simulation envelope documentation](https://rdrr.io/cran/spatstat.explore/man/envelope.html). Package version 3.8.2 used locally.
-
-## Assistance declaration {.unnumbered}
-
-Generative AI prepared the code, analysis, visualisations, and written materials in this worked analysis. These contributions are not represented as independently completed student work.
-
