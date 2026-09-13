@@ -5,7 +5,10 @@ author: "yufanyou2025"
 date: "2026-09-10"
 format:
   html:
+    theme: darkly
+    highlight-style: github-dark
     toc: true
+    toc-title: "Report index"
     toc-depth: 2
     number-sections: true
     code-fold: true
@@ -26,7 +29,34 @@ knitr::read_chunk("Take-home_Ex/Take-home_Ex01/analysis.R")
 fmt <- function(x, digits = 0) formatC(x, format = "f", digits = digits, big.mark = ",")
 ```
 
-[Executive summary](executive-summary.qmd) · [Source code](https://github.com/yufanyou2025/ISS626-VAA/blob/master/Take-home_Ex/Take-home_Ex01/analysis.R)
+::: {.report-actions}
+[View executive summary ↗](executive-summary.qmd){.report-action .primary-action}
+[Explore source code ↗](https://github.com/yufanyou2025/ISS626-VAA/blob/master/Take-home_Ex/Take-home_Ex01/analysis.R){.report-action}
+:::
+
+::: {.research-snapshot aria-label="Study at a glance"}
+::: {.snapshot-item}
+[STUDY SAMPLE]{.snapshot-label}
+
+[`r fmt(npoints(X))`]{.snapshot-value}
+
+Located fatality records
+:::
+::: {.snapshot-item}
+[SPATIAL COVERAGE]{.snapshot-label}
+
+[`r nrow(study)`]{.snapshot-value}
+
+Greater Bangkok provinces
+:::
+::: {.snapshot-item}
+[DATA LIMITATION]{.snapshot-label}
+
+[`r fmt(100 * mean(!period$has_coordinates), 1)`%]{.snapshot-value}
+
+National records missing coordinates
+:::
+:::
 
 ## Introduction and research question
 
