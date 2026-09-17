@@ -1,0 +1,3 @@
+dataset,id,file,coverage,catalogue_updated,source_url,downloaded,md5
+Master Plan 2019 Subzone Boundary (No Sea),d_8594ae9ff96d0c708bc2af633048edfb,subzones.geojson,September 2021 (Master Plan 2019),2025-12-03,https://data.gov.sg/datasets/d_8594ae9ff96d0c708bc2af633048edfb/view,2026-09-17,86bd781ffe03ce9e804fe6701bac24cb
+Child Care Services,d_5d668e3f544335f8028f546827b773b4,childcare.geojson,December 2021,2026-04-18,https://data.gov.sg/datasets/d_5d668e3f544335f8028f546827b773b4/view,2026-09-17,3cdf1df41203fc05270d283bb1ed1484

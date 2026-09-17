@@ -9,6 +9,13 @@ The first hands-on exercise is split into two linked parts. Exercise 1A focuses 
 - [Exercise 1A: Geospatial Data Science](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.qmd)
 - [Exercise 1B: Thematic Mapping and GeoVisualisation](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.qmd)
 
+## Hands-on Exercise 2
+
+Singapore childcare locations provide a practical introduction to spatial point-pattern analysis, from density estimation to simulation envelopes.
+
+- [Exercise 2A: First-order Spatial Point Patterns](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.qmd)
+- [Exercise 2B: Second-order Spatial Point Patterns](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd)
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.

@@ -3,6 +3,11 @@ project:
   output-dir: _site
   execute-dir: project
   resources:
+    - "Hands-on_Ex/Hands-on_Ex02/maps/"
+    - "Hands-on_Ex/Hands-on_Ex02/figures/"
+    - "Hands-on_Ex/Hands-on_Ex02/outputs/"
+    - "!Hands-on_Ex/Hands-on_Ex02/data/"
+    - "!Hands-on_Ex/Hands-on_Ex02/cache/"
     - "!Take-home_Ex/Take-home_Ex01/data/"
     - "!Take-home_Ex/Take-home_Ex01/notes/"
     - "!Take-home_Ex/Take-home_Ex01/README.md"
@@ -27,6 +32,10 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html"
           - text: "Hands-on Exercise 1B: Thematic Mapping"
             href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html"
+          - text: "Hands-on Exercise 2A: First-order Point Patterns"
+            href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.qmd"
+          - text: "Hands-on Exercise 2B: Second-order Point Patterns"
+            href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd"
     right:
       - href: index.qmd
         text: Home
