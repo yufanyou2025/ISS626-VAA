@@ -1,20 +1,65 @@
 ---
-title: "ISS626-VAA"
+title: "Evidence, place & perspective"
+format:
+  html:
+    toc: false
 ---
 
-Welcome to **ISS626 Visual Analytics and Applications.** In this website, you will find my coursework prepared for this course
+::: {.portfolio-kicker}
+ISS626 · Research & analytical coursework
+:::
 
-The first hands-on exercise is split into two linked parts. Exercise 1A focuses on importing and processing Singapore geospatial data, while Exercise 1B uses the prepared data for thematic mapping and geo-visualisation.
+::: {.portfolio-intro}
+A collection of geospatial investigations, reproducible analysis and visual evidence. Each project connects the method to the finding—and makes its limitations clear.
+:::
 
-- [Exercise 1A: Geospatial Data Science](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.qmd)
-- [Exercise 1B: Thematic Mapping and GeoVisualisation](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.qmd)
+## Hands-on research
 
-## Hands-on Exercise 2
+::: {.portfolio-grid}
+::: {.portfolio-card}
+::: {.portfolio-number}
+01A / Foundations
+:::
+### Geospatial data science
 
-Singapore childcare locations provide a practical introduction to spatial point-pattern analysis, from density estimation to simulation envelopes.
+Importing, transforming and connecting Singapore's spatial datasets.
 
-- [Exercise 2A: First-order Spatial Point Patterns](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.qmd)
-- [Exercise 2B: Second-order Spatial Point Patterns](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd)
+[Explore Exercise 1A →](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.qmd)
+:::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+01B / Visual evidence
+:::
+### Thematic mapping
+
+How classification, colour and composition shape a geographical argument.
+
+[Explore Exercise 1B →](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.qmd)
+:::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+02A / Spatial concentration
+:::
+### First-order point patterns
+
+Childcare locations, nearest neighbours and density estimates across Singapore.
+
+[Explore Exercise 2A →](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.qmd)
+:::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+02B / Statistical inference
+:::
+### Second-order point patterns
+
+Distance-based comparisons and simulation envelopes for two planning areas.
+
+[Explore Exercise 2B →](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd)
+:::
+:::
 
 ## Take-home Exercise 1
 

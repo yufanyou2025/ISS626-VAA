@@ -1,1 +1,58 @@
-/* css styles */
+/* Finance-inspired editorial theme. Keep the bespoke Take-home report intact. */
+body:not(:has(.report-actions)) {
+  --bs-body-bg: #f7f5f0;
+  --bs-body-color: #252b2c;
+  --bs-link-color: #73551c;
+  --bs-link-hover-color: #423414;
+  background: #f7f5f0;
+  color: #252b2c;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  text-shadow: none;
+}
+body:not(:has(.report-actions)) :is(h1,h2,h3,h4,.title) {
+  color: #202929;
+  text-shadow: none;
+  font-weight: 500;
+  letter-spacing: -.025em;
+}
+body:not(:has(.report-actions)) :is(h1,h2) { font-family: Georgia, "Times New Roman", serif; }
+body:not(:has(.report-actions)) h1 { font-size: clamp(2.15rem,4vw,3.3rem); line-height: 1.16; }
+body:not(:has(.report-actions)) h2 { margin-top: 2.4rem; padding-top: .7rem; border-top: 1px solid #dcd7cb; }
+body:not(:has(.report-actions)) :is(a,.toc-active) { color: #73551c; }
+body:not(:has(.report-actions)) a:hover { color: #352a14; }
+body:not(:has(.report-actions)) :is(.subtitle,.quarto-title-meta-heading,.quarto-title-meta-contents) { color: #596362; }
+body:not(:has(.report-actions)) .navbar {
+  background: #182525 !important; border-bottom: 3px solid #b4975b;
+  box-shadow: none; padding: .8rem 1rem;
+}
+body:not(:has(.report-actions)) .navbar :is(.navbar-brand,.nav-link,.navbar-title,.bi-search) { color: #f5f2e9 !important; text-shadow: none; }
+body:not(:has(.report-actions)) .navbar-brand { font-weight: 650; letter-spacing: .08em; font-size: 1rem; }
+body:not(:has(.report-actions)) .dropdown-menu { background: #fffefa; border: 1px solid #d9d2c2; border-radius: 2px; box-shadow: 0 8px 20px #18252518; }
+body:not(:has(.report-actions)) .dropdown-item { color: #252b2c; font-size: .9rem; }
+body:not(:has(.report-actions)) .dropdown-item:hover { background: #ede7d8; }
+body:not(:has(.report-actions)) #quarto-document-content { padding-top: 2rem; }
+body:not(:has(.report-actions)) #TOC { font-size: .82rem; }
+body:not(:has(.report-actions)) #TOC h2 { font-family: "Segoe UI",Arial,sans-serif; border: 0; margin-top: 0; font-size: .85rem; font-weight: 650; }
+body:not(:has(.report-actions)) #TOC a { color: #596362; }
+body:not(:has(.report-actions)) #TOC a.active { color: #73551c; border-left-color: #a18449; font-weight: 600; }
+body:not(:has(.report-actions)) .header-section-number { color: #81745b; }
+body:not(:has(.report-actions)) :is(table,.table) { color: #252b2c; font-variant-numeric: tabular-nums; font-size: .9rem; }
+body:not(:has(.report-actions)) thead { background: #e8e4da; border-bottom: 2px solid #a18449; }
+body:not(:has(.report-actions)) :is(td,th) { padding: .65rem .8rem; border-color: #dcd7cb; }
+body:not(:has(.report-actions)) .code-fold { margin: 1rem 0; padding: .7rem 1rem; border: 1px solid #dcd7cb; background: #fffefa; border-radius: 3px; }
+body:not(:has(.report-actions)) .code-fold summary { color: #73551c; font-size: .85rem; font-weight: 600; }
+body:not(:has(.report-actions)) div.sourceCode { background: #eeece6; border: 0; box-shadow: none; }
+body:not(:has(.report-actions)) code { color: #3b5954; }
+body:not(:has(.report-actions)) figcaption { color: #626965; font-size: .85rem; }
+body:not(:has(.report-actions)) :is(a,summary,button):focus-visible { outline: 3px solid #a18449; outline-offset: 3px; }
+.portfolio-kicker { font-size: .72rem; text-transform: uppercase; letter-spacing: .2em; color: #806333; font-weight: 700; margin-top: 1.5rem; }
+.portfolio-intro { max-width: 650px; font-size: 1.15rem; color: #596362; margin: 1.2rem 0 2rem; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; margin: 1.5rem 0 2.5rem; }
+.portfolio-card { background: #fffefa; border: 1px solid #ddd7ca; border-top: 3px solid #a18449; padding: 1.5rem; }
+.portfolio-card h3 { font-family: Georgia,serif; font-size: 1.4rem; margin: .6rem 0; }
+.portfolio-card p { color: #596362; font-size: .94rem; }
+.portfolio-card a { font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.portfolio-number { font-size: .72rem; letter-spacing: .12em; color: #806333; text-transform: uppercase; }
+@media(max-width:700px) { .portfolio-grid { grid-template-columns: 1fr; } body:not(:has(.report-actions)) { font-size: 16px; } }

@@ -2,8 +2,12 @@
 title: "About"
 ---
 
-About this site
+This portfolio brings together my coursework for **ISS626 Visual Analytics and Applications**. The projects explore how spatial data, statistical methods and careful visualisation can support an evidence-based argument.
 
-```{r}
-1 + 1
-```
+## How to read the projects
+
+Each exercise presents the question, data preparation, analysis and interpretation. Expand the R code to inspect the method, use the interactive maps to explore locations, and download the figures where provided.
+
+The learning reflections focus on what the results show, which choices matter and where the evidence stops. Source links and reproducibility instructions accompany the work.
+
+[Browse the coursework](index.qmd) · [View the GitHub repository](https://github.com/yufanyou2025/ISS626-VAA)

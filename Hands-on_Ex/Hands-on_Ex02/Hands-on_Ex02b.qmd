@@ -149,5 +149,3 @@ Finally, more centres or stronger clustering does not establish adequate service
 - [Workbook Chapter 5](https://r4gdsa.netlify.app/chap05.html), accessed 17 September 2026; [Chapter 4 preparation](https://r4gdsa.netlify.app/chap04.html).
 - [Shared preparation](prepare.R), [second-order analysis](analysis-2b.R), [reproduction instructions](README.md), and [R session information](outputs/session-info.txt).
 - [Exercise 2A](Hands-on_Ex02a.qmd) contains the location maps, geometry audit and first-order analysis.
-
-This is an AI-assisted worked exercise. All reported curve departures come from the reproducible simulation runs, with the inferential limits stated above.

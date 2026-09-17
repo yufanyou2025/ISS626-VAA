@@ -8,6 +8,7 @@ let references=0;
 for(const p of pages) {
  const file=path.join(root,p),html=fs.readFileSync(file,'utf8');
  assert(html.includes('What I learned'));
+ assert(!html.includes('This is an AI-assisted worked exercise.'),'Removed closing note reappeared');
  assert(html.includes('<details class="code-fold">'));
  assert(html.includes('Hands-on_Ex02a.html') && html.includes('Hands-on_Ex02b.html'));
  for(const [,ref] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
