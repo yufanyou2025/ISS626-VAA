@@ -36,7 +36,7 @@ body:not(:has(.report-actions)) #quarto-document-content { padding-top: 2rem; }
 body:not(:has(.report-actions)) #TOC { font-size: .82rem; }
 body:not(:has(.report-actions)) #TOC h2 { font-family: "Segoe UI",Arial,sans-serif; border: 0; margin-top: 0; font-size: .85rem; font-weight: 650; }
 body:not(:has(.report-actions)) #TOC a { color: #596362; }
-body:not(:has(.report-actions)) #TOC a.active { color: #73551c; border-left-color: #a18449; font-weight: 600; }
+body:not(:has(.report-actions)) #TOC a.active { color: #73551c !important; border-left-color: #a18449; font-weight: 600; }
 body:not(:has(.report-actions)) .header-section-number { color: #81745b; }
 body:not(:has(.report-actions)) :is(table,.table) { color: #252b2c; font-variant-numeric: tabular-nums; font-size: .9rem; }
 body:not(:has(.report-actions)) thead { background: #e8e4da; border-bottom: 2px solid #a18449; }
