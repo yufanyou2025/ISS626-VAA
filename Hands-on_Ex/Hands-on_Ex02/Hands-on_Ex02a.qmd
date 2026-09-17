@@ -144,7 +144,7 @@ I compute this raster from the **metre-coordinate** pattern, assign EPSG:3414, a
 
 ```{r}
 #| echo: false
-knitr::kable(area_summary,digits=2,col.names=c("Planning area","Centres","Area (km²)","Centres/km²"))
+knitr::kable(area_summary,digits=2,col.names=c("Planning area","Centres","Area (km^2)","Centres/km^2"))
 ```
 
 ![Point patterns clipped to the four planning-area windows.](figures/local-points.png)

@@ -36,7 +36,7 @@ The inputs are [ECDA Child Care Services](https://data.gov.sg/datasets/d_5d668e3
 ```{r}
 #| echo: false
 knitr::kable(area_summary |> filter(area %in% c("CHOA CHU KANG","TAMPINES")),digits=2,
- col.names=c("Planning area","Centres","Window area (km²)","Centres/km²"))
+ col.names=c("Planning area","Centres","Window area (km^2)","Centres/km^2"))
 ```
 
 The national audit retains 1,925 centres, excludes none outside the window, and identifies 187 additional records sharing coordinates. Such records are retained, not randomly displaced or automatically deleted. Zero-distance pairs can increase short-range G, K and L, so they are part of the interpretation rather than a hidden data-cleaning choice.
