@@ -61,6 +61,17 @@ Distance-based comparisons and simulation envelopes for two planning areas.
 :::
 :::
 
+::: {.portfolio-card}
+::: {.portfolio-number}
+03 / Space & time
+:::
+### Fire detections through 2023
+
+Following MODIS observations across Bangka with space-time density estimates and K-function analysis.
+
+[Explore Exercise 3 →](Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.
