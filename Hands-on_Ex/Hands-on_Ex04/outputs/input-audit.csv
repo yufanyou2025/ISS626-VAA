@@ -1,0 +1,10 @@
+check,value
+Boundary rows,88
+Indicator rows,88
+Joined rows,88
+Duplicate county keys,0
+Unmatched boundary keys,0
+Unmatched indicator keys,0
+Missing GDPPC,0
+Invalid geometries,0
+Empty geometries,0
