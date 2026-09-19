@@ -22,3 +22,11 @@ Dates record actual work, not a reconstructed timeline. All timestamps are Asia/
 - Drafted the Quarto page in the chapter's section order and answered its interpretation questions.
 - Used the computed Anxiang, Lengshuijiang and Pingjiang results to explain normalisation, self-inclusion and local contrasts.
 - Added specific learning reflections, data limitations, sources and reproducible code, keeping the shared finance-inspired presentation.
+
+## 19 September 2026 — Verification and publication preparation
+
+- Rendered the exercise from a fresh R session with every numerical assertion passing.
+- Checked 88 county results, 11 figures, all local page resources, search indexing and the Hands-on navigation.
+- Verified desktop and mobile layouts, image loading, expandable code and the homepage link in a browser.
+- Confirmed that previous exercise and Take-home report bodies are unchanged; only shared navigation was refreshed.
+- Prepared source and rendered output for the existing GitHub/Vercel production workflow. The deployment's final status is recorded by GitHub rather than anticipated here.

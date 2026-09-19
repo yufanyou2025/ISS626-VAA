@@ -1,0 +1,7 @@
+method,links,mean_degree,min_degree,max_degree,isolates,components,symmetric
+Queen,448,5.090909090909091,1,11,0,1,TRUE
+Rook,440,5,1,10,0,1,TRUE
+1-NN,88,1,1,1,0,24,FALSE
+62 km,324,3.6818181818181817,1,6,0,1,TRUE
+6-NN,528,6,6,6,0,1,FALSE
+6-NN symmetric union,614,6.9772727272727275,6,10,0,1,TRUE

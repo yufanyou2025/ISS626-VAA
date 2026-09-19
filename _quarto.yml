@@ -3,6 +3,10 @@ project:
   output-dir: _site
   execute-dir: project
   resources:
+    - "Hands-on_Ex/Hands-on_Ex04/figures/"
+    - "Hands-on_Ex/Hands-on_Ex04/outputs/"
+    - "!Hands-on_Ex/Hands-on_Ex04/data/"
+    - "!Hands-on_Ex/Hands-on_Ex04/cache/"
     - "Hands-on_Ex/Hands-on_Ex03/figures/"
     - "Hands-on_Ex/Hands-on_Ex03/outputs/"
     - "!Hands-on_Ex/Hands-on_Ex03/data/"
@@ -42,6 +46,8 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd"
           - text: "Hands-on Exercise 3: Spatio-temporal Point Patterns"
             href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.qmd"
+          - text: "Hands-on Exercise 4: Spatial Weights and Applications"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.qmd"
     right:
       - href: index.qmd
         text: Home
