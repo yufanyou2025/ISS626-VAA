@@ -13,3 +13,12 @@ source("Hands-on_Ex/Hands-on_Ex04/prepare.R")
 ```
 
 Run from the repository root. The preparation script checks unique join keys, complete matches, valid geometry, CRS, GDPPC values and input checksums. It never downloads alternative data.
+
+```powershell
+Rscript -e "source('Hands-on_Ex/Hands-on_Ex04/analysis.R')"
+quarto render Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.qmd
+```
+
+The analysis uses EPSG:32649 to calculate centroids and EPSG:4326 with explicit `longlat=TRUE` for great-circle distances in kilometres. Contiguity is computed on the validated supplied boundaries. A separate sensitivity calculation reproduces the workbook's degree-coordinate centroid/planar-KNN convention. The scripts report rather than suppress the one-nearest-neighbour graph's disconnected components. All numerical results, figures and package versions are regenerated without analytical caches.
+
+Raw `style="B"` inverse-distance weights are retained as an explicit chapter comparison; the normalised inverse-distance mean uses `style="W"`. Sums of GDPPC values are not interpreted as aggregate GDP. All average maps share one classification, and sum-comparison maps use their own shared classification.
