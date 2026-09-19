@@ -16,3 +16,9 @@ Dates record actual work, not a reconstructed timeline. All timestamps are Asia/
 - Computed all four chapter lag/window measures and reconciled them against independent arithmetic for every county.
 - Compared the chapter's centroid/KNN convention with projected centroids and great-circle distances. The 62-km graph is unchanged; 17 directed six-neighbour links are replaced.
 - Generated and reviewed the county maps, connectivity graphs and matched-scale comparison figures.
+
+## 19 September 2026 — Writing and interpretation
+
+- Drafted the Quarto page in the chapter's section order and answered its interpretation questions.
+- Used the computed Anxiang, Lengshuijiang and Pingjiang results to explain normalisation, self-inclusion and local contrasts.
+- Added specific learning reflections, data limitations, sources and reproducible code, keeping the shared finance-inspired presentation.
