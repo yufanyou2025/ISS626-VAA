@@ -3,6 +3,11 @@ project:
   output-dir: _site
   execute-dir: project
   resources:
+    - "In-class_Ex/In-class_Ex04/figures/"
+    - "In-class_Ex/In-class_Ex04/outputs/"
+    - "In-class_Ex/In-class_Ex04/In-class_Ex04.R"
+    - "!In-class_Ex/In-class_Ex04/data/"
+    - "!In-class_Ex/In-class_Ex04/cache/"
     - "Hands-on_Ex/Hands-on_Ex04/figures/"
     - "Hands-on_Ex/Hands-on_Ex04/outputs/"
     - "!Hands-on_Ex/Hands-on_Ex04/data/"
@@ -48,6 +53,10 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.qmd"
           - text: "Hands-on Exercise 4: Spatial Weights and Applications"
             href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.qmd"
+      - text: "In-class Exercise"
+        menu:
+          - text: "In-class Exercise 4: Geographically Weighted Statistics"
+            href: "In-class_Ex/In-class_Ex04/In-class_Ex04.qmd"
     right:
       - href: index.qmd
         text: Home

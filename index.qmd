@@ -83,6 +83,19 @@ How contiguity, distance and normalisation change comparisons of Hunan's county 
 [Explore Exercise 4 →](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.qmd)
 :::
 
+## In-class Exercise
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+04 / Local economic variation
+:::
+### Geographically weighted summary statistics
+
+Comparing local means, robust summaries and kernel choices across Hunan's counties.
+
+[Explore In-class Exercise 4 →](In-class_Ex/In-class_Ex04/In-class_Ex04.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.

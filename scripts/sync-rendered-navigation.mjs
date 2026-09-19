@@ -2,6 +2,8 @@
 // are intentionally not in Git. Run after rendering index.qmd with Quarto.
 import fs from 'node:fs';
 import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+const tracked = new Set(execFileSync('git',['ls-files','_site'],{encoding:'utf8'}).trim().split('\n'));
 const root = path.resolve('_site');
 const headerPattern = /<header id="quarto-header"[\s\S]*?<\/header>/;
 const homepage = fs.readFileSync(path.join(root,'index.html'),'utf8');
@@ -14,6 +16,8 @@ function visit(dir) {
     const file=path.join(dir,entry.name);
     if(entry.isDirectory()) visit(file);
     else if(entry.name.endsWith('.html')) {
+      const relative=path.relative(process.cwd(),file).split(path.sep).join('/');
+      if(!tracked.has(relative) && !relative.startsWith('_site/In-class_Ex/In-class_Ex04/')) continue;
       const html=fs.readFileSync(file,'utf8');
       if(!headerPattern.test(html)) continue;
       const updated=html.replace(headerPattern,header);
