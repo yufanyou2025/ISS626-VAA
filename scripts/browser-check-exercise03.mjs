@@ -28,6 +28,7 @@ try {
  const route=`/Hands-on_Ex/Hands-on_Ex${exercise}/Hands-on_Ex${exercise}.html`;
  const response=await page.goto(base+route,{waitUntil:'networkidle'});
  assert.equal(response.status(),200);
+ assert.equal(await page.locator('img').count(),exercise==='04'?11:9);
  await page.locator('img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>i.decode().catch(()=>{})))});
  assert.equal(await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||!i.naturalWidth).length),0);
  await page.screenshot({path:path.join(out,'desktop-check.png')});
@@ -47,6 +48,7 @@ try {
  if(exercise==='04') {
    await page.goto(base+'/index.html',{waitUntil:'networkidle'});
    await page.getByRole('link',{name:'Explore Exercise 4',exact:false}).click();
+   await page.waitForLoadState('networkidle');
    assert(new URL(page.url()).pathname===route);
  }
  assert.deepEqual(errors,[]);

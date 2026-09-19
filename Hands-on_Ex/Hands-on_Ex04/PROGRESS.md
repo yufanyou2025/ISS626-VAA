@@ -30,3 +30,9 @@ Dates record actual work, not a reconstructed timeline. All timestamps are Asia/
 - Verified desktop and mobile layouts, image loading, expandable code and the homepage link in a browser.
 - Confirmed that previous exercise and Take-home report bodies are unchanged; only shared navigation was refreshed.
 - Prepared source and rendered output for the existing GitHub/Vercel production workflow. The deployment's final status is recorded by GitHub rather than anticipated here.
+
+## 19 September 2026 — Live-site check
+
+- Confirmed the production exercise page loads all 11 figures, opens code panels and is reachable from the homepage and Hands-on menu.
+- Checked the mobile layout and found no horizontal page overflow or application console errors.
+- Confirmed successful responses for the submission PNG, progress page, Exercise 3 and the existing Take-home technical report.
