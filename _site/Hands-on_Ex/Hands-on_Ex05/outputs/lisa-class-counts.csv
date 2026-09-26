@@ -1,0 +1,6 @@
+rule,class,count
+Unadjusted two-sided permutation p <= 0.05,Not flagged,71
+Unadjusted two-sided permutation p <= 0.05,Low-Low,10
+Unadjusted two-sided permutation p <= 0.05,Low-High,1
+Unadjusted two-sided permutation p <= 0.05,High-High,6
+Benjamini-Hochberg q <= 0.05,Not flagged,88

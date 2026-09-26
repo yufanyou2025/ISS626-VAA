@@ -1,0 +1,44 @@
+
+	Moran I test under randomisation
+
+data:  hunan$GDPPC  
+weights: weights5    
+
+Moran I statistic standard deviate = 4.7351, p-value = 1.095e-06
+alternative hypothesis: greater
+sample estimates:
+Moran I statistic       Expectation          Variance 
+      0.300749970      -0.011494253       0.004348351 
+
+
+	Geary C test under randomisation
+
+data:  hunan$GDPPC 
+weights: weights5   
+
+Geary C statistic standard deviate = 3.6108, p-value = 0.0001526
+alternative hypothesis: Expectation greater than statistic
+sample estimates:
+Geary C statistic       Expectation          Variance 
+        0.6907223         1.0000000         0.0073364 
+
+
+	Monte-Carlo simulation of Moran I
+
+data:  hunan$GDPPC 
+weights: weights5  
+number of simulations + 1: 1000 
+
+statistic = 0.30075, observed rank = 1000, p-value = 0.001
+alternative hypothesis: greater
+
+
+	Monte-Carlo simulation of Geary C
+
+data:  hunan$GDPPC 
+weights: weights5  
+number of simulations + 1: 1000 
+
+statistic = 0.69072, observed rank = 1, p-value = 0.001
+alternative hypothesis: greater
+

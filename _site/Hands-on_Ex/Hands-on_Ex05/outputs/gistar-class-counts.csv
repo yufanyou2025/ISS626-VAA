@@ -1,0 +1,8 @@
+rule,class,count
+"Fixed distance, unadjusted p <= 0.05",Not flagged,77
+"Fixed distance, unadjusted p <= 0.05",Cold spot,5
+"Fixed distance, unadjusted p <= 0.05",Hot spot,6
+"Fixed distance, BH q <= 0.05",Not flagged,88
+"6 nearest neighbours, unadjusted p <= 0.05",Not flagged,69
+"6 nearest neighbours, unadjusted p <= 0.05",Cold spot,8
+"6 nearest neighbours, unadjusted p <= 0.05",Hot spot,11

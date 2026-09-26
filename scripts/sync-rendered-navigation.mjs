@@ -9,7 +9,7 @@ const headerPattern = /<header id="quarto-header"[\s\S]*?<\/header>/;
 const homepage = fs.readFileSync(path.join(root,'index.html'),'utf8');
 let header = homepage.match(headerPattern)?.[0];
 if (!header || !header.includes('Hands-on_Ex02b.html')) throw Error('Render the updated homepage first');
-header = header.replaceAll('href="./','href="/').replaceAll('nav-link active','nav-link').replaceAll(' aria-current="page"','');
+header = header.replaceAll('href="./','href="/').replaceAll('nav-link active','nav-link').replaceAll(' aria-current="page"','').replaceAll('</li>  ','</li>');
 let count=0;
 function visit(dir) {
   for (const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -17,7 +17,9 @@ function visit(dir) {
     if(entry.isDirectory()) visit(file);
     else if(entry.name.endsWith('.html')) {
       const relative=path.relative(process.cwd(),file).split(path.sep).join('/');
-      if(!tracked.has(relative) && !relative.startsWith('_site/In-class_Ex/In-class_Ex04/')) continue;
+      if(!tracked.has(relative) &&
+         !relative.startsWith('_site/In-class_Ex/In-class_Ex04/') &&
+         !relative.startsWith('_site/Hands-on_Ex/Hands-on_Ex05/')) continue;
       const html=fs.readFileSync(file,'utf8');
       if(!headerPattern.test(html)) continue;
       const updated=html.replace(headerPattern,header);

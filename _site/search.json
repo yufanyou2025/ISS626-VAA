@@ -536,7 +536,7 @@
     "href": "index.html#hands-on-research",
     "title": "Evidence, place & perspective",
     "section": "Hands-on research",
-    "text": "Hands-on research\n\n\n\n01A / Foundations\n\n\nGeospatial data science\nImporting, transforming and connecting Singapore’s spatial datasets.\nExplore Exercise 1A →\n\n\n\n\n01B / Visual evidence\n\n\nThematic mapping\nHow classification, colour and composition shape a geographical argument.\nExplore Exercise 1B →\n\n\n\n\n02A / Spatial concentration\n\n\nFirst-order point patterns\nChildcare locations, nearest neighbours and density estimates across Singapore.\nExplore Exercise 2A →\n\n\n\n\n02B / Statistical inference\n\n\nSecond-order point patterns\nDistance-based comparisons and simulation envelopes for two planning areas.\nExplore Exercise 2B →\n\n\n\n\n\n03 / Space & time\n\n\nFire detections through 2023\nFollowing MODIS observations across Bangka with space-time density estimates and K-function analysis.\nExplore Exercise 3 →\n\n\n\n\n04 / Economic neighbours\n\n\nSpatial weights and applications\nHow contiguity, distance and normalisation change comparisons of Hunan’s county GDP per capita.\nExplore Exercise 4 →"
+    "text": "Hands-on research\n\n\n\n01A / Foundations\n\n\nGeospatial data science\nImporting, transforming and connecting Singapore’s spatial datasets.\nExplore Exercise 1A →\n\n\n\n\n01B / Visual evidence\n\n\nThematic mapping\nHow classification, colour and composition shape a geographical argument.\nExplore Exercise 1B →\n\n\n\n\n02A / Spatial concentration\n\n\nFirst-order point patterns\nChildcare locations, nearest neighbours and density estimates across Singapore.\nExplore Exercise 2A →\n\n\n\n\n02B / Statistical inference\n\n\nSecond-order point patterns\nDistance-based comparisons and simulation envelopes for two planning areas.\nExplore Exercise 2B →\n\n\n\n\n03 / Space & time\n\n\nFire detections through 2023\nFollowing MODIS observations across Bangka with space-time density estimates and K-function analysis.\nExplore Exercise 3 →\n\n\n\n\n04 / Economic neighbours\n\n\nSpatial weights and applications\nHow contiguity, distance and normalisation change comparisons of Hunan’s county GDP per capita.\nExplore Exercise 4 →\n\n\n\n\n05A / Regional association\n\n\nGlobal spatial autocorrelation\nTesting whether neighbouring Hunan counties share similar GDP per capita, then checking how the pattern changes across neighbour orders.\nExplore Exercise 5A →\n\n\n\n\n05B / Local evidence\n\n\nLocal clusters and hot spots\nMapping local Moran and Gi* results, with permutation tests and sensitivity to neighbourhood definitions.\nExplore Exercise 5B →"
   },
   {
     "objectID": "about.html#how-to-read-the-projects",
@@ -971,5 +971,138 @@
     "title": "Evidence, place & perspective",
     "section": "In-class Exercise",
     "text": "In-class Exercise\n\n\n04 / Local economic variation\n\n\nGeographically weighted summary statistics\nComparing local means, robust summaries and kernel choices across Hunan’s counties.\nExplore In-class Exercise 4 →"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "",
+    "text": "Does a county with relatively high GDP per capita tend to sit beside other high-valued counties? A choropleth can suggest a pattern, but it cannot tell me whether that pattern is unusual under a spatial-randomisation benchmark. Following the sequence in Chapter 9 of R for Geospatial Data Science and Analytics and the class screenshots, I join the Hunan boundaries to the 2012 GDPPC table, build Queen-contiguity weights, calculate global Moran’s I and Geary’s C, test both by permutation, then look across six neighbour orders.\nThe question is about spatial association in this teaching dataset, not whether neighbouring counties cause one another’s economic outcomes. GDP per capita measures output per resident, not household income or service adequacy."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#question-and-approach",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#question-and-approach",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "",
+    "text": "Does a county with relatively high GDP per capita tend to sit beside other high-valued counties? A choropleth can suggest a pattern, but it cannot tell me whether that pattern is unusual under a spatial-randomisation benchmark. Following the sequence in Chapter 9 of R for Geospatial Data Science and Analytics and the class screenshots, I join the Hunan boundaries to the 2012 GDPPC table, build Queen-contiguity weights, calculate global Moran’s I and Geary’s C, test both by permutation, then look across six neighbour orders.\nThe question is about spatial association in this teaching dataset, not whether neighbouring counties cause one another’s economic outcomes. GDP per capita measures output per resident, not household income or service adequacy."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#data-and-quality-checks",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#data-and-quality-checks",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "2 Data and quality checks",
+    "text": "2 Data and quality checks\nI reused the Hunan shapefile, Hunan_2012.csv and dictionary supplied for Exercise 4. The two tables each have 88 counties and join one-to-one on County. The original WGS84 polygons are valid; for this exercise I also keep a projected EPSG:32650 copy for consistent spatial processing. The original statistical publisher and boundary vintage are not identified in the archive, so I do not assign them a more precise provenance. The input checksums, validation audit and reproduction notes document exactly what I used.\n\n\n\n\n\nCheck\nResult\n\n\n\n\nBoundary counties\n88\n\n\nIndicator counties\n88\n\n\nMatched counties\n88\n\n\nDuplicate County keys\n0\n\n\nMissing GDPPC\n0\n\n\nInvalid geometries\n0\n\n\nSource EPSG\n4326\n\n\nAnalysis EPSG\n32650\n\n\n\n\n\nThe page executes the full 5A R script from a clean session. Its shared preparation script performs the import, checks, join and CRS transformation. The following extract shows the key operations; the linked scripts contain the executable version and seed values.\n\n\nShow R code\nhunan_boundary &lt;- sf::st_read(\"Hands-on_Ex/Hands-on_Ex05/data/geospatial/Hunan.shp\")\nhunan2012 &lt;- readr::read_csv(\"Hands-on_Ex/Hands-on_Ex05/data/aspatial/Hunan_2012.csv\")\nhunan &lt;- dplyr::left_join(hunan_boundary, hunan2012,\n                          by = \"County\", relationship = \"one-to-one\")\nhunan_m &lt;- sf::st_transform(hunan, 32650)\nqueen &lt;- spdep::poly2nb(hunan_m, queen = TRUE)\nweights &lt;- spdep::nb2listw(queen, style = \"W\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#map-the-indicator-before-testing",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#map-the-indicator-before-testing",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "3 Map the indicator before testing",
+    "text": "3 Map the indicator before testing\n\n\n\nTwo classifications of 2012 GDP per capita in Hunan.\n\n\nEqual-interval bins retain the size of differences in RMB per person, but most counties occupy the lower ranges when the distribution is right-skewed. Quantile bins spread counties more evenly across the colours and make relative rank easier to see. The underlying values do not change. Neither map alone gives a significance test, and changing the classification can change the visual strength of the apparent cluster."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#define-neighbours-and-weights",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#define-neighbours-and-weights",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "4 Define neighbours and weights",
+    "text": "4 Define neighbours and weights\nA Queen neighbour shares a boundary or corner. With 88 counties, the matrix has 448 directed links and an average of 5.09 neighbours per county. The Rook rule, which requires a shared edge, yields 440 directed links. No county is isolated under Queen contiguity. I row-standardise the Queen weights so each county’s neighbour weights add to one; this makes the spatial lag an average of nearby values.\n\n\n\n\n\nWeight check\nValue\n\n\n\n\nCounties\n88.000000\n\n\nQueen directed links\n448.000000\n\n\nQueen average neighbours\n5.090909\n\n\nRook directed links\n440.000000\n\n\nIsolated Queen counties\n0.000000\n\n\nS0 row weights\n88.000000\n\n\n\n\n\nI keep the same county ordering for the weights and GDPPC vector. A silent row mismatch would make every subsequent statistic invalid. I also repeat the slide’s sfdep sequence as an independent check against spdep; both return the same I to numerical precision. The sfdep check output records its test and permutation report.\n\n\nShow R code\nnb &lt;- sfdep::st_contiguity(sf::st_geometry(hunan_m), queen = TRUE)\nwt &lt;- sfdep::st_weights(nb, style = \"W\")\nsfdep::global_moran(hunan$GDPPC, nb, wt)\nsfdep::global_moran_test(hunan$GDPPC, nb, wt)\nset.seed(62651)\nsfdep::global_moran_perm(hunan$GDPPC, nb, wt,\n                          alternative = \"greater\", nsim = 999)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#global-morans-i",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#global-morans-i",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "5 Global Moran’s I",
+    "text": "5 Global Moran’s I\nMoran’s I compares deviations from the provincial mean with weighted neighbour deviations. Its randomisation expectation is approximately \\(-1/(n-1)\\), or -0.0115 here. Positive I means similar values tend to be adjacent. I calculate the statistic, an analytical randomisation test, and a one-sided 999-permutation test with a recorded seed.\n\n\nShow R code\nmoran_obs &lt;- spdep::moran(hunan$GDPPC, weights, n = 88,\n                          S0 = spdep::Szero(weights))$I\nmoran_test &lt;- spdep::moran.test(hunan$GDPPC, weights,\n                                alternative = \"greater\")\nset.seed(62651)\nmoran_perm &lt;- spdep::moran.mc(hunan$GDPPC, weights, nsim = 999,\n                              alternative = \"greater\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#global-gearys-c",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#global-gearys-c",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "6 Global Geary’s C",
+    "text": "6 Global Geary’s C\nGeary’s C measures squared local differences across neighbour pairs. Values below its null expectation of 1 indicate positive spatial association. It complements Moran’s I rather than repeating it: a local discontinuity can affect C even when the overall cross-product pattern changes less.\n\n\nShow R code\ngeary_obs &lt;- spdep::geary(hunan$GDPPC, weights, n = 88, n1 = 87,\n                          S0 = spdep::Szero(weights))$C\ngeary_test &lt;- spdep::geary.test(hunan$GDPPC, weights,\n                                alternative = \"greater\")\nset.seed(62652)\ngeary_perm &lt;- spdep::geary.mc(hunan$GDPPC, weights, nsim = 999,\n                              alternative = \"greater\")\n\n\n\n\n\n\n\nMeasure\nObserved\nNull expectation\nAnalytical p\nPermutation p\n\n\n\n\nMoran’s I\n0.30075\n-0.01149\n0.00000\n0.001\n\n\nGeary’s C\n0.69072\n1.00000\n0.00015\n0.001\n\n\n\n\n\nMoran’s I is 0.301 and Geary’s C is 0.691. Both point to neighbouring counties being more alike in GDPPC than a spatially random rearrangement would typically produce. With 999 permutations, 0.001 is the smallest reportable Monte Carlo p-value in these runs; it is not evidence for p &lt; 0.001. The analytical tests and permutations agree on the direction, though their p-values answer the question through different reference distributions.\n\n\n\nPermutation reference distributions for global Moran and Geary statistics.\n\n\nThe copper lines mark the observed statistics; dashed lines mark the null expectations. The test permutes county GDPPC over the fixed spatial weight structure. It does not model the mechanisms behind the values."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#moran-scatterplot-and-neighbour-orders",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#moran-scatterplot-and-neighbour-orders",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "7 Moran scatterplot and neighbour orders",
+    "text": "7 Moran scatterplot and neighbour orders\n\n\n\nStandardised GDP per capita versus its Queen-neighbour spatial lag.\n\n\nFor row-standardised weights, the fitted slope in this scatterplot is Moran’s I (0.301). Counties in the upper-right and lower-left quadrants contribute to positive association. The graph also reminds me that one province-wide number averages over quite different local situations.\n\n\n\nMoran’s I for Queen neighbours through order six.\n\n\n\n\n\nGeary’s C for Queen neighbours through order six.\n\n\nThe first-order association is strongest. In the Moran correlogram report, second-order I is about 0.206, approaching zero by the fourth order and becoming negative at the fifth and sixth. Geary’s C likewise moves from about 0.691 towards and then above 1. These are topological steps, not fixed kilometre bands. The later-order values are descriptive: orders overlap in a finite, irregular study area, and I would not turn the six curves into six independent causal claims."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#what-i-learned",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#what-i-learned",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "8 What I learned",
+    "text": "8 What I learned\nThe choice of neighbour rule belongs in the analysis, not just in a map caption. Here Queen and Rook differ by eight directed links, while row standardisation gives each county’s neighbourhood the same total weight despite unequal numbers of neighbours. I also learned why a permutation result should be reported with its simulation resolution: writing “p &lt; 0.001” for 999 draws would imply precision the experiment cannot supply. The 2012 pattern is statistically clear at the global level, but it says neither which counties drive it nor whether policies, industry, migration or administrative boundaries created it. Those questions motivate Exercise 5B."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#sources-and-reproducibility",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html#sources-and-reproducibility",
+    "title": "Hands-on Exercise 5A: Global Spatial Autocorrelation",
+    "section": "9 Sources and reproducibility",
+    "text": "9 Sources and reproducibility\n\nChapter 9: Global Spatial Autocorrelation, course workbook; methodology followed with original commentary and validation.\nUser-supplied Hunan shapefile, Hunan_2012.csv and Dictionary.xlsx; source publisher and boundary date are not documented in the archive. Checksums identify the exact local inputs.\nspdep reference manual for neighbour definitions, Moran’s I, Geary’s C and correlograms.\nPreparation and reproduction notes, full 5A R script, test output and R session information."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "",
+    "text": "Exercise 5A found positive global association in the 2012 GDP per capita of the 88 Hunan counties in the supplied teaching extract. That result does not say where the relationship is strongest. Following Chapter 10 of the course workbook and the class screenshots, I calculate local Moran’s I and Getis–Ord Gi* with sfdep, map their permutation results, and test whether the apparent locations survive a change in spatial weights and a multiple-testing adjustment.\nThese maps are exploratory evidence about a 2012 spatial pattern. They do not measure whether development programmes succeeded or whether one county’s GDP causes another’s."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#why-a-local-analysis",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#why-a-local-analysis",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "",
+    "text": "Exercise 5A found positive global association in the 2012 GDP per capita of the 88 Hunan counties in the supplied teaching extract. That result does not say where the relationship is strongest. Following Chapter 10 of the course workbook and the class screenshots, I calculate local Moran’s I and Getis–Ord Gi* with sfdep, map their permutation results, and test whether the apparent locations survive a change in spatial weights and a multiple-testing adjustment.\nThese maps are exploratory evidence about a 2012 spatial pattern. They do not measure whether development programmes succeeded or whether one county’s GDP causes another’s."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#reusing-and-checking-the-hunan-inputs",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#reusing-and-checking-the-hunan-inputs",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "2 Reusing and checking the Hunan inputs",
+    "text": "2 Reusing and checking the Hunan inputs\nThe shared preparation script joins the supplied shapefile and Hunan_2012.csv one-to-one on County, checks all 88 geometries and GDPPC values, and transforms the polygons from EPSG:4326 to EPSG:32650 for distance calculations in metres. The exact raw-file checksums and reproduction instructions are in the data note. The page executes the complete 5B R script in a clean session.\n\n\n\nEqual-interval and quantile maps of the input GDPPC values.\n\n\nThe side-by-side classification is a useful reminder that a dark cluster on a map partly depends on how values are binned. The local tests below use the unclassified numeric GDPPC values, not these colours."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#queen-weights-and-the-global-baseline",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#queen-weights-and-the-global-baseline",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "3 Queen weights and the global baseline",
+    "text": "3 Queen weights and the global baseline\nThe screenshots build a neighbour list with st_contiguity() and row-standardised weights with st_weights(style = \"W\"). My analysis confirms 448 directed Queen links, no zero-neighbour county, and row sums of one. sfdep::global_moran() returns 0.301, matching the spdep estimate in 5A. This cross-check matters because different data ordering or weights would make the local comparison unreliable.\n\n\nShow R code\nnb &lt;- sfdep::st_contiguity(sf::st_geometry(hunan_m), queen = TRUE)\nwt &lt;- sfdep::st_weights(nb, style = \"W\")\nsfdep::global_moran(hunan_m$GDPPC, nb, wt)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#local-morans-i-and-lisa-classes",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#local-morans-i-and-lisa-classes",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "4 Local Moran’s I and LISA classes",
+    "text": "4 Local Moran’s I and LISA classes\nLocal Moran asks whether each county’s deviation from the provincial mean aligns with its neighbours’ deviations. I use 999 fixed-seed permutations and the two-sided simulated p-value for each county. A High-High or Low-Low label requires both the appropriate scatterplot quadrant and p &lt;= 0.05; a High-Low or Low-High label describes a local contrast. A quadrant by itself is not a significance result.\n\n\nShow R code\nset.seed(62653)\nlocal_result &lt;- sfdep::local_moran(hunan_m$GDPPC, nb, wt,\n                                  alternative = \"two.sided\", nsim = 999)\nlocal_result$p_bh &lt;- p.adjust(local_result$p_ii_sim, method = \"BH\")\n\n\n\n\n\nLocal Moran’s I values and simulated two-sided p-values.\n\n\n\n\n\nExploratory LISA classes before and after false-discovery-rate adjustment.\n\n\n\n\n\n\n\nDecision rule\nLISA class\nCounties\n\n\n\n\nUnadjusted two-sided permutation p &lt;= 0.05\nNot flagged\n71\n\n\nUnadjusted two-sided permutation p &lt;= 0.05\nLow-Low\n10\n\n\nUnadjusted two-sided permutation p &lt;= 0.05\nLow-High\n1\n\n\nUnadjusted two-sided permutation p &lt;= 0.05\nHigh-High\n6\n\n\nBenjamini-Hochberg q &lt;= 0.05\nNot flagged\n88\n\n\n\n\n\nAt the unadjusted 5% threshold, 17 counties are flagged: 6 High-High, 10 Low-Low, and 1 Low-High. The high-high set includes Liuyang, Wangcheng, Zhuzhou and Changsha; several low-low counties occur in the west and southwest. After Benjamini–Hochberg adjustment across all 88 local tests, no county remains flagged at q &lt;= 0.05. Thus the coloured unadjusted map is a candidate-finding device, not a verified list of 17 separate discoveries.\n\n\n\nLocal Moran quadrant scatterplot.\n\n\nThe county-level results table includes the statistic, analytical and simulated p-values, adjusted q-values and quadrant, allowing a reader to inspect a county without relying on its colour alone."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#getisord-gi-hot-and-cold-spots",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#getisord-gi-hot-and-cold-spots",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "5 Getis–Ord Gi*: hot and cold spots",
+    "text": "5 Getis–Ord Gi*: hot and cold spots\nGi* tests whether high or low values in a neighbourhood as a whole are unusually concentrated. It differs from local Moran’s I: the focal county is included in the Gi* neighbourhood, and the output describes a hot or cold concentration rather than a high/low quadrant pairing. Here I choose the minimum distance that connects the county network, about 60.8 km, then include the focal county. This threshold is calculated on EPSG:32650 metre coordinates. Its neighbourhood sizes range from 2 to 7, including self. I also try six nearest neighbours plus self as a sensitivity check.\n\n\nShow R code\nthreshold_m &lt;- sfdep::critical_threshold(sf::st_geometry(hunan_m))\nfixed_nb &lt;- sfdep::include_self(sfdep::st_dist_band(\n  sf::st_geometry(hunan_m), upper = threshold_m + 1))\nfixed_wt &lt;- sfdep::st_weights(fixed_nb, style = \"W\")\nset.seed(62654)\ngi &lt;- sfdep::local_gstar_perm(hunan_m$GDPPC, fixed_nb, fixed_wt,\n                              alternative = \"two.sided\", nsim = 999)\ngi$p_bh &lt;- p.adjust(gi$p_sim, method = \"BH\")\n\n\n\n\n\nGi* statistics and simulated p-values under fixed-distance weights.\n\n\n\n\n\nExploratory Gi* hot and cold spots, with and without BH adjustment.\n\n\n\n\n\n\n\nDecision rule\nGi* class\nCounties\n\n\n\n\nFixed distance, unadjusted p &lt;= 0.05\nNot flagged\n77\n\n\nFixed distance, unadjusted p &lt;= 0.05\nCold spot\n5\n\n\nFixed distance, unadjusted p &lt;= 0.05\nHot spot\n6\n\n\nFixed distance, BH q &lt;= 0.05\nNot flagged\n88\n\n\n6 nearest neighbours, unadjusted p &lt;= 0.05\nNot flagged\n69\n\n\n6 nearest neighbours, unadjusted p &lt;= 0.05\nCold spot\n8\n\n\n6 nearest neighbours, unadjusted p &lt;= 0.05\nHot spot\n11\n\n\n\n\n\nWith the fixed-distance rule, 6 counties are exploratory hot spots and 5 are cold spots at unadjusted p &lt;= 0.05. They include Liuyang and Wangcheng on the high side and Longhui and Suining on the low side. Again, none remains flagged after BH adjustment. The full Gi* table reports both raw and adjusted values."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#sensitivity-to-the-neighbourhood-definition",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#sensitivity-to-the-neighbourhood-definition",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "6 Sensitivity to the neighbourhood definition",
+    "text": "6 Sensitivity to the neighbourhood definition\n\n\n\nComparison of fixed-distance and six-nearest-neighbour Gi* classes.\n\n\nThe six-nearest-neighbour rule flags 19 counties, compared with 11 under fixed distance. 18 county classifications differ. The alternatives are not interchangeable: a fixed radius gives sparse areas fewer neighbours, while k-nearest neighbours stretches further across sparse terrain. The kNN graph can have disconnected components even though each county gets six neighbours; it is presented as a sensitivity comparison rather than as a claim of a single correct economic neighbourhood.\n\n\n\n\n\nDistance/weight check\nValue\n\n\n\n\nFixed threshold metres\n60799.9\n\n\nFixed threshold kilometres\n60.8\n\n\nFixed neighbours including self: minimum\n2.0\n\n\nFixed neighbours including self: maximum\n7.0\n\n\nkNN neighbours including self\n7.0\n\n\nDifferent Gi* class in kNN\n18.0"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#what-i-learned",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#what-i-learned",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "7 What I learned",
+    "text": "7 What I learned\nGlobal significance does not automatically translate into strong evidence for individual counties. Here the global Moran test is clear, but the 88 county-level LISA and Gi* tests lose their individual flags after adjustment. I also learned to separate a county’s High-High quadrant from a statistically flagged High-High cluster, and to check how many conclusions move when the neighbourhood definition changes. The maps identify hypotheses worth investigating with fuller socioeconomic data; they cannot establish economic spillovers, welfare, or policy effects from GDPPC alone."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#sources-and-reproducibility",
+    "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html#sources-and-reproducibility",
+    "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
+    "section": "8 Sources and reproducibility",
+    "text": "8 Sources and reproducibility\n\nChapter 10: Local Spatial Autocorrelation, course workbook; analysis sequence adapted and independently interpreted.\nsfdep documentation for st_contiguity(), local_moran() and local_gstar_perm().\nUser-supplied Hunan shapefile, Hunan_2012.csv and dictionary. The archive does not identify the original statistical publisher or boundary vintage; exact checksums and reproduction instructions are retained.\nFull 5B R script, local Moran results, Gi* results, and R session information."
   }
 ]

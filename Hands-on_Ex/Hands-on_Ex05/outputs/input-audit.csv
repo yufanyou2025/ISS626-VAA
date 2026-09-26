@@ -1,0 +1,9 @@
+check,value
+Boundary counties,88
+Indicator counties,88
+Matched counties,88
+Duplicate County keys,0
+Missing GDPPC,0
+Invalid geometries,0
+Source EPSG,4326
+Analysis EPSG,32650

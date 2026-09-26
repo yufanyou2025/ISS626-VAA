@@ -1,0 +1,7 @@
+measure,value
+Fixed threshold metres,60799.90903674267
+Fixed threshold kilometres,60.79990903674267
+Fixed neighbours including self: minimum,2
+Fixed neighbours including self: maximum,7
+kNN neighbours including self,7
+Different Gi* class in kNN,18

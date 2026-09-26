@@ -59,7 +59,6 @@ Distance-based comparisons and simulation envelopes for two planning areas.
 
 [Explore Exercise 2B →](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.qmd)
 :::
-:::
 
 ::: {.portfolio-card}
 ::: {.portfolio-number}
@@ -81,6 +80,29 @@ Following MODIS observations across Bangka with space-time density estimates and
 How contiguity, distance and normalisation change comparisons of Hunan's county GDP per capita.
 
 [Explore Exercise 4 →](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.qmd)
+:::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+05A / Regional association
+:::
+### Global spatial autocorrelation
+
+Testing whether neighbouring Hunan counties share similar GDP per capita, then checking how the pattern changes across neighbour orders.
+
+[Explore Exercise 5A →](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.qmd)
+:::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+05B / Local evidence
+:::
+### Local clusters and hot spots
+
+Mapping local Moran and Gi* results, with permutation tests and sensitivity to neighbourhood definitions.
+
+[Explore Exercise 5B →](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.qmd)
+:::
 :::
 
 ## In-class Exercise
