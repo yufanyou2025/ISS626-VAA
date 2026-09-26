@@ -1,5 +1,5 @@
 ## ---- setup ----
-# Complete AI-assisted worked analysis. See the declaration in the report.
+# Regional spatial point-pattern analysis.
 # Run from the repository root: Rscript Take-home_Ex/Take-home_Ex01/analysis.R
 if (.Platform$OS.type == "windows") {
   invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))

@@ -46,3 +46,5 @@ Use the source description, course material, and official documentation to resol
 - [Kaggle dataset](https://www.kaggle.com/datasets/pornsakkamchan/thailand-road-accident-fatalities-2024), version 1 and local metadata snapshot.
 - [geoBoundaries metadata](https://www.geoboundaries.org/api/current/gbOpen/THA/ADM1/), local metadata snapshot and pinned GeoJSON.
 - [NSO six-province definition](https://catalogapi.nso.go.th/api/doc/department/D10/SD10_04/SD10_04_265_1.pdf?preview=1), a candidate study-window reference for the student's consideration.
+- [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), pinned 26 September 2026 Overpass road snapshot; ODbL 1.0. See [network data documentation](../data/network/README.md).
+- [Chapter 7 network point-pattern workflow](https://r4gdsa.netlify.app/chap07) and [spNetwork precision article](https://jeremygelb.github.io/spNetwork/articles/web_vignettes/SpeedVSprecision.html), accessed 26 September 2026.

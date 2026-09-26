@@ -8,3 +8,7 @@ spatstat.explore,3.8.2
 spatstat.random,3.5.1
 jsonlite,2.0.0
 digest,0.6.39
+spNetwork,0.4.4.7
+igraph,2.3.3
+leaflet,2.2.3
+htmlwidgets,1.6.4

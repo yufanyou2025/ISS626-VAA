@@ -32,4 +32,8 @@ Download the pinned file to the stated location. Preserve the metadata and attri
 
 Metadata snapshots are stored in `../notes/kaggle-metadata.json` and `../notes/geoboundaries-metadata.json`. A checksum establishes which bytes were used; it does not establish the accuracy or completeness of the underlying observations.
 
+## Road-network input
+
+The [central Bangkok OSM snapshot and derived road file](network/README.md) are committed to the repository with OpenStreetMap attribution and ODbL 1.0. The raw Overpass JSON was captured on 26 September 2026 and is used as a reference network, not as evidence that every street had the same geometry in 2024. `../prepare-network.R` rebuilds the line file from the pinned JSON. Both file hashes are in `../notes/input-manifest.json`.
+
 Your final report must document its own chosen observation period, preparation decisions, exclusions, spatial extent, source limitations, and reproduction instructions. They are not established by downloading these files.

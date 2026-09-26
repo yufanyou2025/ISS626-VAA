@@ -158,6 +158,11 @@ main p { margin-bottom: 1.15rem; }
 main .quarto-figure { margin: 30px 0; }
 main img { background: #fff; border: 1px solid #45484d; padding: 8px; }
 main figcaption { color: #aeb2ba !important; font-size: 12px; line-height: 1.6; margin-top: 12px; }
+main .leaflet.html-widget { min-height: 520px; border: 1px solid #45484d; }
+main .leaflet-container { background: #f1f2f2; }
+main .leaflet-container .leaflet-tile-pane { filter: grayscale(1) brightness(1.18); opacity: .66; }
+main .leaflet-container .info.legend,
+main .leaflet-container .info.legend * { color: #263238 !important; }
 main [id^="interpretation-"] {
   border-left: 2px solid var(--research-gold);
   padding: 14px 20px;

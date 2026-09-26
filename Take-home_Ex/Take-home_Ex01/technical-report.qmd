@@ -2,7 +2,7 @@
 title: "Where are recorded road fatalities concentrated in Greater Bangkok?"
 subtitle: "Take-home Exercise 1 · January–September 2024"
 author: "yufanyou2025"
-date: "2026-09-10"
+date: "2026-09-26"
 format:
   html:
     theme: darkly
@@ -26,6 +26,8 @@ execute:
 #| include: false
 source("Take-home_Ex/Take-home_Ex01/analysis.R", local = knitr::knit_global())
 knitr::read_chunk("Take-home_Ex/Take-home_Ex01/analysis.R")
+source("Take-home_Ex/Take-home_Ex01/network-analysis.R", local = knitr::knit_global())
+knitr::read_chunk("Take-home_Ex/Take-home_Ex01/network-analysis.R")
 fmt <- function(x, digits = 0) formatC(x, format = "f", digits = digits, big.mark = ",")
 ```
 
@@ -62,9 +64,9 @@ National records missing coordinates
 
 Road-safety planning needs to know where recorded deaths are concentrated, but a concentration on a map is not automatically evidence of greater individual risk. More journeys, more roads, and better reporting can all produce more observed events in an area.
 
-This study asks: **Where are geocoded fatality records concentrated in Greater Bangkok during January–September 2024, and how much evidence of clustering remains after allowing for spatially varying intensity?**
+This study asks: **Where are geocoded fatality records concentrated in Greater Bangkok during January–September 2024, and what changes when a central Bangkok subset is analysed along roads rather than across open space?**
 
-The distinction matters here. The spatially uniform reference is clearly rejected, while the intensity-adjusted curves are sensitive to how intensity is estimated. The defensible conclusion is that observed fatality locations are unevenly distributed. The analysis does not establish a stable pattern of interaction between distinct crashes.
+The regional analysis uses all 530 located records and provides context. A focused 8 × 8 km road-network case study around the regional density peak follows the workflow in [Chapter 7 of *R for Geospatial Data Science and Analytics*](https://r4gdsa.netlify.app/chap07): road lines, lixels, their centre points, network KDE, and network K/G functions. The small focus area is a detailed example, not a replacement for the regional sample. Neither map estimates individual road risk.
 
 ## Data and study design
 
@@ -75,6 +77,8 @@ The [Kaggle dataset](https://www.kaggle.com/datasets/pornsakkamchan/thailand-roa
 The original file contains **12,762 rows and 13 fields**. Although the title says 2024, every observed date lies between **1 January and 30 September 2024**. October–December are absent and are not treated as months with zero deaths. The date field is **confirmed death date**, so the monthly comparison is not a comparison of accident dates.
 
 Administrative polygons come from [geoBoundaries gbOpen Thailand ADM1](https://www.geoboundaries.org/api/current/gbOpen/THA/ADM1/), boundary ID THA-ADM1-36821470. The pinned release uses source revision 9469f09, represents 2017, and was built in December 2023. Its sources are OpenStreetMap and Wambacher, under ODbL 1.0. Using an older boundary is a limitation; this study does not establish that every boundary matches 2024 exactly.
+
+The focused road network comes from [OpenStreetMap contributors](https://www.openstreetmap.org/copyright) via an Overpass API extract dated **26 September 2026, 13:27 UTC**. The exact JSON snapshot and a derived projected road file are in the repository under ODbL 1.0 with attribution. The query selects mapped motorways, trunk, primary, secondary, tertiary, unclassified, residential and living-street ways and their links in a roughly 10 × 10 km box. It omits paths and service roads. The roads are a 2026 map of possible routes, not a verified reconstruction of the 2024 network or actual crash routes.
 
 ### Event definition
 
@@ -97,7 +101,11 @@ The coordinate headers are reversed in the downloaded file: all available values
 | Choice | Setting and reason | Main limitation |
 |---|---|---|
 | Observation period | 1 January–30 September 2024; complete available date span | Death dates, not crash times; completeness is unknown |
-| Observation space | Union of six administrative provinces | Road events occur on networks, not freely across all land |
+| Regional observation space | Union of six administrative provinces | Planar methods can cross rivers and non-road space |
+| Network detail | 8 × 8 km square centred on the regional 3 km KDE maximum; roads extracted with roughly 1 km buffer | Focus chosen from the data; exploratory local illustration |
+| Road matching | Largest connected OSM road component; retain records within 100 m of it | Mapped roads and record coordinates have errors; snapping is not route verification |
+| Network KDE | 250–700 m lixels; quartic kernel; 700 m route bandwidth; continuous method; recursion depth 8 | Detail depends on OSM topology, bandwidth and depth |
+| Network K/G | 39 fixed-count simulations on roads clipped to the focus square; 0–1.5 km in 100 m steps | Pointwise bands are exploratory and the focus was selected from these data |
 | Kernel density | Gaussian, 3 km standard deviation; 500 m pixels | A regional display scale, not an optimal or causal scale |
 | Density sensitivity | 1.5 km and 6 km, with the same legend | Apparent peaks depend on smoothing |
 | Second-order function | Translation-corrected L(r) − r | Ordinary L assumes a stationary process |
@@ -158,7 +166,7 @@ Bangkok contains 232 of the 530 spatially selected records, or 43.8%. Records al
 knitr::kable(province_table, digits = c(0, 1, 0, 3), col.names = c("Province", "Area (km²)", "Located records", "Records / km²"))
 ```
 
-Records per km² describe areal intensity over this nine-month extract. They are not deaths per person, per vehicle, or per kilometre travelled.
+Records per km² describe areal intensity over this nine-month extract. They are not deaths per person, per vehicle, or per kilometre travelled. The road-network detail below uses records per **network kilometre**, a different quantity.
 
 ```{r}
 #| label: descriptive-views
@@ -187,18 +195,74 @@ Edge correction compensates for kernel mass outside the observation window. All 
 All three maps show a broad concentration in and around Bangkok, but the smaller bandwidth separates it into many local peaks. The maximum intensity falls from 0.545 records/km² at 1.5 km to 0.339 at 3 km and 0.257 at 6 km. The 3 km maximum lies within Bangkok. These are smoothed concentrations of recorded fatalities. Their positions and heights do not identify the most dangerous road segments, because traffic exposure, the road network, and missing records are not included.
 :::
 
-The whole-window average is `r fmt(npoints(X) / area_km2, 3)` records/km². The KDE is useful because that single average hides local variation. However, a planar kernel can smooth across rivers, inaccessible land, and neighbouring roads. A road-network interpretation would require additional data and different distance assumptions. The [spatstat documentation](https://spatstat.org/) describes the package's point-pattern framework.
+The whole-window average is `r fmt(npoints(X) / area_km2, 3)` records/km². This planar result describes the regional pattern, but a straight-line kernel can smooth across rivers, inaccessible land, and neighbouring roads. The [spatstat documentation](https://spatstat.org/) describes the planar framework. The next section places a smaller sample on mapped streets.
 
 ```{r}
 #| label: first-order
 #| eval: false
 ```
 
+### Road network, matched events and lixels
+
+The local focus is a square 4 km in each direction from the peak of the 3 km regional KDE (`r fmt(peak_ll[1], 3)`°E, `r fmt(peak_ll[2], 3)`°N). This selection is conditional on the observed pattern. The Overpass road extract extends roughly 1 km beyond the displayed square so a 700 m kernel near the edge can use nearby roads. Original OSM way geometries are split at shared nodes, transformed to EPSG:32647, and restricted to the largest connected component. Crossings with no shared OSM node are not automatically treated as junctions.
+
+Of the 530 regional records, **`r nrow(focus_events)`** fall inside the focus square. **`r nrow(focus_on_road)`** lie within the prespecified 100 m matching tolerance; `r network_summary$snap_excluded` are excluded. The median nearest-road distance is `r fmt(network_summary$snap_median_m, 1)` m and the maximum is `r fmt(network_summary$snap_max_m, 1)` m. This proximity check supports the map overlay, but does not prove a record happened on the chosen street. The network has `r fmt(network_summary$road_edges_focus)` clipped edges and about `r fmt(network_summary$road_length_focus_km, 0)` km of mapped line inside the square.
+
+![Central Bangkok mapped roads and included fatality records.](figures/network-points.png){#fig-network-points}
+
+::: {#interpretation-network-points}
+The detailed map shows the selected records against the actual mapped road geometry. The linework is far denser than the regional boundary map, which makes individual corridors visible. This is only a focused subset of the 530 located Greater Bangkok records. It was selected around the regional density maximum and therefore cannot establish that this square is typical of the wider metropolitan area. The black points have unknown positional accuracy and may overlap; the 100 m road match is a screening rule, not a verified crash location.
+:::
+
+```{r}
+#| label: network-setup
+#| eval: false
+```
+
+Each road line is cut into **lixels** of up to 700 m, with a 250 m minimum target for the final split. The centre of each lixel is a candidate density sample. The script evaluates centres within 700 m straight-line distance of at least one included record: a network route cannot be shorter than that straight line, so the excluded centres would have zero weight for a compact 700 m kernel. The calculation uses `r fmt(network_summary$lixels)` lixels and evaluates `r fmt(network_summary$sampled_lixels)` candidate centres. Density is multiplied by 1,000 to express recorded fatalities per network kilometre over January–September, not per year.
+
+The continuous `spNetwork::nkde()` method divides kernel mass at intersections while avoiding abrupt jumps at junctions. A fixed 700 m quartic kernel, 1 m node tolerance, 5 m aggregation tolerance and recursion depth 8 are recorded in the code. The 700 m scale is a visual choice for this sparse local sample. Following [Gelb's precision study](https://jeremygelb.github.io/spNetwork/articles/web_vignettes/SpeedVSprecision.html), depth 10 is compared at 100 systematically selected centres from the ordered lixel list; the mean absolute difference is `r formatC(network_summary$depth_mae_per_km, format = "e", digits = 2)` records/km in this case. This checks one approximation setting, not the road or location uncertainty.
+
+![Continuous network density along central Bangkok roads.](figures/network-nkde.png){#fig-network-nkde}
+
+::: {#interpretation-network-nkde}
+The coloured sections show where the 22 matched records contribute more density along the mapped streets. The highest sampled value is `r fmt(network_summary$nkde_max_records_per_km, 4)` records per network kilometre for the nine-month extract. Unlike the regional raster, colour follows road segments and uses route distance through junctions. The map does not provide a ranking of road danger: there is no traffic-volume denominator, the sample is small and selectively geocoded, and 2026 OSM linework may differ from the roads present in 2024.
+:::
+
+```{r}
+#| label: network-first-order
+#| eval: false
+```
+
+The interactive version below follows the chapter's paired point and density maps. Use the layer control to switch roads, density and records; the static figures above remain available when map tiles cannot load. Map tiles require an internet connection and have provider attribution.
+
+```{r}
+#| echo: false
+network_map
+```
+
 ## Task 3 — Second-order analysis
+
+### Network K and G comparison
+
+The road-based comparison conditions on the `r nrow(focus_on_road)` matched records and the mapped road length inside the 8 × 8 km square. The null simulation places the same number of independent points approximately uniformly by **road length**, rather than by land area; candidate locations are generated at 100 m resolution. `spNetwork::kfunctions()` compares route distances from 0 to 1.5 km in 100 m steps; G uses 100 m distance bands. A seed of 20260926 fixes 39 simulations. The displayed 95% bands are pointwise Monte Carlo summaries and are not a global multiple-distance test. The boundary, road map and data-selected focus also limit inference.
+
+![Network K and G against 39 uniform-on-road simulations.](figures/network-kg.png){#fig-network-kg}
+
+::: {#interpretation-network-kg}
+The network curves compare the observed spacing with points independently placed along the same clipped road network. The observed K curve exceeds the displayed upper band at `r network_summary$k_above_upper` of `r nrow(k_values)` evaluated distances, and G exceeds it at `r network_summary$g_above_upper`. These are exploratory pointwise comparisons; isolated crossings do not establish a significant overall departure. The local square was chosen around an observed peak, and its 22 records are too few for a stable account of interaction between distinct crashes.
+:::
+
+```{r}
+#| label: network-second-order
+#| eval: false
+```
+
+### Regional planar comparison
 
 ### What is the comparison?
 
-The question is whether the observed pattern departs from independent, spatially uniform placement inside the same window. Ripley's K summarises neighbouring events within distance r; the transformation L(r) = √(K(r)/π) makes the Poisson reference L(r) − r = 0. Positive values indicate excess nearby pairs relative to that reference, rather than proof of a causal relationship between crashes.
+For regional context, the earlier planar question is whether all 530 located records depart from independent, spatially uniform placement inside the six-province window. Ripley's K summarises neighbouring events within distance r; the transformation L(r) = √(K(r)/π) makes the Poisson reference L(r) − r = 0. Positive values indicate excess nearby pairs relative to that reference, rather than proof of a causal relationship between crashes. This is a different null model from the road-length simulation above.
 
 Translation correction adjusts pair contributions for the overlap between the observation window and a shifted copy of it. This addresses boundary truncation under the method's assumptions. It does not correct selective reporting or replace a road-network exposure model.
 
@@ -238,7 +302,9 @@ knitr::kable(intensity_diagnostics, digits = c(0, 6, 3, 2), col.names = c("Bandw
 
 ## Task 4 — Integration and sensitivity
 
-The first-order maps show uneven observed intensity, especially within Bangkok. The ordinary L-function agrees that a uniform spatial reference is inadequate. These findings complement each other, but they do not provide two independent proofs of crash interaction: spatially varying intensity can produce the ordinary L-function result.
+The regional and local maps answer different questions. The planar view locates broad concentrations among all 530 geocoded records. The network view follows mapped roads for a selected square of `r nrow(focus_on_road)` records; its values per network kilometre must not be compared numerically with the planar map's values per square kilometre. The road K/G simulations replace a land-uniform reference with a uniform-by-road-length reference in that square. Their pointwise bands and small, data-selected sample do not support a general claim of crash interaction.
+
+The ordinary regional L-function still shows that a uniform land-area reference is inadequate. This is not independent proof of interaction: spatially varying road density, activity and reporting can produce the result.
 
 The inhomogeneous diagnostic changes the interpretation. Results depend on the intensity bandwidth and, at 3 km, on influential low-intensity locations. It would be misleading to select one curve and label the pattern “clustered” or “regular” without acknowledging this instability.
 
@@ -254,22 +320,22 @@ knitr::kable(l_summary, digits = 3, col.names = c("Distance (km)", "All records:
 #| eval: false
 ```
 
-Together, the checks favour a restrained conclusion: **there is a clear concentration of located fatality records, but the current data and intensity model do not establish robust interaction between separate crashes**. More advanced methods would not automatically resolve the missing-location and event-definition problems.
+Together, the checks favour a restrained conclusion: **located fatality records are unevenly distributed, and a focused road map makes their street context visible; neither analysis establishes robust interaction or a road-risk ranking**. The network model handles route distance in one selected part of Bangkok, but cannot repair the missing-location and event-definition problems.
 
 ## Task 5 — Geovisualisation and communication
 
-Each major figure has a short interpretation immediately beneath it. The study map provides geographic context before the density maps; the KDE panels share one legend so colours remain comparable. Count charts retain zero baselines. The statistical plots label distances in kilometres and distinguish the theoretical reference from simulated evidence. The inhomogeneous diagnostic deliberately has no significance shading.
+Each major figure has a short interpretation immediately beneath it. The study map provides geographic context before the density maps; the regional KDE panels share one legend. The road figures show both the original mapped lines and density on lixels. The interactive map offers switchable layers over an attributed light basemap, with static figures as a fallback. Count charts retain zero baselines. Statistical plots label route or straight-line distances and describe the distinct null models. The inhomogeneous planar diagnostic deliberately has no significance shading.
 
 Maps use a colour gradient for magnitude rather than labelling arbitrary bands as “safe” or “dangerous”. The displayed figures and their interpretations support the same event definition and observation period.
 
 ## Task 6 — Public-safety planning and management
 
 ::: {#planning-discussion}
-The main practical use of this analysis is to identify broad areas for closer investigation. Bangkok contains 232 of the 530 located records, and its concentration remains visible under different KDE bandwidths. Agencies could use this as a starting point for reviewing existing fatal-crash case files and checking whether known problem locations are represented. The map alone is insufficient for choosing individual roads for engineering work.
+The main practical use of this analysis is to identify areas for closer investigation. Bangkok contains 232 of the 530 located records, and its regional concentration remains visible under different KDE bandwidths. The focused road map then indicates corridors where matched records appear closer together along mapped streets. Agencies could use these views to review existing fatal-crash case files and verify exact sites. The network map alone is insufficient for choosing roads for engineering work.
 
 Improving location recording should be a priority alongside hotspot review. Nearly three quarters of distinct records in the national extract have no coordinates, and availability differs across province-of-death groups. A consistent process for recording crash coordinates, location accuracy, and event identifiers would make future spatial comparisons more credible. Linking multiple fatalities to a shared crash identifier would also help distinguish the number of deaths from the number of crashes.
 
-Decisions about enforcement, road redesign, or emergency response need information that is missing here. Traffic volumes, road type, speed, intersection layout, pedestrian activity, and emergency access could help assess whether a concentration reflects greater exposure, preventable hazards, or reporting differences. These are proposed follow-up inputs, not causes established by this study.
+Decisions about enforcement, road redesign, or emergency response need information that is missing here. Traffic volumes, road type, speed, intersection layout, pedestrian activity, and emergency access could help assess whether a concentration reflects greater exposure, preventable hazards, or reporting differences. The 2026 road map should also be checked against 2024 road conditions before operational use. These are proposed follow-up inputs, not causes established by this study.
 
 The results should not be used to reduce resources in areas with few mapped records. A sparse map may reflect incomplete geocoding. Similarly, the January count is not sufficient evidence for a seasonal deployment strategy because the available dates concern confirmed deaths, the extract stops in September, and monthly observation completeness is unknown.
 
@@ -280,13 +346,13 @@ A reasonable next step is a joint data-quality and site-review exercise: verify 
 
 The dominant limitation is selective location availability. The analysis concerns 530 geocoded records, not all road fatalities in Greater Bangkok. The source's national completeness and integration procedures have not been independently verified. The date field records confirmed deaths and covers nine months; it cannot support full-year or precise accident-time conclusions.
 
-The assumed WGS 84 datum, unknown coordinate accuracy, older administrative boundaries, and planar treatment of road events add uncertainty. Multiple records can refer to one crash, while exact-row deduplication relies on released attributes. Edge correction does not solve these problems.
+The assumed WGS 84 datum, unknown coordinate accuracy and older administrative boundaries add uncertainty. The network detail adds a 2026 OSM road snapshot, a largest-component and 100 m matching rule, a fixed 700 m bandwidth, and a focus chosen from the observed planar peak. It covers only `r nrow(focus_on_road)` records. Multiple records can refer to one crash, while exact-row deduplication relies on released attributes. Neither edge correction nor road snapping solves these problems.
 
-The evidence answers the research question in two parts. Located records are concentrated, with a prominent broad concentration within Bangkok. However, the sensitivity of the intensity-adjusted curves means that residual interaction is unresolved. This is useful as an exploratory account of recorded locations and a guide to further data checking, rather than a road-risk ranking.
+The evidence answers the research question in two parts. Located records show a prominent broad concentration within Bangkok. The local road map shows how some of those records relate to streets and how a route-distance KDE differs from a raster surface. Sensitivity of the planar intensity-adjusted curves and the limitations of the local network comparison leave residual interaction unresolved. These are exploratory maps for further checking, rather than a road-risk ranking.
 
 ## Reproducibility {.unnumbered}
 
-The complete workflow is in [analysis.R](https://github.com/yufanyou2025/ISS626-VAA/blob/master/Take-home_Ex/Take-home_Ex01/analysis.R). Expand the code sections above to see the exact preparation, plotting, and simulation code. The report executes that script once before displaying its results; the expanded blocks display the same code without executing it twice.
+The regional workflow is in [analysis.R](https://github.com/yufanyou2025/ISS626-VAA/blob/master/Take-home_Ex/Take-home_Ex01/analysis.R), followed by the [network workflow](https://github.com/yufanyou2025/ISS626-VAA/blob/master/Take-home_Ex/Take-home_Ex01/network-analysis.R). Expand the code sections to see the exact preparation, plotting, and simulation code. The report executes both scripts once before displaying results; the folded blocks display the same code without executing it twice. The [pinned OSM snapshot and projected linework](https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex01/data/network) permit the street analysis to be rerun without refetching a changing map. `prepare-network.R` documents how shared OSM nodes were used to split road lines.
 
 Original input hashes are checked before analysis. Raw files remain outside Git because the Kaggle licence label does not establish clear redistribution permission. The repository includes download instructions, metadata, checksums, aggregated outputs, and package versions. The boundary source is pinned to a specific revision. No individual record is included in the downloadable result tables.
 
@@ -294,14 +360,20 @@ From the repository root, obtain the inputs described in `data/README.md`, then 
 
 ```powershell
 Rscript Take-home_Ex/Take-home_Ex01/analysis.R
+Rscript Take-home_Ex/Take-home_Ex01/prepare-network.R
 quarto render Take-home_Ex/Take-home_Ex01/technical-report.qmd
 quarto render Take-home_Ex/Take-home_Ex01/executive-summary.qmd
 ```
 
-The R script writes the figures and result tables. Rendering the report reruns the full analysis with the fixed simulation seed. The slides use the same saved figures and summary values. On Windows, `render.ps1` sets a supported UTF-8 locale for the render process and restores the previous environment afterwards.
+The source road file is already committed, so `prepare-network.R` is optional when reproducing the published result; running it regenerates the projected GeoJSON from the pinned OSM snapshot. Rendering the report reruns the regional and network analyses with fixed simulation seeds. The slides use the same saved figures and summaries. On Windows, `render.ps1` sets a supported UTF-8 locale for the render process and restores the previous environment afterwards.
 
 ```{r}
 #| label: export-results
+#| eval: false
+```
+
+```{r}
+#| label: network-outputs
 #| eval: false
 ```
 
@@ -329,3 +401,6 @@ sessionInfo()
 6. Pebesma, E. [Simple Features for R](https://r-spatial.github.io/sf/articles/sf1.html).
 7. Baddeley, A., Rubak, E., and Turner, R. [spatstat documentation and learning resources](https://spatstat.org/).
 8. spatstat.explore. [Kinhom documentation](https://rdrr.io/cran/spatstat.explore/man/Kinhom.html) and [simulation envelope documentation](https://rdrr.io/cran/spatstat.explore/man/envelope.html). Package version 3.8.2 used locally.
+9. R for Geospatial Data Science and Analytics. [Chapter 7: Network Constrained Spatial Point Patterns Analysis](https://r4gdsa.netlify.app/chap07). Lixel-centre NKDE and network K/G workflow. Accessed 26 September 2026.
+10. Gelb, J. [spNetwork: Network Kernel Density Estimate](https://jeremygelb.github.io/spNetwork/articles/NKDE.html) and [precision versus `max_depth`](https://jeremygelb.github.io/spNetwork/articles/web_vignettes/SpeedVSprecision.html). Accessed 26 September 2026.
+11. OpenStreetMap contributors. [Copyright and ODbL attribution](https://www.openstreetmap.org/copyright); road data extracted with [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) at 13:27 UTC on 26 September 2026.

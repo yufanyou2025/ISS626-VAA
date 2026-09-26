@@ -14,7 +14,7 @@ slides_source = (base / 'executive-summary.qmd').read_text(encoding='utf-8-sig')
 assert 'PENDING' not in report_source + slides_source
 assert all(f'Task {i}' in report_source for i in range(1, 7))
 interpretations = re.findall(r'::: \{#(interpretation-[^}]+)\}\s*(.*?)\s*:::', report_source, re.S)
-assert len(interpretations) == 6
+assert len(interpretations) == 9
 def words(text):
     return len(re.findall(r"\b\w+(?:[’'-]\w+)*\b", text))
 counts = {name: words(text) for name, text in interpretations}
@@ -58,7 +58,11 @@ assert not (published / 'data').exists()
 assert not list(published.rglob('*.csv'))
 assert not list(published.rglob('*.geojson'))
 summary = json.loads((base / 'outputs/summary.json').read_text())
+network = json.loads((base / 'outputs/network-summary.json').read_text())
 assert summary['study_records'] == 530 and summary['unique_locations'] == 503
+assert 0 < network['snap_accepted'] <= network['focus_records'] <= summary['study_records']
+assert network['network_k_simulations'] == 39 and network['network_k_seed'] == 20260926
+assert (base / 'data/network/overpass-2026-09-26.json').exists()
 assert summary['global_csr_p'] == 0.005
 assert summary['missing_coordinates'] + summary['located_national'] == summary['deduplicated_records']
 print(json.dumps({'status': 'PASS', 'interpretation_words': counts,

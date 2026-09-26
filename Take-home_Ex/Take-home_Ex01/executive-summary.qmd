@@ -23,6 +23,7 @@ format:
 ```{r}
 #| include: false
 s <- jsonlite::fromJSON("Take-home_Ex/Take-home_Ex01/outputs/summary.json")
+ns <- jsonlite::fromJSON("Take-home_Ex/Take-home_Ex01/outputs/network-summary.json")
 stopifnot(s$study_records == 530, s$observation_end == "2024-09-30")
 ```
 
@@ -34,9 +35,9 @@ Implications and limitations
 
 ## Research question
 
-**Where are located fatality records concentrated, and does clustering remain after allowing intensity to vary?**
+**Where are located fatality records concentrated, and what changes when streets define the distance?**
 
-The analysis covers 530 records in six provinces.
+The regional analysis covers 530 records in six provinces. A central Bangkok street-network example uses `r ns$snap_accepted` matched records.
 
 One record represents a recorded fatality, **not necessarily one distinct crash**.
 
@@ -76,52 +77,53 @@ January: 78 located records. August: 43. These are confirmed-death dates, not cr
 Source: Kaggle / DDC compilation. October–December are absent, not zero; counts are not exposure-adjusted.
 :::
 
-## A broad concentration remains under different smoothing
+## A closer look at roads in central Bangkok
 
-![](figures/slide-kde.png){height=410}
+![](figures/network-points.png){height=405}
 
 ::: {.takeaway}
-The peak falls from 0.545 to 0.257 records/km² as bandwidth increases from 1.5 to 6 km.
+`r ns$focus_records` records fall inside an 8 × 8 km square around the regional density peak; `r ns$snap_accepted` match the mapped road component within 100 m.
 :::
 
 ::: {.source}
-Gaussian KDE; 500 m pixels; shared colour scale. Sources: Kaggle / DDC; geoBoundaries (ODbL 1.0).
+Roads: © OpenStreetMap contributors (ODbL), September 2026. Fatality records: Kaggle / DDC, January–September 2024.
 :::
 
-## The uniform spatial reference is rejected
+## Density follows routes, not a square grid
 
-![](figures/slide-csr.png){height=390}
+![](figures/slide-network-nkde.png){height=405}
 
 ::: {.takeaway}
-Global Monte Carlo p = `r sprintf("%.3f", s$global_csr_p)`. Uneven intensity can explain rejection; interaction is not established.
+Continuous network KDE colours road segments by recorded fatalities per network kilometre. The display scale is 700 m of route distance.
 :::
 
 ::: {.source}
-199 fixed-count CSR simulations; translation correction; global maximum-deviation band over 0.25–10 km.
+spNetwork quartic kernel, lixel centres, max_depth 8. The focused subset is exploratory; no traffic denominator is available.
 :::
 
-## Intensity-adjusted results are sensitive to bandwidth
+## Network K and G offer a different comparison
 
-![](figures/slide-inhom.png){height=390}
+![](figures/slide-network-kg.png){height=390}
 
 ::: {.takeaway}
-At 1 km, the curve changes from −0.312 to +0.820 km. Residual interaction is unresolved.
+`r ns$network_k_simulations` simulations place the same number of points approximately uniformly by road length. Pointwise bands do not give a global test.
 :::
 
 ::: {.source}
-Leave-one-out intensity; 3 km and 6 km bandwidths. Descriptive curves without a significance envelope.
+spNetwork network K/G; 100 m simulation resolution and steps to 1.5 km. The focus was selected from the observed pattern.
 :::
 
 ## What the checks establish
 
 | Check | Result | Interpretation |
 |---|---|---|
-| KDE bandwidth | Broad concentration persists | Useful regional description |
-| Repeated locations | 530 records → 503 locations | Broad ordinary-L pattern remains |
-| Intensity bandwidth | Adjusted curve changes substantially | No stable interaction conclusion |
+| Regional planar KDE | Broad Bangkok concentration | Guides local inspection |
+| Road matching | `r ns$snap_accepted` of `r ns$focus_records` focus records | Positions are near mapped roads |
+| Network KDE | Colour follows connected streets | Shows route-based concentration |
+| Network K/G | Uniform-by-road-length reference | Exploratory local comparison |
 
 ::: {.takeaway}
-At 3 km bandwidth, one point contributes 30.0% of the total inverse-intensity weight.
+The network map adds street context, but neither analysis measures risk per road user.
 :::
 
 ## Public-safety implications
@@ -136,13 +138,13 @@ Low mapped counts are not grounds for reducing resources.
 
 ## Conclusion and limitations
 
-**Located records are concentrated, but the evidence for interaction between separate crashes is not robust.**
+**Located records are concentrated. The focused road map shows where a small matched subset lies along streets.**
 
-Missing locations, incomplete-year coverage, uncertain event identity, and planar distances limit interpretation.
+Missing locations, incomplete-year coverage, uncertain crash identity, and a 2026 road snapshot limit interpretation. Evidence for interaction between separate crashes remains unresolved.
 
 [Technical report and references](technical-report.html) · [GitHub project](https://github.com/yufanyou2025/ISS626-VAA)
 
 ::: {.source}
-Main sources: Kaggle / DDC compilation; geoBoundaries / OpenStreetMap; Thailand NSO; sf and spatstat documentation.
+Main sources: Kaggle / DDC; geoBoundaries; OpenStreetMap contributors; R4GDSA Chapter 7; Gelb's spNetwork documentation.
 :::
 

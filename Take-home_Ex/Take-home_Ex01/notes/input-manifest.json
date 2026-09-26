@@ -1,6 +1,6 @@
 {
   "access_date": "2026-09-10",
-  "status": "Original inputs; not cleaned or analysed",
+  "status": "Pinned original sources and deterministic derived road network; fatality records are not cleaned or redistributed here",
   "files": [
     {
       "path": "data/raw/thailand-road-accident-fatalities-2024.zip",
@@ -16,6 +16,16 @@
       "path": "data/raw/geoBoundaries-THA-ADM1.geojson",
       "bytes": 4032763,
       "sha256": "145beb11e52785a42e16997c92a65426b3df8d009941db6b012ec8e411f3e33c"
+    },
+    {
+      "path": "data/network/overpass-2026-09-26.json",
+      "bytes": 10222717,
+      "sha256": "065d3e0874a489ab61e416ad9e629cab421d75157346aadef8393263ac4cdeb8"
+    },
+    {
+      "path": "data/network/bangkok-focus-roads.geojson",
+      "bytes": 9484887,
+      "sha256": "23241c1439a8bd885177636d531269e853fa329ceff23a61aa76faf17784d35f"
     }
   ]
 }
