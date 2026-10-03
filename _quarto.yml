@@ -15,6 +15,10 @@ project:
     - "In-class_Ex/In-class_Ex05/README.md"
     - "!In-class_Ex/In-class_Ex05/data/"
     - "!In-class_Ex/In-class_Ex05/cache/"
+    - "In-class_Ex/In-class_Ex06/figures/"
+    - "In-class_Ex/In-class_Ex06/outputs/"
+    - "In-class_Ex/In-class_Ex06/analysis.R"
+    - "In-class_Ex/In-class_Ex06/README.md"
     - "Hands-on_Ex/Hands-on_Ex04/figures/"
     - "Hands-on_Ex/Hands-on_Ex04/outputs/"
     - "!Hands-on_Ex/Hands-on_Ex04/data/"
@@ -78,6 +82,8 @@ website:
             href: "In-class_Ex/In-class_Ex04/In-class_Ex04.qmd"
           - text: "In-class Exercise 5: Emerging Hot Spot Analysis"
             href: "In-class_Ex/In-class_Ex05/In-class_Ex05.qmd"
+          - text: "In-class Exercise 6: EHSA Sensitivity"
+            href: "In-class_Ex/In-class_Ex06/In-class_Ex06.qmd"
     right:
       - href: index.qmd
         text: Home

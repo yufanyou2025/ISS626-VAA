@@ -1,0 +1,14 @@
+specification,classification,count
+Queen contiguity,sporadic coldspot,44
+Queen contiguity,sporadic hotspot,19
+Queen contiguity,oscilating hotspot,8
+Queen contiguity,no pattern detected,6
+Queen contiguity,oscilating coldspot,6
+Queen contiguity,consecutive hotspot,4
+Queen contiguity,new hotspot,1
+Rook contiguity,sporadic coldspot,45
+Rook contiguity,sporadic hotspot,23
+Rook contiguity,no pattern detected,8
+Rook contiguity,oscilating hotspot,6
+Rook contiguity,oscilating coldspot,5
+Rook contiguity,consecutive hotspot,1

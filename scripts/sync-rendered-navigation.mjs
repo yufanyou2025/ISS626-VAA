@@ -20,6 +20,7 @@ function visit(dir) {
       if(!tracked.has(relative) &&
          !relative.startsWith('_site/In-class_Ex/In-class_Ex04/') &&
          !relative.startsWith('_site/In-class_Ex/In-class_Ex05/') &&
+         !relative.startsWith('_site/In-class_Ex/In-class_Ex06/') &&
          !relative.startsWith('_site/Hands-on_Ex/Hands-on_Ex05/')) continue;
       const html=fs.readFileSync(file,'utf8');
       if(!headerPattern.test(html)) continue;

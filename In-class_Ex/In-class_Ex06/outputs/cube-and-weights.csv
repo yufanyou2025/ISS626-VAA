@@ -1,0 +1,9 @@
+measure,value
+Counties,88
+Years,17
+County-year records,1496
+Counties with different neighbour counts,8
+Minimum Queen neighbours with self,2
+Maximum Queen neighbours with self,12
+Minimum rook neighbours with self,2
+Maximum rook neighbours with self,11
