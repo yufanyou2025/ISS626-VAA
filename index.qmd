@@ -118,6 +118,17 @@ Comparing local means, robust summaries and kernel choices across Hunan's counti
 [Explore In-class Exercise 4 →](In-class_Ex/In-class_Ex04/In-class_Ex04.qmd)
 :::
 
+::: {.portfolio-card}
+::: {.portfolio-number}
+05 / Economic change through time
+:::
+### Emerging hot spot analysis
+
+Following county GDP per capita across 17 years with space-time Gi*, Mann–Kendall trends and careful significance checks.
+
+[Explore In-class Exercise 5 →](In-class_Ex/In-class_Ex05/In-class_Ex05.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.

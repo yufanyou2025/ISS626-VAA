@@ -1,0 +1,9 @@
+check,result
+Counties,88
+Years,17
+County-year observations,1496
+Duplicate county-years,0
+Missing GDPPC,0
+Invalid polygons,0
+Input EPSG,4326
+Metric EPSG,32650

@@ -991,7 +991,7 @@
     "href": "index.html#in-class-exercise",
     "title": "Evidence, place & perspective",
     "section": "In-class Exercise",
-    "text": "In-class Exercise\n\n\n04 / Local economic variation\n\n\nGeographically weighted summary statistics\nComparing local means, robust summaries and kernel choices across Hunan’s counties.\nExplore In-class Exercise 4 →"
+    "text": "In-class Exercise\n\n\n04 / Local economic variation\n\n\nGeographically weighted summary statistics\nComparing local means, robust summaries and kernel choices across Hunan’s counties.\nExplore In-class Exercise 4 →\n\n\n\n\n05 / Economic change through time\n\n\nEmerging hot spot analysis\nFollowing county GDP per capita across 17 years with space-time Gi*, Mann–Kendall trends and careful significance checks.\nExplore In-class Exercise 5 →"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html",
@@ -1125,5 +1125,75 @@
     "title": "Hands-on Exercise 5B: Local Spatial Autocorrelation",
     "section": "8 Sources and reproducibility",
     "text": "8 Sources and reproducibility\n\nChapter 10: Local Spatial Autocorrelation, course workbook; analysis sequence adapted and independently interpreted.\nsfdep documentation for st_contiguity(), local_moran() and local_gstar_perm().\nUser-supplied Hunan shapefile, Hunan_2012.csv and dictionary. The archive does not identify the original statistical publisher or boundary vintage; exact checksums and reproduction instructions are retained.\nFull 5B R script, local Moran results, Gi* results, and R session information."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "",
+    "text": "A single GDP per capita map shows where county values were high at one point in time. It misses how the spatial concentration of high and low values changes. In this exercise I follow the sequence in In-class Exercise 5: Emerging Hot Spot Analysis: build a space-time cube, calculate annual local Gi*, inspect a county’s time series, apply Mann–Kendall tests, and map the package’s EHSA classifications.\nI use the class’s 2005–2021 Hunan GDPPC series, not the 2012-only CSV used in my earlier exercises. The analysis covers the 88 county-level polygons in this teaching extract. It is a comparison of spatial patterns, not a test of whether one county’s development caused another’s.\nOpen the complete RStudio script to see and run every step. The page itself executes that script when rendered. Preparation code and the data/reproduction note are also available."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#what-i-set-out-to-examine",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#what-i-set-out-to-examine",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "",
+    "text": "A single GDP per capita map shows where county values were high at one point in time. It misses how the spatial concentration of high and low values changes. In this exercise I follow the sequence in In-class Exercise 5: Emerging Hot Spot Analysis: build a space-time cube, calculate annual local Gi*, inspect a county’s time series, apply Mann–Kendall tests, and map the package’s EHSA classifications.\nI use the class’s 2005–2021 Hunan GDPPC series, not the 2012-only CSV used in my earlier exercises. The analysis covers the 88 county-level polygons in this teaching extract. It is a comparison of spatial patterns, not a test of whether one county’s development caused another’s.\nOpen the complete RStudio script to see and run every step. The page itself executes that script when rendered. Preparation code and the data/reproduction note are also available."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#preparing-the-two-inputs",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#preparing-the-two-inputs",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "2 Preparing the two inputs",
+    "text": "2 Preparing the two inputs\nThe shapefile supplies county geometry; Hunan_GDPPC.csv supplies Year, County and GDPPC. The source manifest gives pinned course-repository URLs, access date and SHA-256 checksums. I check that each of the 88 counties has one positive GDPPC observation for every year from 2005 through 2021, with no duplicated county-year keys. The boundary starts in WGS84 and is projected to EPSG:32650 before distance weights are calculated.\n\n\n\n\n\nValidation check\nResult\n\n\n\n\nCounties\n88\n\n\nYears\n17\n\n\nCounty-year observations\n1496\n\n\nDuplicate county-years\n0\n\n\nMissing GDPPC\n0\n\n\nInvalid polygons\n0\n\n\nInput EPSG\n4326\n\n\nMetric EPSG\n32650\n\n\n\n\n\nOne detail mattered more than it first appeared: the CSV begins with Longshan, whereas the shapefile begins with Anxiang. The cube’s neighbour lists are passed to time slices by row position. I therefore reorder each year to the polygon order and assert an exact match before any Gi* calculation. Without this check, the code can run yet assign the wrong neighbourhood to a county. After alignment, Changsha’s 2005 Gi* agrees with the value shown in class (5.028).\n\n\nShow R code\ngdppc &lt;- dplyr::arrange(gdppc, Year, match(County, hunan$County))\nstopifnot(all(vapply(split(gdppc$County, gdppc$Year),\n                     identical, logical(1), hunan$County)))"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#building-the-space-time-cube",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#building-the-space-time-cube",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "3 Building the space-time cube",
+    "text": "3 Building the space-time cube\nsfdep::spacetime() connects the attribute table to the geometry by County and identifies Year as time. The resulting object passes is_spacetime_cube(). I then include each county in its Queen-contiguity neighbourhood, as Gi* requires, and use inverse-distance weights calculated on metre coordinates. The full code checks that there are no empty neighbourhoods or non-finite weights.\n\n\nShow R code\ncube &lt;- sfdep::spacetime(gdppc, hunan,\n                         .loc_col = \"County\", .time_col = \"Year\")\nsfdep::is_spacetime_cube(cube)\ncube &lt;- cube |&gt;\n  sfdep::activate(\"geometry\") |&gt;\n  dplyr::mutate(\n    nb = sfdep::include_self(sfdep::st_contiguity(geometry)),\n    wt = sfdep::st_inverse_distance(nb, geometry, scale = 1, alpha = 1)\n  ) |&gt;\n  sfdep::set_nbs(\"nb\") |&gt;\n  sfdep::set_wts(\"wt\")\n\n\n\n\n\n\n\nCube/weight check\nResult\n\n\n\n\nCube check\nTRUE\n\n\nObservations\n1496\n\n\nYears\n17\n\n\nLocations\n88\n\n\nMinimum neighbours including self\n2\n\n\nMaximum neighbours including self\n12"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#annual-gi-comparing-the-spatial-pattern",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#annual-gi-comparing-the-spatial-pattern",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "4 Annual Gi*: comparing the spatial pattern",
+    "text": "4 Annual Gi*: comparing the spatial pattern\nI calculate a spatial-only Gi* for each year using 499 conditional permutations and a recorded seed. Positive scores indicate a concentration of higher GDPPC values in the local neighbourhood; negative scores indicate lower values. I adjust the two-sided simulated p-values across the 88 counties within each year using Benjamini–Hochberg (BH). This is an additional caution, not a claim that the class slide performed the same correction.\n\n\n\nAnnual spatial-only Gi* maps for 2005 and 2021, on one colour scale.\n\n\nThe high-value concentration remains visible around the eastern counties, but the two maps should not be read as a simple before/after welfare measure. GDPPC is not household income, and the source does not establish a common real-price base. The annual results table retains every score and p-value rather than just a colour category.\n\n\n\n\n\nYear\nUnadjusted p &lt;= 0.05\nBH q &lt;= 0.05\n\n\n\n\n2005\n17\n0\n\n\n2006\n15\n0\n\n\n2007\n15\n0\n\n\n2008\n16\n0\n\n\n2009\n14\n0\n\n\n2010\n18\n0\n\n\n2011\n16\n0\n\n\n2012\n16\n0\n\n\n2013\n18\n0\n\n\n2014\n19\n0\n\n\n2015\n18\n0\n\n\n2016\n17\n0\n\n\n2017\n19\n0\n\n\n2018\n19\n0\n\n\n2019\n19\n0\n\n\n2020\n21\n0\n\n\n2021\n20\n0\n\n\n\n\n\nDepending on the year, 14–21 counties meet unadjusted p &lt;= 0.05, but none meets BH q &lt;= 0.05. With 499 permutations, the smallest two-sided simulated p-value has limited resolution, which makes the adjusted test especially conservative across 88 counties. The unadjusted locations are exploratory, not 17 years of confirmed county discoveries."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#following-changsha-through-time",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#following-changsha-through-time",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "5 Following Changsha through time",
+    "text": "5 Following Changsha through time\nThe class example uses Changsha to illustrate a Gi* time series. I plot the county’s annual spatial-only scores, first as a saved PNG and then as an interactive chart. These are not the time-lagged Gi* scores used internally by the final EHSA routine.\n\n\n\nChangsha annual spatial-only Gi* scores.\n\n\n\n\n\n\n\n\nChangsha’s series starts at 5.03 in 2005 and ends at 5.75 in 2021. It rises and dips along the way; a positive long-run trend does not mean a steady year-by-year increase."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#mannkendall-trend-tests",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#mannkendall-trend-tests",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "6 Mann–Kendall trend tests",
+    "text": "6 Mann–Kendall trend tests\nMann–Kendall tests whether the annual Gi* sequence has a monotonic trend. Its tau runs from −1 to 1; sl in the package output is the p-value. I calculate the test separately for all 88 counties and add BH-adjusted trend q-values. The test describes a trend in local spatial concentration, not a trend in the raw GDPPC level.\n\n\nShow R code\nmk &lt;- gi_by_year |&gt;\n  dplyr::group_by(County) |&gt;\n  dplyr::summarise(mk = list(unclass(Kendall::MannKendall(gi_star))),\n                   .groups = \"drop\") |&gt;\n  tidyr::unnest_wider(mk) |&gt;\n  dplyr::mutate(q_bh = p.adjust(sl, method = \"BH\"))\n\n\nFor Changsha, tau is 0.485 and p is 0.00742 (BH q = 0.0211). This supports an upward tendency in its spatial-only Gi* series, while the chart shows why I would not call it a smooth increase. The complete Mann–Kendall results permit the same check for every county.\n\n\n\nCounty Mann–Kendall tau for annual spatial-only Gi* scores.\n\n\nThe sign and size of tau are displayed everywhere; the map alone is not a significance map. Consecutive yearly observations and economic shocks may be temporally dependent, a limitation of the usual Mann–Kendall reference test."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#emerging-hot-spot-classification",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#emerging-hot-spot-classification",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "7 Emerging hot spot classification",
+    "text": "7 Emerging hot spot classification\nFinally, I run sfdep::emerging_hotspot_analysis() with a one-year time lag (k = 1) and 99 simulations, matching the slide’s main specification. I pass in the same documented spatial neighbour and weight columns. The built-in routine combines time-lagged Gi* scores with a Mann–Kendall trend and applies its default 0.01 classification threshold. Its detailed category labels are not interchangeable with the separate annual spatial-only maps above.\n\n\nShow R code\nset.seed(626505)\nehsa &lt;- sfdep::emerging_hotspot_analysis(\n  x = cube, .var = \"GDPPC\", k = 1, nsim = 99,\n  nb_col = \"nb\", wt_col = \"wt\", threshold = .01\n)\n\n\n\n\n\nNumber of counties in each EHSA class.\n\n\n\n\n\n\n\nPackage classification\nCounties\n\n\n\n\nsporadic coldspot\n45\n\n\nsporadic hotspot\n24\n\n\noscilating hotspot\n8\n\n\nno pattern detected\n6\n\n\noscilating coldspot\n4\n\n\nconsecutive hotspot\n1\n\n\n\n\n\nThe largest group is sporadic coldspot (45 counties). “Sporadic” does not mean a continuous or newly emerging trend; it indicates intermittent significant hot/cold bins under the package rules. The package output includes 44 counties with an unadjusted Mann–Kendall trend p &lt;= 0.05, and 43 after BH adjustment across locations. County classifications and trend values are available for review.\n\n\n\nEHSA hot/cold class families among counties with trend evidence.\n\n\nThe maps group detailed package labels into hot-spot and cold-spot families for legibility; the table and CSV retain their exact classifications. Grey means the trend test did not pass the indicated threshold, not that GDPPC is zero or that the county has no temporal change.\n\n7.1 A methodological distinction\nThe class overview describes FDR correction as part of the general EHSA approach. In the installed sfdep implementation, the classification is based on simulated Gi* p-values at its threshold; the function does not itself apply an FDR adjustment to every space-time bin. I separately apply BH within each annual spatial-only Gi* slice and across the 88 county trend tests, and label those checks clearly. This page therefore does not claim exact equivalence with Esri’s FDR-corrected EHSA procedure. The annual spatial-only and lagged EHSA analyses also have different temporal neighbourhoods and simulation counts."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#what-i-learned",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#what-i-learned",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "8 What I learned",
+    "text": "8 What I learned\nThe biggest practical lesson was about row order: a valid-looking map can be wrong if time-series rows and polygon neighbours are paired by position without a key check. I also learned to ask which Gi* series a trend test is describing. Changsha’s spatial-only trend is positive, while the EHSA classification uses a time-lagged neighbourhood and tells a different, categorical story. Finally, the difference between unadjusted and BH-filtered maps showed me how much caution is needed when looking at many counties over many years. The teaching extract uses one boundary layer for the full period, does not document boundary changes or a price deflator, and cannot support causal claims about regional policy or living standards."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#sources-and-reproduction",
+    "href": "In-class_Ex/In-class_Ex05/In-class_Ex05.html#sources-and-reproduction",
+    "title": "In-class Exercise 5: Emerging Hot Spot Analysis",
+    "section": "9 Sources and reproduction",
+    "text": "9 Sources and reproduction\n\nIn-class Exercise 5 slides, Dr Kam Tin Seong, accessed 3 October 2026.\nPinned class data repository, accessed 3 October 2026; exact links and hashes in the source manifest. The CSV identifies years but does not establish the original statistical publisher, boundary vintage, or inflation adjustment.\nsfdep EHSA documentation and sfdep source for the implemented classification; Esri EHSA documentation for the wider method and FDR context.\nFull RStudio script, preparation code, reproduction note, and R session information."
   }
 ]

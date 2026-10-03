@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="yufanyou2025">
+<meta name="dcterms.date" content="2026-10-03">
+
+<title>In-class Exercise 5: Emerging Hot Spot Analysis – ISS626-VAA</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">ISS626-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="/Take-home_Ex/Take-home_Ex01/technical-report.html">
+ <span class="dropdown-text">Exercise 1: Technical Report</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Take-home_Ex/Take-home_Ex01/executive-summary.html">
+ <span class="dropdown-text">Exercise 1: Executive Summary</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="https://github.com/yufanyou2025/ISS626-VAA">
+ <span class="dropdown-text">GitHub repository</span></a>
+  </li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html">
+ <span class="dropdown-text">Hands-on Exercise 1A: Geospatial Data Science</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html">
+ <span class="dropdown-text">Hands-on Exercise 1B: Thematic Mapping</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.html">
+ <span class="dropdown-text">Hands-on Exercise 2A: First-order Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.html">
+ <span class="dropdown-text">Hands-on Exercise 2B: Second-order Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exercise 3: Spatio-temporal Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html">
+ <span class="dropdown-text">Hands-on Exercise 4: Spatial Weights and Applications</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
+ <span class="dropdown-text">Hands-on Exercise 5A: Global Spatial Autocorrelation</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
+ <span class="dropdown-text">Hands-on Exercise 5B: Local Spatial Autocorrelation</span></a>
+  </li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="/In-class_Ex/In-class_Ex04/In-class_Ex04.html">
+ <span class="dropdown-text">In-class Exercise 4: Geographically Weighted Statistics</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/In-class_Ex/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-class Exercise 5: Emerging Hot Spot Analysis</span></a>
+  </li>
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-i-set-out-to-examine" id="toc-what-i-set-out-to-examine" class="nav-link active" data-scroll-target="#what-i-set-out-to-examine"><span class="header-section-number">1</span> What I set out to examine</a></li>
+  <li><a href="#preparing-the-two-inputs" id="toc-preparing-the-two-inputs" class="nav-link" data-scroll-target="#preparing-the-two-inputs"><span class="header-section-number">2</span> Preparing the two inputs</a></li>
+  <li><a href="#building-the-space-time-cube" id="toc-building-the-space-time-cube" class="nav-link" data-scroll-target="#building-the-space-time-cube"><span class="header-section-number">3</span> Building the space-time cube</a></li>
+  <li><a href="#annual-gi-comparing-the-spatial-pattern" id="toc-annual-gi-comparing-the-spatial-pattern" class="nav-link" data-scroll-target="#annual-gi-comparing-the-spatial-pattern"><span class="header-section-number">4</span> Annual Gi*: comparing the spatial pattern</a></li>
+  <li><a href="#following-changsha-through-time" id="toc-following-changsha-through-time" class="nav-link" data-scroll-target="#following-changsha-through-time"><span class="header-section-number">5</span> Following Changsha through time</a></li>
+  <li><a href="#mannkendall-trend-tests" id="toc-mannkendall-trend-tests" class="nav-link" data-scroll-target="#mannkendall-trend-tests"><span class="header-section-number">6</span> Mann–Kendall trend tests</a></li>
+  <li><a href="#emerging-hot-spot-classification" id="toc-emerging-hot-spot-classification" class="nav-link" data-scroll-target="#emerging-hot-spot-classification"><span class="header-section-number">7</span> Emerging hot spot classification</a>
+  <ul class="collapse">
+  <li><a href="#a-methodological-distinction" id="toc-a-methodological-distinction" class="nav-link" data-scroll-target="#a-methodological-distinction"><span class="header-section-number">7.1</span> A methodological distinction</a></li>
+  </ul></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned"><span class="header-section-number">8</span> What I learned</a></li>
+  <li><a href="#sources-and-reproduction" id="toc-sources-and-reproduction" class="nav-link" data-scroll-target="#sources-and-reproduction"><span class="header-section-number">9</span> Sources and reproduction</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">In-class Exercise 5: Emerging Hot Spot Analysis</h1>
+<p class="subtitle lead">Hunan county GDP per capita, 2005–2021</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>yufanyou2025 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 3, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-i-set-out-to-examine" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-i-set-out-to-examine"><span class="header-section-number">1</span> What I set out to examine</h2>
+<p>A single GDP per capita map shows where county values were high at one point in time. It misses how the <em>spatial concentration</em> of high and low values changes. In this exercise I follow the sequence in <a href="https://isss626-ay2026-27aug.netlify.app/in-class_ex/in-class_ex05/in-class_ex05-ehsa#/title-slide">In-class Exercise 5: Emerging Hot Spot Analysis</a>: build a space-time cube, calculate annual local Gi*, inspect a county’s time series, apply Mann–Kendall tests, and map the package’s EHSA classifications.</p>
+<p>I use the class’s <strong>2005–2021 Hunan GDPPC series</strong>, not the 2012-only CSV used in my earlier exercises. The analysis covers the 88 county-level polygons in this teaching extract. It is a comparison of spatial patterns, not a test of whether one county’s development caused another’s.</p>
+<p><a href="analysis.R">Open the complete RStudio script</a> to see and run every step. The page itself executes that script when rendered. <a href="prepare.R">Preparation code</a> and the <a href="README.md">data/reproduction note</a> are also available.</p>
+</section>
+<section id="preparing-the-two-inputs" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="preparing-the-two-inputs"><span class="header-section-number">2</span> Preparing the two inputs</h2>
+<p>The shapefile supplies county geometry; <code>Hunan_GDPPC.csv</code> supplies <code>Year</code>, <code>County</code> and <code>GDPPC</code>. The <a href="outputs/source-manifest.csv">source manifest</a> gives pinned course-repository URLs, access date and SHA-256 checksums. I check that each of the 88 counties has one positive GDPPC observation for every year from 2005 through 2021, with no duplicated county-year keys. The boundary starts in WGS84 and is projected to EPSG:32650 before distance weights are calculated.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Validation check</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Counties</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Years</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">County-year observations</td>
+<td style="text-align: right;">1496</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Duplicate county-years</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missing GDPPC</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Invalid polygons</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Input EPSG</td>
+<td style="text-align: right;">4326</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metric EPSG</td>
+<td style="text-align: right;">32650</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>One detail mattered more than it first appeared: the CSV begins with <strong>Longshan</strong>, whereas the shapefile begins with <strong>Anxiang</strong>. The cube’s neighbour lists are passed to time slices by row position. I therefore reorder <em>each year</em> to the polygon order and assert an exact match before any Gi* calculation. Without this check, the code can run yet assign the wrong neighbourhood to a county. After alignment, Changsha’s 2005 Gi* agrees with the value shown in class (5.028).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gdppc <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(gdppc, Year, <span class="fu">match</span>(County, hunan<span class="sc">$</span>County))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">vapply</span>(<span class="fu">split</span>(gdppc<span class="sc">$</span>County, gdppc<span class="sc">$</span>Year),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                     identical, <span class="fu">logical</span>(<span class="dv">1</span>), hunan<span class="sc">$</span>County)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="building-the-space-time-cube" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="building-the-space-time-cube"><span class="header-section-number">3</span> Building the space-time cube</h2>
+<p><code>sfdep::spacetime()</code> connects the attribute table to the geometry by <code>County</code> and identifies <code>Year</code> as time. The resulting object passes <code>is_spacetime_cube()</code>. I then include each county in its Queen-contiguity neighbourhood, as Gi* requires, and use inverse-distance weights calculated on metre coordinates. The full code checks that there are no empty neighbourhoods or non-finite weights.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cube <span class="ot">&lt;-</span> sfdep<span class="sc">::</span><span class="fu">spacetime</span>(gdppc, hunan,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.loc_col =</span> <span class="st">"County"</span>, <span class="at">.time_col =</span> <span class="st">"Year"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sfdep<span class="sc">::</span><span class="fu">is_spacetime_cube</span>(cube)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cube <span class="ot">&lt;-</span> cube <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  sfdep<span class="sc">::</span><span class="fu">activate</span>(<span class="st">"geometry"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb =</span> sfdep<span class="sc">::</span><span class="fu">include_self</span>(sfdep<span class="sc">::</span><span class="fu">st_contiguity</span>(geometry)),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> sfdep<span class="sc">::</span><span class="fu">st_inverse_distance</span>(nb, geometry, <span class="at">scale =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  sfdep<span class="sc">::</span><span class="fu">set_nbs</span>(<span class="st">"nb"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  sfdep<span class="sc">::</span><span class="fu">set_wts</span>(<span class="st">"wt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cube/weight check</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cube check</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Observations</td>
+<td style="text-align: left;">1496</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Years</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Locations</td>
+<td style="text-align: left;">88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Minimum neighbours including self</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maximum neighbours including self</td>
+<td style="text-align: left;">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="annual-gi-comparing-the-spatial-pattern" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="annual-gi-comparing-the-spatial-pattern"><span class="header-section-number">4</span> Annual Gi*: comparing the spatial pattern</h2>
+<p>I calculate a <strong>spatial-only</strong> Gi* for each year using 499 conditional permutations and a recorded seed. Positive scores indicate a concentration of higher GDPPC values in the local neighbourhood; negative scores indicate lower values. I adjust the two-sided simulated p-values across the 88 counties <em>within each year</em> using Benjamini–Hochberg (BH). This is an additional caution, not a claim that the class slide performed the same correction.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/annual-gistar-comparison.png" class="img-fluid figure-img" alt="Side-by-side 2005 and 2021 Hunan county Gi-star maps using a consistent forest-to-copper scale."></p>
+<figcaption>Annual spatial-only Gi* maps for 2005 and 2021, on one colour scale.</figcaption>
+</figure>
+</div>
+<p>The high-value concentration remains visible around the eastern counties, but the two maps should not be read as a simple before/after welfare measure. GDPPC is not household income, and the source does not establish a common real-price base. The <a href="outputs/annual-gistar.csv">annual results table</a> retains every score and p-value rather than just a colour category.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Unadjusted p &lt;= 0.05</th>
+<th style="text-align: right;">BH q &lt;= 0.05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Depending on the year, 14–21 counties meet unadjusted p &lt;= 0.05, but <strong>none meets BH q &lt;= 0.05</strong>. With 499 permutations, the smallest two-sided simulated p-value has limited resolution, which makes the adjusted test especially conservative across 88 counties. The unadjusted locations are exploratory, not 17 years of confirmed county discoveries.</p>
+</section>
+<section id="following-changsha-through-time" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="following-changsha-through-time"><span class="header-section-number">5</span> Following Changsha through time</h2>
+<p>The class example uses Changsha to illustrate a Gi* time series. I plot the county’s annual <strong>spatial-only</strong> scores, first as a saved PNG and then as an interactive chart. These are <em>not</em> the time-lagged Gi* scores used internally by the final EHSA routine.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/changsha-gistar.png" class="img-fluid figure-img" alt="Line chart of Changsha annual Gi-star scores from 2005 to 2021 with a zero reference line."></p>
+<figcaption>Changsha annual spatial-only Gi* scores.</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8c33236e0f3b1bd47859" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8c33236e0f3b1bd47859">{"x":{"data":[{"x":[2004.2,2021.8],"y":[0,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(161,132,73,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021],"y":[5.0282995066289047,5.1692011079782345,5.2958892892912894,5.6039537096873993,6.2788862246004742,5.9357455762937326,5.7508709054298892,5.6942475830114576,5.7085054237054784,5.7608121561733521,6.097127241257188,6.0036547779673146,6.2028053540357906,6.0371816202738318,6.579432171885526,5.7669155664195504,5.7486534794156494],"text":["Year: 2005<br />gi_star: 5.028300","Year: 2006<br />gi_star: 5.169201","Year: 2007<br />gi_star: 5.295889","Year: 2008<br />gi_star: 5.603954","Year: 2009<br />gi_star: 6.278886","Year: 2010<br />gi_star: 5.935746","Year: 2011<br />gi_star: 5.750871","Year: 2012<br />gi_star: 5.694248","Year: 2013<br />gi_star: 5.708505","Year: 2014<br />gi_star: 5.760812","Year: 2015<br />gi_star: 6.097127","Year: 2016<br />gi_star: 6.003655","Year: 2017<br />gi_star: 6.202805","Year: 2018<br />gi_star: 6.037182","Year: 2019<br />gi_star: 6.579432","Year: 2020<br />gi_star: 5.766916","Year: 2021<br />gi_star: 5.748653"],"type":"scatter","mode":"lines+markers","line":{"width":3.7795275590551185,"color":"rgba(49,87,71,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(49,87,71,1)","opacity":1,"size":8.6929133858267722,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(49,87,71,1)"}},"frame":null}],"layout":{"margin":{"t":45.356579493565803,"r":8.6342880863428828,"b":44.034869240348698,"l":37.127438771274399},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.268576172685762},"title":{"text":"Changsha: annual spatial-only Gi*","font":{"color":"rgba(0,0,0,1)","family":"","size":20.722291407222919},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2004.2,2021.8],"tickmode":"array","ticktext":["2005","2007","2009","2011","2013","2015","2017","2019","2021"],"tickvals":[2005,2007,2009,2011,2013,2015,2017,2019,2021],"categoryorder":"array","categoryarray":["2005","2007","2009","2011","2013","2015","2017","2019","2021"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714405,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.814860938148611},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.78493528057662576,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":17.268576172685762}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.32897160859427632,6.9084037804798024],"tickmode":"array","ticktext":["0","2","4","6"],"tickvals":[0,2,4,6],"categoryorder":"array","categoryarray":["0","2","4","6"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.814860938148611},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.78493528057662576,"zeroline":false,"anchor":"x","title":{"text":"Gi* standard score","font":{"color":"rgba(0,0,0,1)","family":"","size":17.268576172685762}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.814860938148611},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":17.268576172685762}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6a8c2c617":{"yintercept":{},"type":"scatter"},"6a8c16c88":{"x":{},"y":{}},"6a84acf2c55":{"x":{},"y":{},"colour":{}}},"cur_data":"6a8c2c617","visdat":{"6a8c2c617":["function (y) ","x"],"6a8c16c88":["function (y) ","x"],"6a84acf2c55":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Changsha’s series starts at 5.03 in 2005 and ends at 5.75 in 2021. It rises and dips along the way; a positive long-run trend does not mean a steady year-by-year increase.</p>
+</section>
+<section id="mannkendall-trend-tests" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="mannkendall-trend-tests"><span class="header-section-number">6</span> Mann–Kendall trend tests</h2>
+<p>Mann–Kendall tests whether the annual Gi* sequence has a monotonic trend. Its tau runs from −1 to 1; <code>sl</code> in the package output is the p-value. I calculate the test separately for all 88 counties and add BH-adjusted trend q-values. The test describes a trend in <em>local spatial concentration</em>, not a trend in the raw GDPPC level.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mk <span class="ot">&lt;-</span> gi_by_year <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(County) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mk =</span> <span class="fu">list</span>(<span class="fu">unclass</span>(Kendall<span class="sc">::</span><span class="fu">MannKendall</span>(gi_star))),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest_wider</span>(mk) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">q_bh =</span> <span class="fu">p.adjust</span>(sl, <span class="at">method =</span> <span class="st">"BH"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>For Changsha, tau is 0.485 and p is 0.00742 (BH q = 0.0211). This supports an upward tendency in its spatial-only Gi* series, while the chart shows why I would not call it a smooth increase. The complete <a href="outputs/mann-kendall-results.csv">Mann–Kendall results</a> permit the same check for every county.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/mann-kendall-tau.png" class="img-fluid figure-img" alt="Hunan county map of positive and negative Mann-Kendall tau values for Gi-star time series."></p>
+<figcaption>County Mann–Kendall tau for annual spatial-only Gi* scores.</figcaption>
+</figure>
+</div>
+<p>The sign and size of tau are displayed everywhere; the map alone is not a significance map. Consecutive yearly observations and economic shocks may be temporally dependent, a limitation of the usual Mann–Kendall reference test.</p>
+</section>
+<section id="emerging-hot-spot-classification" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="emerging-hot-spot-classification"><span class="header-section-number">7</span> Emerging hot spot classification</h2>
+<p>Finally, I run <code>sfdep::emerging_hotspot_analysis()</code> with a <strong>one-year time lag</strong> (<code>k = 1</code>) and 99 simulations, matching the slide’s main specification. I pass in the same documented spatial neighbour and weight columns. The built-in routine combines time-lagged Gi* scores with a Mann–Kendall trend and applies its default 0.01 classification threshold. Its detailed category labels are not interchangeable with the separate annual spatial-only maps above.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">626505</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ehsa <span class="ot">&lt;-</span> sfdep<span class="sc">::</span><span class="fu">emerging_hotspot_analysis</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> cube, <span class="at">.var =</span> <span class="st">"GDPPC"</span>, <span class="at">k =</span> <span class="dv">1</span>, <span class="at">nsim =</span> <span class="dv">99</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nb_col =</span> <span class="st">"nb"</span>, <span class="at">wt_col =</span> <span class="st">"wt"</span>, <span class="at">threshold =</span> .<span class="dv">01</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ehsa-class-counts.png" class="img-fluid figure-img" alt="Horizontal bar chart of the six EHSA categories returned by sfdep."></p>
+<figcaption>Number of counties in each EHSA class.</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package classification</th>
+<th style="text-align: right;">Counties</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sporadic coldspot</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sporadic hotspot</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oscilating hotspot</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">no pattern detected</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oscilating coldspot</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">consecutive hotspot</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The largest group is sporadic coldspot (45 counties). “Sporadic” does not mean a continuous or newly emerging trend; it indicates intermittent significant hot/cold bins under the package rules. The package output includes 44 counties with an unadjusted Mann–Kendall trend p &lt;= 0.05, and 43 after BH adjustment across locations. <a href="outputs/ehsa-results.csv">County classifications and trend values</a> are available for review.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ehsa-class-map.png" class="img-fluid figure-img" alt="Paired maps of EHSA class families, filtered by raw and BH-adjusted Mann-Kendall trend significance."></p>
+<figcaption>EHSA hot/cold class families among counties with trend evidence.</figcaption>
+</figure>
+</div>
+<p>The maps group detailed package labels into hot-spot and cold-spot <em>families</em> for legibility; the table and CSV retain their exact classifications. Grey means the trend test did not pass the indicated threshold, not that GDPPC is zero or that the county has no temporal change.</p>
+<section id="a-methodological-distinction" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="a-methodological-distinction"><span class="header-section-number">7.1</span> A methodological distinction</h3>
+<p>The class overview describes FDR correction as part of the general EHSA approach. In the installed <code>sfdep</code> implementation, the classification is based on simulated Gi* p-values at its threshold; the function does <strong>not</strong> itself apply an FDR adjustment to every space-time bin. I separately apply BH within each annual spatial-only Gi* slice and across the 88 county trend tests, and label those checks clearly. This page therefore does not claim exact equivalence with Esri’s FDR-corrected EHSA procedure. The annual spatial-only and lagged EHSA analyses also have different temporal neighbourhoods and simulation counts.</p>
+</section>
+</section>
+<section id="what-i-learned" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="what-i-learned"><span class="header-section-number">8</span> What I learned</h2>
+<p>The biggest practical lesson was about row order: a valid-looking map can be wrong if time-series rows and polygon neighbours are paired by position without a key check. I also learned to ask <em>which</em> Gi* series a trend test is describing. Changsha’s spatial-only trend is positive, while the EHSA classification uses a time-lagged neighbourhood and tells a different, categorical story. Finally, the difference between unadjusted and BH-filtered maps showed me how much caution is needed when looking at many counties over many years. The teaching extract uses one boundary layer for the full period, does not document boundary changes or a price deflator, and cannot support causal claims about regional policy or living standards.</p>
+</section>
+<section id="sources-and-reproduction" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sources-and-reproduction"><span class="header-section-number">9</span> Sources and reproduction</h2>
+<ul>
+<li><a href="https://isss626-ay2026-27aug.netlify.app/in-class_ex/in-class_ex05/in-class_ex05-ehsa#/title-slide">In-class Exercise 5 slides</a>, Dr Kam Tin Seong, accessed 3 October 2026.</li>
+<li><a href="https://github.com/tskam/ISSS626-AY2026-27Aug/tree/567a99d2dc576cb3b9d46dabea209f55d9fb5fba/In-class_Ex/In-class_Ex05/data">Pinned class data repository</a>, accessed 3 October 2026; exact links and hashes in the <a href="outputs/source-manifest.csv">source manifest</a>. The CSV identifies years but does not establish the original statistical publisher, boundary vintage, or inflation adjustment.</li>
+<li><a href="https://sfdep.josiahparry.com/reference/emerging_hotspot_analysis.html">sfdep EHSA documentation</a> and <a href="https://github.com/JosiahParry/sfdep/blob/main/R/emerging-hostpot-analysis.R">sfdep source</a> for the implemented classification; <a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/space-time-pattern-mining/learnmoreemerging.htm">Esri EHSA documentation</a> for the wider method and FDR context.</li>
+<li><a href="analysis.R">Full RStudio script</a>, <a href="prepare.R">preparation code</a>, <a href="README.md">reproduction note</a>, and <a href="outputs/session-info.txt">R session information</a>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
