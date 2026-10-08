@@ -1,0 +1,4 @@
+file,sha256,source,accessed
+mmr_polbnda_adm3_250k_mimu_1.shp,7616d353dd931087c36a1356b596e10046de333c2723f315f670025a5b07c0c1,https://geonode.themimu.info/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=geonode%3Ammr_polbnda_adm3_250k_mimu_1&outputFormat=SHAPE-ZIP,2026-10-08
+mmr_polbnda_adm3_250k_mimu_1.dbf,fabc135fbe34acc0e04c733433aeb0b1edd2dccd976ecec5ce0e73e904a8189f,https://geonode.themimu.info/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=geonode%3Ammr_polbnda_adm3_250k_mimu_1&outputFormat=SHAPE-ZIP,2026-10-08
+mmr_polbnda_adm3_250k_mimu_1.prj,de5c1395a1ffc517ee2112b217c89595d01a7944eb65374c06547d4771b29167,https://geonode.themimu.info/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=geonode%3Ammr_polbnda_adm3_250k_mimu_1&outputFormat=SHAPE-ZIP,2026-10-08

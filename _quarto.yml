@@ -3,6 +3,9 @@ project:
   output-dir: _site
   execute-dir: project
   resources:
+    - "!Take-home_Ex/Take-home_Ex02/data/"
+    - "!Take-home_Ex/Take-home_Ex02/cache/"
+    - "!Take-home_Ex/Take-home_Ex02/notes/"
     - "In-class_Ex/In-class_Ex04/figures/"
     - "In-class_Ex/In-class_Ex04/outputs/"
     - "In-class_Ex/In-class_Ex04/In-class_Ex04.R"

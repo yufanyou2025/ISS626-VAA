@@ -25,6 +25,12 @@ Hands-on_Ex/Hands-on_Ex05/data/
 Hands-on_Ex/Hands-on_Ex05/cache/
 In-class_Ex/In-class_Ex04/data/
 In-class_Ex/In-class_Ex04/cache/
+
+# Take-home 2: licensed inputs and individual event intermediates stay local.
+Take-home_Ex/Take-home_Ex02/data/raw/
+Take-home_Ex/Take-home_Ex02/data/boundaries/
+Take-home_Ex/Take-home_Ex02/data/processed/
+Take-home_Ex/Take-home_Ex02/cache/
 In-class_Ex/In-class_Ex05/data/
 In-class_Ex/In-class_Ex05/cache/
 In-class_Ex/In-class_Ex06/cache/

@@ -1,0 +1,11 @@
+check,value
+Township polygons,330
+Unique township P-codes,330
+Invalid before repair,0
+Invalid after repair,0
+Queen graph components,4
+Queen islands,3
+Minimum Queen neighbours (excluding islands),1
+Maximum Queen neighbours,11
+Complete monthly periods,57
+Complete quarterly periods,19

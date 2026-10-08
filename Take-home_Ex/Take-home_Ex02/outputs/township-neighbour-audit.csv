@@ -1,0 +1,331 @@
+township_id,township,state,queen_neighbours,rook_neighbours,component,spatial_island
+MMR001001,Myitkyina,Kachin,9,9,1,FALSE
+MMR001002,Waingmaw,Kachin,4,4,1,FALSE
+MMR001003,Injangyang,Kachin,6,6,1,FALSE
+MMR001004,Tanai,Kachin,7,7,1,FALSE
+MMR001005,Chipwi,Kachin,3,3,1,FALSE
+MMR001006,Tsawlaw,Kachin,3,3,1,FALSE
+MMR001007,Mohnyin,Kachin,8,8,1,FALSE
+MMR001008,Mogaung,Kachin,4,4,1,FALSE
+MMR001009,Hpakant,Kachin,5,5,1,FALSE
+MMR001010,Bhamo,Kachin,5,5,1,FALSE
+MMR001011,Shwegu,Kachin,5,5,1,FALSE
+MMR001012,Momauk,Kachin,4,4,1,FALSE
+MMR001013,Mansi,Kachin,5,5,1,FALSE
+MMR001014,Puta-O,Kachin,4,4,1,FALSE
+MMR001015,Sumprabum,Kachin,6,6,1,FALSE
+MMR001016,Machanbaw,Kachin,4,4,1,FALSE
+MMR001017,Nawngmun,Kachin,3,3,1,FALSE
+MMR001018,Khaunglanhpu,Kachin,5,5,1,FALSE
+MMR002001,Loikaw,Kayah,7,7,1,FALSE
+MMR002002,Demoso,Kayah,4,4,1,FALSE
+MMR002003,Hpruso,Kayah,5,5,1,FALSE
+MMR002004,Shadaw,Kayah,4,4,1,FALSE
+MMR002005,Bawlake,Kayah,6,6,1,FALSE
+MMR002006,Hpasawng,Kayah,5,5,1,FALSE
+MMR002007,Mese,Kayah,3,3,1,FALSE
+MMR003001,Hpa-An,Kayin,7,7,1,FALSE
+MMR003002,Hlaingbwe,Kayin,4,4,1,FALSE
+MMR003003,Hpapun,Kayin,8,8,1,FALSE
+MMR003004,Thandaunggyi,Kayin,10,10,1,FALSE
+MMR003005,Myawaddy,Kayin,3,3,1,FALSE
+MMR003006,Kawkareik,Kayin,5,5,1,FALSE
+MMR003007,Kyainseikgyi,Kayin,6,6,1,FALSE
+MMR004001,Falam,Chin,4,4,1,FALSE
+MMR004002,Hakha,Chin,5,5,1,FALSE
+MMR004003,Thantlang,Chin,3,3,1,FALSE
+MMR004004,Tedim,Chin,3,3,1,FALSE
+MMR004005,Tonzang,Chin,3,3,1,FALSE
+MMR004006,Mindat,Chin,5,5,1,FALSE
+MMR004007,Matupi,Chin,6,6,1,FALSE
+MMR004008,Kanpetlet,Chin,5,5,1,FALSE
+MMR004009,Paletwa,Chin,7,7,1,FALSE
+MMR005001,Sagaing,Sagaing,8,8,1,FALSE
+MMR005002,Myinmu,Sagaing,6,6,1,FALSE
+MMR005003,Myaung,Sagaing,5,5,1,FALSE
+MMR005004,Shwebo,Sagaing,5,5,1,FALSE
+MMR005005,Khin-U,Sagaing,5,5,1,FALSE
+MMR005006,Wetlet,Sagaing,6,6,1,FALSE
+MMR005007,Kanbalu,Sagaing,7,7,1,FALSE
+MMR005008,Kyunhla,Sagaing,8,8,1,FALSE
+MMR005009,Ye-U,Sagaing,7,7,1,FALSE
+MMR005010,Tabayin,Sagaing,6,6,1,FALSE
+MMR005011,Taze,Sagaing,4,4,1,FALSE
+MMR005012,Monywa,Sagaing,6,6,1,FALSE
+MMR005013,Budalin,Sagaing,5,5,1,FALSE
+MMR005014,Ayadaw,Sagaing,6,6,1,FALSE
+MMR005015,Chaung-U,Sagaing,5,5,1,FALSE
+MMR005016,Yinmarbin,Sagaing,5,5,1,FALSE
+MMR005017,Kani,Sagaing,7,7,1,FALSE
+MMR005018,Salingyi,Sagaing,6,6,1,FALSE
+MMR005019,Pale,Sagaing,6,6,1,FALSE
+MMR005020,Katha,Sagaing,5,5,1,FALSE
+MMR005021,Indaw,Sagaing,5,5,1,FALSE
+MMR005022,Tigyaing,Sagaing,7,7,1,FALSE
+MMR005023,Banmauk,Sagaing,6,6,1,FALSE
+MMR005024,Kawlin,Sagaing,5,5,1,FALSE
+MMR005025,Wuntho,Sagaing,5,5,1,FALSE
+MMR005026,Pinlebu,Sagaing,5,5,1,FALSE
+MMR005027,Kale,Sagaing,9,9,1,FALSE
+MMR005028,Kalewa,Sagaing,4,4,1,FALSE
+MMR005029,Mingin,Sagaing,7,7,1,FALSE
+MMR005030,Tamu,Sagaing,5,5,1,FALSE
+MMR005031,Mawlaik,Sagaing,5,5,1,FALSE
+MMR005032,Paungbyin,Sagaing,6,6,1,FALSE
+MMR005033,Hkamti,Sagaing,6,6,1,FALSE
+MMR005034,Homalin,Sagaing,7,7,1,FALSE
+MMR005035,Layshi,Sagaing,2,2,1,FALSE
+MMR005036,Lahe,Sagaing,2,2,1,FALSE
+MMR005037,Nanyun,Sagaing,3,3,1,FALSE
+MMR006001,Dawei,Tanintharyi,5,5,1,FALSE
+MMR006002,Launglon,Tanintharyi,3,3,1,FALSE
+MMR006003,Thayetchaung,Tanintharyi,3,3,1,FALSE
+MMR006004,Yebyu,Tanintharyi,3,3,1,FALSE
+MMR006005,Myeik,Tanintharyi,3,3,1,FALSE
+MMR006006,Kyunsu,Tanintharyi,3,3,1,FALSE
+MMR006007,Palaw,Tanintharyi,4,4,1,FALSE
+MMR006008,Tanintharyi,Tanintharyi,5,5,1,FALSE
+MMR006009,Kawthoung,Tanintharyi,1,1,1,FALSE
+MMR006010,Bokpyin,Tanintharyi,3,3,1,FALSE
+MMR007001,Bago,Bago (East),9,9,1,FALSE
+MMR007002,Thanatpin,Bago (East),3,3,1,FALSE
+MMR007003,Kawa,Bago (East),4,4,1,FALSE
+MMR007004,Waw,Bago (East),6,6,1,FALSE
+MMR007005,Nyaunglebin,Bago (East),4,4,1,FALSE
+MMR007006,Kyauktaga,Bago (East),10,10,1,FALSE
+MMR007007,Daik-U,Bago (East),4,4,1,FALSE
+MMR007008,Shwegyin,Bago (East),7,7,1,FALSE
+MMR007009,Taungoo,Bago (East),5,5,1,FALSE
+MMR007010,Yedashe,Bago (East),5,5,1,FALSE
+MMR007011,Kyaukkyi,Bago (East),6,6,1,FALSE
+MMR007012,Phyu,Bago (East),6,6,1,FALSE
+MMR007013,Oktwin,Bago (East),4,4,1,FALSE
+MMR007014,Htantabin,Bago (East),5,5,1,FALSE
+MMR008001,Pyay,Bago (West),5,5,1,FALSE
+MMR008002,Paukkhaung,Bago (West),9,9,1,FALSE
+MMR008003,Padaung,Bago (West),7,7,1,FALSE
+MMR008004,Paungde,Bago (West),3,3,1,FALSE
+MMR008005,Thegon,Bago (West),5,5,1,FALSE
+MMR008006,Shwedaung,Bago (West),6,6,1,FALSE
+MMR008007,Thayarwady,Bago (West),4,4,1,FALSE
+MMR008008,Letpadan,Bago (West),9,9,1,FALSE
+MMR008009,Minhla,Bago (West),3,3,1,FALSE
+MMR008010,Okpho,Bago (West),5,5,1,FALSE
+MMR008011,Zigon,Bago (West),2,2,1,FALSE
+MMR008012,Nattalin,Bago (West),9,9,1,FALSE
+MMR008013,Monyo,Bago (West),9,9,1,FALSE
+MMR008014,Gyobingauk,Bago (West),5,5,1,FALSE
+MMR009001,Magway,Magway,8,8,1,FALSE
+MMR009002,Yenangyaung,Magway,6,6,1,FALSE
+MMR009003,Chauk,Magway,6,6,1,FALSE
+MMR009004,Taungdwingyi,Magway,6,6,1,FALSE
+MMR009005,Myothit,Magway,5,5,1,FALSE
+MMR009006,Natmauk,Magway,7,7,1,FALSE
+MMR009007,Minbu,Magway,4,4,1,FALSE
+MMR009008,Pwintbyu,Magway,6,6,1,FALSE
+MMR009009,Ngape,Magway,5,5,1,FALSE
+MMR009010,Salin,Magway,6,6,1,FALSE
+MMR009011,Sidoktaya,Magway,7,7,1,FALSE
+MMR009012,Thayet,Magway,5,5,1,FALSE
+MMR009013,Minhla,Magway,7,7,1,FALSE
+MMR009014,Mindon,Magway,5,5,1,FALSE
+MMR009015,Kamma,Magway,5,5,1,FALSE
+MMR009016,Aunglan,Magway,8,8,1,FALSE
+MMR009017,Sinbaungwe,Magway,6,6,1,FALSE
+MMR009018,Pakokku,Magway,7,7,1,FALSE
+MMR009019,Yesagyo,Magway,7,7,1,FALSE
+MMR009020,Myaing,Magway,5,5,1,FALSE
+MMR009021,Pauk,Magway,7,7,1,FALSE
+MMR009022,Seikphyu,Magway,5,5,1,FALSE
+MMR009023,Gangaw,Magway,8,8,1,FALSE
+MMR009024,Tilin,Magway,5,5,1,FALSE
+MMR009025,Saw,Magway,7,7,1,FALSE
+MMR010001,Aungmyaythazan,Mandalay,2,2,1,FALSE
+MMR010002,Chanayethazan,Mandalay,3,3,1,FALSE
+MMR010003,Mahaaungmyay,Mandalay,4,4,1,FALSE
+MMR010004,Chanmyathazi,Mandalay,4,4,1,FALSE
+MMR010005,Pyigyitagon,Mandalay,3,3,1,FALSE
+MMR010006,Amarapura,Mandalay,7,7,1,FALSE
+MMR010007,Patheingyi,Mandalay,10,10,1,FALSE
+MMR010008,Pyinoolwin,Mandalay,5,5,1,FALSE
+MMR010009,Madaya,Mandalay,6,6,1,FALSE
+MMR010010,Singu,Mandalay,6,6,1,FALSE
+MMR010011,Mogoke,Mandalay,4,4,1,FALSE
+MMR010012,Thabeikkyin,Mandalay,8,8,1,FALSE
+MMR010013,Kyaukse,Mandalay,7,7,1,FALSE
+MMR010014,Sintgaing,Mandalay,5,5,1,FALSE
+MMR010015,Myittha,Mandalay,5,5,1,FALSE
+MMR010016,Tada-U,Mandalay,7,7,1,FALSE
+MMR010017,Myingyan,Mandalay,5,5,1,FALSE
+MMR010018,Taungtha,Mandalay,7,7,1,FALSE
+MMR010019,Natogyi,Mandalay,7,7,1,FALSE
+MMR010020,Kyaukpadaung,Mandalay,7,7,1,FALSE
+MMR010021,Ngazun,Mandalay,6,6,1,FALSE
+MMR010022,Nyaung-U,Mandalay,4,4,1,FALSE
+MMR010023,Yamethin,Mandalay,7,7,1,FALSE
+MMR010024,Pyawbwe,Mandalay,4,4,1,FALSE
+MMR010028,Meiktila,Mandalay,6,6,1,FALSE
+MMR010029,Mahlaing,Mandalay,5,5,1,FALSE
+MMR010030,Thazi,Mandalay,7,7,1,FALSE
+MMR010031,Wundwin,Mandalay,6,6,1,FALSE
+MMR011001,Mawlamyine,Mon,4,4,1,FALSE
+MMR011002,Kyaikmaraw,Mon,4,4,1,FALSE
+MMR011003,Chaungzon,Mon,0,0,2,TRUE
+MMR011004,Thanbyuzayat,Mon,3,3,1,FALSE
+MMR011005,Mudon,Mon,4,4,1,FALSE
+MMR011006,Ye,Mon,3,3,1,FALSE
+MMR011007,Thaton,Mon,3,3,1,FALSE
+MMR011008,Paung,Mon,3,3,1,FALSE
+MMR011009,Kyaikto,Mon,3,3,1,FALSE
+MMR011010,Bilin,Mon,5,5,1,FALSE
+MMR012001,Sittwe,Rakhine,1,1,1,FALSE
+MMR012002,Ponnagyun,Rakhine,4,4,1,FALSE
+MMR012003,Mrauk-U,Rakhine,4,4,1,FALSE
+MMR012004,Kyauktaw,Rakhine,4,4,1,FALSE
+MMR012005,Minbya,Rakhine,7,7,1,FALSE
+MMR012006,Myebon,Rakhine,2,2,1,FALSE
+MMR012007,Pauktaw,Rakhine,2,2,1,FALSE
+MMR012008,Rathedaung,Rakhine,3,3,1,FALSE
+MMR012009,Maungdaw,Rakhine,2,2,1,FALSE
+MMR012010,Buthidaung,Rakhine,5,5,1,FALSE
+MMR012011,Kyaukpyu,Rakhine,2,2,1,FALSE
+MMR012012,Munaung,Rakhine,0,0,3,TRUE
+MMR012013,Ramree,Rakhine,2,2,1,FALSE
+MMR012014,Ann,Rakhine,9,9,1,FALSE
+MMR012015,Thandwe,Rakhine,5,5,1,FALSE
+MMR012016,Toungup,Rakhine,5,5,1,FALSE
+MMR012017,Gwa,Rakhine,7,7,1,FALSE
+MMR013001,Insein,Yangon,5,5,1,FALSE
+MMR013002,Mingaladon,Yangon,6,6,1,FALSE
+MMR013003,Hmawbi,Yangon,5,5,1,FALSE
+MMR013004,Hlegu,Yangon,11,11,1,FALSE
+MMR013005,Taikkyi,Yangon,8,8,1,FALSE
+MMR013006,Htantabin,Yangon,6,6,1,FALSE
+MMR013007,Shwepyithar,Yangon,5,5,1,FALSE
+MMR013009,Thingangyun,Yangon,7,7,1,FALSE
+MMR013010,Yankin,Yangon,5,5,1,FALSE
+MMR013011,South Okkalapa,Yangon,4,4,1,FALSE
+MMR013012,North Okkalapa,Yangon,5,5,1,FALSE
+MMR013013,Thaketa,Yangon,4,4,1,FALSE
+MMR013014,Dawbon,Yangon,4,4,1,FALSE
+MMR013015,Tamwe,Yangon,5,5,1,FALSE
+MMR013016,Pazundaung,Yangon,2,2,1,FALSE
+MMR013017,Botahtaung,Yangon,4,4,1,FALSE
+MMR013018,Dagon Myothit (South),Yangon,6,6,1,FALSE
+MMR013019,Dagon Myothit (North),Yangon,6,6,1,FALSE
+MMR013020,Dagon Myothit (East),Yangon,4,4,1,FALSE
+MMR013021,Dagon Myothit (Seikkan),Yangon,4,4,1,FALSE
+MMR013022,Mingalartaungnyunt,Yangon,8,8,1,FALSE
+MMR013023,Thanlyin,Yangon,5,5,1,FALSE
+MMR013024,Kyauktan,Yangon,2,2,1,FALSE
+MMR013025,Thongwa,Yangon,3,3,1,FALSE
+MMR013026,Kayan,Yangon,4,4,1,FALSE
+MMR013027,Twantay,Yangon,9,9,1,FALSE
+MMR013028,Kawhmu,Yangon,5,5,1,FALSE
+MMR013029,Kungyangon,Yangon,1,1,1,FALSE
+MMR013030,Dala,Yangon,3,3,1,FALSE
+MMR013031,Seikgyikanaungto,Yangon,3,3,1,FALSE
+MMR013032,Cocokyun,Yangon,0,0,4,TRUE
+MMR013033,Kyauktada,Yangon,4,4,1,FALSE
+MMR013034,Pabedan,Yangon,5,5,1,FALSE
+MMR013035,Lanmadaw,Yangon,6,6,1,FALSE
+MMR013036,Latha,Yangon,3,3,1,FALSE
+MMR013037,Ahlone,Yangon,4,4,1,FALSE
+MMR013038,Kyeemyindaing,Yangon,6,6,1,FALSE
+MMR013039,Sanchaung,Yangon,5,5,1,FALSE
+MMR013040,Hlaing,Yangon,3,3,1,FALSE
+MMR013041,Kamaryut,Yangon,6,6,1,FALSE
+MMR013042,Mayangone,Yangon,10,10,1,FALSE
+MMR013043,Dagon,Yangon,8,8,1,FALSE
+MMR013044,Bahan,Yangon,7,7,1,FALSE
+MMR013046,Hlaingtharya (East),Yangon,6,6,1,FALSE
+MMR013047,Hlaingtharya (West),Yangon,5,5,1,FALSE
+MMR014001,Taunggyi,Shan (South),5,5,1,FALSE
+MMR014002,Nyaungshwe,Shan (South),6,6,1,FALSE
+MMR014003,Hopong,Shan (South),6,6,1,FALSE
+MMR014004,Hsihseng,Shan (South),6,6,1,FALSE
+MMR014005,Kalaw,Shan (South),7,7,1,FALSE
+MMR014006,Pindaya,Shan (South),4,4,1,FALSE
+MMR014007,Ywangan,Shan (South),6,6,1,FALSE
+MMR014008,Lawksawk,Shan (South),10,10,1,FALSE
+MMR014009,Pinlaung,Shan (South),7,7,1,FALSE
+MMR014010,Pekon,Shan (South),7,7,1,FALSE
+MMR014011,Loilen,Shan (South),5,5,1,FALSE
+MMR014012,Laihka,Shan (South),5,5,1,FALSE
+MMR014013,Nansang,Shan (South),6,6,1,FALSE
+MMR014014,Kunhing,Shan (South),5,5,1,FALSE
+MMR014015,Kyethi,Shan (South),7,7,1,FALSE
+MMR014016,Mongkaing,Shan (South),5,5,1,FALSE
+MMR014017,Monghsu,Shan (South),6,6,1,FALSE
+MMR014018,Langkho,Shan (South),5,5,1,FALSE
+MMR014019,Mongnai,Shan (South),7,7,1,FALSE
+MMR014020,Mawkmai,Shan (South),7,7,1,FALSE
+MMR014021,Mongpan,Shan (South),3,3,1,FALSE
+MMR015001,Lashio,Shan (North),8,8,1,FALSE
+MMR015002,Hseni,Shan (North),4,4,1,FALSE
+MMR015003,Mongyai,Shan (North),5,5,1,FALSE
+MMR015004,Tangyan,Shan (North),7,7,1,FALSE
+MMR015005,Pangsang (Panghkam),Shan (North),5,5,1,FALSE
+MMR015006,Narphan,Shan (North),3,3,1,FALSE
+MMR015007,Pangwaun,Shan (North),2,2,1,FALSE
+MMR015008,Mongmao,Shan (North),5,5,1,FALSE
+MMR015009,Muse,Shan (North),3,3,1,FALSE
+MMR015010,Namhkan,Shan (North),4,4,1,FALSE
+MMR015011,Kutkai,Shan (North),7,7,1,FALSE
+MMR015012,Kyaukme,Shan (North),6,6,1,FALSE
+MMR015013,Nawnghkio,Shan (North),8,8,1,FALSE
+MMR015014,Hsipaw,Shan (North),8,8,1,FALSE
+MMR015015,Namtu,Shan (North),4,4,1,FALSE
+MMR015016,Namhsan,Shan (North),5,5,1,FALSE
+MMR015017,Mongmit,Shan (North),6,6,1,FALSE
+MMR015018,Mabein,Shan (North),8,8,1,FALSE
+MMR015019,Manton,Shan (North),9,9,1,FALSE
+MMR015020,Kunlong,Shan (North),5,5,1,FALSE
+MMR015021,Hopang,Shan (North),5,5,1,FALSE
+MMR015022,Laukkaing,Shan (North),4,4,1,FALSE
+MMR015023,Konkyan,Shan (North),3,3,1,FALSE
+MMR015024,Matman,Shan (North),6,6,1,FALSE
+MMR016001,Kengtung,Shan (East),6,6,1,FALSE
+MMR016002,Mongkhet,Shan (East),5,5,1,FALSE
+MMR016003,Mongyang,Shan (East),4,4,1,FALSE
+MMR016005,Mongla,Shan (East),4,4,1,FALSE
+MMR016006,Monghsat,Shan (East),5,5,1,FALSE
+MMR016007,Mongping,Shan (East),8,8,1,FALSE
+MMR016008,Mongton,Shan (East),5,5,1,FALSE
+MMR016009,Tachileik,Shan (East),3,3,1,FALSE
+MMR016010,Monghpyak,Shan (East),4,4,1,FALSE
+MMR016011,Mongyawng,Shan (East),4,4,1,FALSE
+MMR017001,Pathein,Ayeyarwady,4,4,1,FALSE
+MMR017002,Kangyidaunt,Ayeyarwady,5,5,1,FALSE
+MMR017003,Thabaung,Ayeyarwady,5,5,1,FALSE
+MMR017004,Ngapudaw,Ayeyarwady,1,1,1,FALSE
+MMR017005,Kyonpyaw,Ayeyarwady,6,6,1,FALSE
+MMR017006,Yegyi,Ayeyarwady,5,5,1,FALSE
+MMR017007,Kyaunggon,Ayeyarwady,6,6,1,FALSE
+MMR017008,Hinthada,Ayeyarwady,6,6,1,FALSE
+MMR017009,Zalun,Ayeyarwady,5,5,1,FALSE
+MMR017010,Lemyethna,Ayeyarwady,5,5,1,FALSE
+MMR017011,Myanaung,Ayeyarwady,5,5,1,FALSE
+MMR017012,Kyangin,Ayeyarwady,5,5,1,FALSE
+MMR017013,Ingapu,Ayeyarwady,6,6,1,FALSE
+MMR017014,Myaungmya,Ayeyarwady,4,4,1,FALSE
+MMR017015,Einme,Ayeyarwady,5,5,1,FALSE
+MMR017016,Labutta,Ayeyarwady,3,3,1,FALSE
+MMR017017,Wakema,Ayeyarwady,7,7,1,FALSE
+MMR017018,Mawlamyinegyun,Ayeyarwady,4,4,1,FALSE
+MMR017019,Maubin,Ayeyarwady,6,6,1,FALSE
+MMR017020,Pantanaw,Ayeyarwady,7,7,1,FALSE
+MMR017021,Nyaungdon,Ayeyarwady,6,6,1,FALSE
+MMR017022,Danubyu,Ayeyarwady,6,6,1,FALSE
+MMR017023,Pyapon,Ayeyarwady,3,3,1,FALSE
+MMR017024,Bogale,Ayeyarwady,3,3,1,FALSE
+MMR017025,Kyaiklat,Ayeyarwady,7,7,1,FALSE
+MMR017026,Dedaye,Ayeyarwady,2,2,1,FALSE
+MMR018001,Zay Yar Thi Ri,Nay Pyi Taw,4,4,1,FALSE
+MMR018002,Za Bu Thi Ri,Nay Pyi Taw,4,4,1,FALSE
+MMR018003,Tatkon,Nay Pyi Taw,7,7,1,FALSE
+MMR018004,Det Khi Na Thi Ri,Nay Pyi Taw,4,4,1,FALSE
+MMR018005,Poke Ba Thi Ri,Nay Pyi Taw,5,5,1,FALSE
+MMR018006,Pyinmana,Nay Pyi Taw,8,8,1,FALSE
+MMR018007,Lewe,Nay Pyi Taw,8,8,1,FALSE
+MMR018008,Oke Ta Ra Thi Ri,Nay Pyi Taw,6,6,1,FALSE
