@@ -2,9 +2,9 @@
 
 ## ACLED: required from eLearn
 
-Download the Myanmar ACLED dataset supplied for this assignment from eLearn. Save its original CSV or Excel file under `data/raw/`, or provide its existing local path. The original file is not yet available in this workspace. Do not substitute a senior's processed dataset or fabricate an analytical sample.
+The supplied `ACLED_Data_Myanmar_Jan2021-Sep2025.zip` was found in the student's local coursework folder on 8 October 2026. Its sole member, `ACLED_Data_Myanmar_Jan2021-Sep2025.csv`, is extracted to ignored `data/raw/`. Reproduction requires downloading that original eLearn file and placing the CSV in the same relative directory.
 
-After receipt, record its exact filename, SHA-256 hash, supplied coverage, schema, sheet name (if Excel) and extraction date if documented. The study window is 1 January 2021–30 September 2025. The raw input and event-level derivatives are excluded from Git and website resources.
+SHA-256: `b0e4a044bdfec7883db11a3e8b92922ed6e4aea949b06cdcbcb872b9ebc1db1a`. There are 87,109 rows and 31 fields, dated 1 January 2021–30 September 2025. No repeated IDs or exact duplicate rows occur. The latest record-update timestamp is 29 September 2026, 22:19:21 UTC; it is not assumed to be an export date. The raw input and event-level derivatives are excluded from Git and website resources.
 
 ## MIMU boundaries: downloaded and validated
 

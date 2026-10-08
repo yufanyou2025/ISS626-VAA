@@ -4,7 +4,7 @@ Study window: **1 January 2021–30 September 2025**. Geography: **MIMU v9.4 tow
 
 ## Current progress
 
-The assignment specification and senior examples have been reviewed. The required boundary input is downloaded locally and validated. Conflict analysis is awaiting the original ACLED file supplied through eLearn. The technical report and executive summary are not yet complete or published.
+The supplied ACLED file and MIMU v9.4 boundary input have been audited. The analytical sample contains 53,899 events, with complete 57-month and 19-quarter cubes. Local statistics, EHSA and the report are in progress. The technical report and executive summary are not yet verified or published.
 
 - [Specification and methodological decisions](notes/brief-and-design.md)
 - [Input instructions and restrictions](data/README.md)

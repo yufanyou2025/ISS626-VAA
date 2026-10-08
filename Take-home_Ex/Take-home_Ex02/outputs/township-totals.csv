@@ -1,0 +1,331 @@
+township_id,township,state,events,fatalities,precise_events
+MMR001001,Myitkyina,Kachin,211,114,141
+MMR001002,Waingmaw,Kachin,424,254,148
+MMR001003,Injangyang,Kachin,16,10,0
+MMR001004,Tanai,Kachin,97,98,16
+MMR001005,Chipwi,Kachin,37,18,13
+MMR001006,Tsawlaw,Kachin,27,14,6
+MMR001007,Mohnyin,Kachin,223,370,118
+MMR001008,Mogaung,Kachin,77,41,49
+MMR001009,Hpakant,Kachin,854,1262,407
+MMR001010,Bhamo,Kachin,289,315,214
+MMR001011,Shwegu,Kachin,219,457,105
+MMR001012,Momauk,Kachin,403,573,155
+MMR001013,Mansi,Kachin,133,87,46
+MMR001014,Puta-O,Kachin,62,88,22
+MMR001015,Sumprabum,Kachin,48,100,14
+MMR001016,Machanbaw,Kachin,1,0,1
+MMR001017,Nawngmun,Kachin,1,0,1
+MMR001018,Khaunglanhpu,Kachin,9,0,5
+MMR002001,Loikaw,Kayah,453,785,277
+MMR002002,Demoso,Kayah,597,1346,286
+MMR002003,Hpruso,Kayah,214,421,80
+MMR002004,Shadaw,Kayah,55,188,17
+MMR002005,Bawlake,Kayah,102,331,30
+MMR002006,Hpasawng,Kayah,86,193,37
+MMR002007,Mese,Kayah,27,38,8
+MMR003001,Hpa-An,Kayin,174,172,80
+MMR003002,Hlaingbwe,Kayin,61,69,17
+MMR003003,Hpapun,Kayin,493,918,103
+MMR003004,Thandaunggyi,Kayin,202,446,72
+MMR003005,Myawaddy,Kayin,641,1420,269
+MMR003006,Kawkareik,Kayin,946,1524,474
+MMR003007,Kyainseikgyi,Kayin,357,548,184
+MMR004001,Falam,Chin,193,519,104
+MMR004002,Hakha,Chin,214,521,98
+MMR004003,Thantlang,Chin,116,270,80
+MMR004004,Tedim,Chin,156,299,90
+MMR004005,Tonzang,Chin,34,62,28
+MMR004006,Mindat,Chin,352,635,177
+MMR004007,Matupi,Chin,209,480,85
+MMR004008,Kanpetlet,Chin,136,271,78
+MMR004009,Paletwa,Chin,184,210,82
+MMR005001,Sagaing,Sagaing,667,1100,406
+MMR005002,Myinmu,Sagaing,504,1240,196
+MMR005003,Myaung,Sagaing,432,860,212
+MMR005004,Shwebo,Sagaing,806,1551,479
+MMR005005,Khin-U,Sagaing,582,1097,353
+MMR005006,Wetlet,Sagaing,499,965,273
+MMR005007,Kanbalu,Sagaing,560,1385,337
+MMR005008,Kyunhla,Sagaing,101,147,62
+MMR005009,Ye-U,Sagaing,379,620,249
+MMR005010,Tabayin,Sagaing,312,657,183
+MMR005011,Taze,Sagaing,373,1155,222
+MMR005012,Monywa,Sagaing,1039,1771,615
+MMR005013,Budalin,Sagaing,376,669,215
+MMR005014,Ayadaw,Sagaing,334,677,194
+MMR005015,Chaung-U,Sagaing,510,1366,192
+MMR005016,Yinmarbin,Sagaing,506,1132,240
+MMR005017,Kani,Sagaing,454,1230,175
+MMR005018,Salingyi,Sagaing,395,623,205
+MMR005019,Pale,Sagaing,537,1392,275
+MMR005020,Katha,Sagaing,302,892,125
+MMR005021,Indaw,Sagaing,242,592,130
+MMR005022,Tigyaing,Sagaing,332,825,167
+MMR005023,Banmauk,Sagaing,123,253,57
+MMR005024,Kawlin,Sagaing,233,643,129
+MMR005025,Wuntho,Sagaing,59,188,23
+MMR005026,Pinlebu,Sagaing,69,259,49
+MMR005027,Kale,Sagaing,886,1877,542
+MMR005028,Kalewa,Sagaing,30,81,11
+MMR005029,Mingin,Sagaing,265,830,129
+MMR005030,Tamu,Sagaing,259,607,161
+MMR005031,Mawlaik,Sagaing,81,136,37
+MMR005032,Paungbyin,Sagaing,118,293,76
+MMR005033,Hkamti,Sagaing,17,46,6
+MMR005034,Homalin,Sagaing,220,377,154
+MMR005035,Layshi,Sagaing,5,4,3
+MMR005036,Lahe,Sagaing,2,4,0
+MMR005037,Nanyun,Sagaing,3,11,0
+MMR006001,Dawei,Tanintharyi,445,1045,242
+MMR006002,Launglon,Tanintharyi,428,680,276
+MMR006003,Thayetchaung,Tanintharyi,315,598,181
+MMR006004,Yebyu,Tanintharyi,341,694,160
+MMR006005,Myeik,Tanintharyi,110,164,65
+MMR006006,Kyunsu,Tanintharyi,69,133,32
+MMR006007,Palaw,Tanintharyi,549,749,346
+MMR006008,Tanintharyi,Tanintharyi,650,770,337
+MMR006009,Kawthoung,Tanintharyi,78,123,32
+MMR006010,Bokpyin,Tanintharyi,77,121,28
+MMR007001,Bago,Bago (East),74,64,58
+MMR007002,Thanatpin,Bago (East),4,3,3
+MMR007003,Kawa,Bago (East),19,9,13
+MMR007004,Waw,Bago (East),57,46,44
+MMR007005,Nyaunglebin,Bago (East),308,307,146
+MMR007006,Kyauktaga,Bago (East),320,339,206
+MMR007007,Daik-U,Bago (East),36,25,24
+MMR007008,Shwegyin,Bago (East),233,195,113
+MMR007009,Taungoo,Bago (East),197,449,109
+MMR007010,Yedashe,Bago (East),262,738,140
+MMR007011,Kyaukkyi,Bago (East),777,705,367
+MMR007012,Phyu,Bago (East),300,476,210
+MMR007013,Oktwin,Bago (East),47,147,29
+MMR007014,Htantabin,Bago (East),111,265,65
+MMR008001,Pyay,Bago (West),83,118,63
+MMR008002,Paukkhaung,Bago (West),95,146,45
+MMR008003,Padaung,Bago (West),77,40,26
+MMR008004,Paungde,Bago (West),189,226,79
+MMR008005,Thegon,Bago (West),50,66,23
+MMR008006,Shwedaung,Bago (West),14,5,13
+MMR008007,Thayarwady,Bago (West),61,20,40
+MMR008008,Letpadan,Bago (West),83,164,55
+MMR008009,Minhla,Bago (West),209,575,97
+MMR008010,Okpho,Bago (West),214,312,124
+MMR008011,Zigon,Bago (West),24,27,13
+MMR008012,Nattalin,Bago (West),157,238,74
+MMR008013,Monyo,Bago (West),20,9,14
+MMR008014,Gyobingauk,Bago (West),124,172,56
+MMR009001,Magway,Magway,68,65,51
+MMR009002,Yenangyaung,Magway,80,122,39
+MMR009003,Chauk,Magway,82,168,46
+MMR009004,Taungdwingyi,Magway,77,76,57
+MMR009005,Myothit,Magway,39,54,22
+MMR009006,Natmauk,Magway,134,216,75
+MMR009007,Minbu,Magway,36,28,21
+MMR009008,Pwintbyu,Magway,111,225,64
+MMR009009,Ngape,Magway,161,667,33
+MMR009010,Salin,Magway,261,549,147
+MMR009011,Sidoktaya,Magway,33,67,15
+MMR009012,Thayet,Magway,35,55,21
+MMR009013,Minhla,Magway,30,116,6
+MMR009014,Mindon,Magway,83,219,43
+MMR009015,Kamma,Magway,49,81,31
+MMR009016,Aunglan,Magway,53,105,29
+MMR009017,Sinbaungwe,Magway,31,116,8
+MMR009018,Pakokku,Magway,731,1208,431
+MMR009019,Yesagyo,Magway,760,1434,436
+MMR009020,Myaing,Magway,934,1419,508
+MMR009021,Pauk,Magway,556,1061,274
+MMR009022,Seikphyu,Magway,161,377,55
+MMR009023,Gangaw,Magway,445,1157,221
+MMR009024,Tilin,Magway,187,481,88
+MMR009025,Saw,Magway,247,671,103
+MMR010001,Aungmyaythazan,Mandalay,128,104,128
+MMR010002,Chanayethazan,Mandalay,149,71,145
+MMR010003,Mahaaungmyay,Mandalay,156,68,156
+MMR010004,Chanmyathazi,Mandalay,160,78,160
+MMR010005,Pyigyitagon,Mandalay,128,85,128
+MMR010006,Amarapura,Mandalay,85,40,83
+MMR010007,Patheingyi,Mandalay,147,100,64
+MMR010008,Pyinoolwin,Mandalay,43,56,28
+MMR010009,Madaya,Mandalay,789,1117,402
+MMR010010,Singu,Mandalay,272,512,193
+MMR010011,Mogoke,Mandalay,318,411,210
+MMR010012,Thabeikkyin,Mandalay,349,703,161
+MMR010013,Kyaukse,Mandalay,72,83,46
+MMR010014,Sintgaing,Mandalay,50,84,32
+MMR010015,Myittha,Mandalay,29,24,20
+MMR010016,Tada-U,Mandalay,52,81,23
+MMR010017,Myingyan,Mandalay,652,1521,419
+MMR010018,Taungtha,Mandalay,300,428,136
+MMR010019,Natogyi,Mandalay,375,794,211
+MMR010020,Kyaukpadaung,Mandalay,77,68,49
+MMR010021,Ngazun,Mandalay,253,722,130
+MMR010022,Nyaung-U,Mandalay,126,302,80
+MMR010023,Yamethin,Mandalay,9,26,3
+MMR010024,Pyawbwe,Mandalay,22,60,8
+MMR010028,Meiktila,Mandalay,34,31,19
+MMR010029,Mahlaing,Mandalay,68,94,47
+MMR010030,Thazi,Mandalay,23,23,14
+MMR010031,Wundwin,Mandalay,113,72,79
+MMR011001,Mawlamyine,Mon,55,21,46
+MMR011002,Kyaikmaraw,Mon,145,174,91
+MMR011003,Chaungzon,Mon,12,7,6
+MMR011004,Thanbyuzayat,Mon,123,221,55
+MMR011005,Mudon,Mon,49,33,33
+MMR011006,Ye,Mon,510,804,253
+MMR011007,Thaton,Mon,345,397,150
+MMR011008,Paung,Mon,65,33,37
+MMR011009,Kyaikto,Mon,501,572,305
+MMR011010,Bilin,Mon,395,456,180
+MMR012001,Sittwe,Rakhine,219,259,159
+MMR012002,Ponnagyun,Rakhine,160,112,110
+MMR012003,Mrauk-U,Rakhine,134,156,95
+MMR012004,Kyauktaw,Rakhine,166,153,99
+MMR012005,Minbya,Rakhine,189,120,113
+MMR012006,Myebon,Rakhine,57,43,32
+MMR012007,Pauktaw,Rakhine,140,161,111
+MMR012008,Rathedaung,Rakhine,127,191,67
+MMR012009,Maungdaw,Rakhine,599,1583,222
+MMR012010,Buthidaung,Rakhine,185,406,76
+MMR012011,Kyaukpyu,Rakhine,343,335,146
+MMR012012,Munaung,Rakhine,3,0,0
+MMR012013,Ramree,Rakhine,64,168,52
+MMR012014,Ann,Rakhine,258,682,116
+MMR012015,Thandwe,Rakhine,205,1216,132
+MMR012016,Toungup,Rakhine,165,207,98
+MMR012017,Gwa,Rakhine,208,269,120
+MMR013001,Insein,Yangon,154,51,154
+MMR013002,Mingaladon,Yangon,142,54,137
+MMR013003,Hmawbi,Yangon,53,21,7
+MMR013004,Hlegu,Yangon,37,32,7
+MMR013005,Taikkyi,Yangon,19,27,5
+MMR013006,Htantabin,Yangon,11,8,5
+MMR013007,Shwepyithar,Yangon,106,46,106
+MMR013009,Thingangyun,Yangon,65,27,65
+MMR013010,Yankin,Yangon,24,2,24
+MMR013011,South Okkalapa,Yangon,69,6,69
+MMR013012,North Okkalapa,Yangon,149,29,149
+MMR013013,Thaketa,Yangon,96,29,96
+MMR013014,Dawbon,Yangon,28,10,28
+MMR013015,Tamwe,Yangon,65,19,65
+MMR013016,Pazundaung,Yangon,15,2,15
+MMR013017,Botahtaung,Yangon,20,8,20
+MMR013018,Dagon Myothit (South),Yangon,128,41,128
+MMR013019,Dagon Myothit (North),Yangon,107,42,107
+MMR013020,Dagon Myothit (East),Yangon,39,20,39
+MMR013021,Dagon Myothit (Seikkan),Yangon,49,18,49
+MMR013022,Mingalartaungnyunt,Yangon,31,9,31
+MMR013023,Thanlyin,Yangon,81,46,11
+MMR013024,Kyauktan,Yangon,10,6,3
+MMR013025,Thongwa,Yangon,16,9,8
+MMR013026,Kayan,Yangon,50,64,20
+MMR013027,Twantay,Yangon,61,52,22
+MMR013028,Kawhmu,Yangon,23,34,16
+MMR013029,Kungyangon,Yangon,20,23,11
+MMR013030,Dala,Yangon,18,9,18
+MMR013031,Seikgyikanaungto,Yangon,4,0,4
+MMR013032,Cocokyun,Yangon,0,0,0
+MMR013033,Kyauktada,Yangon,23,2,23
+MMR013034,Pabedan,Yangon,6,2,6
+MMR013035,Lanmadaw,Yangon,17,3,17
+MMR013036,Latha,Yangon,9,3,9
+MMR013037,Ahlone,Yangon,26,7,26
+MMR013038,Kyeemyindaing,Yangon,45,21,45
+MMR013039,Sanchaung,Yangon,63,18,63
+MMR013040,Hlaing,Yangon,106,43,106
+MMR013041,Kamaryut,Yangon,45,11,45
+MMR013042,Mayangone,Yangon,101,44,101
+MMR013043,Dagon,Yangon,10,0,10
+MMR013044,Bahan,Yangon,62,18,61
+MMR013046,Hlaingtharya (East),Yangon,182,45,182
+MMR013047,Hlaingtharya (West),Yangon,12,3,12
+MMR014001,Taunggyi,Shan (South),67,16,60
+MMR014002,Nyaungshwe,Shan (South),109,177,56
+MMR014003,Hopong,Shan (South),45,50,23
+MMR014004,Hsihseng,Shan (South),209,555,97
+MMR014005,Kalaw,Shan (South),20,6,16
+MMR014006,Pindaya,Shan (South),22,16,13
+MMR014007,Ywangan,Shan (South),114,151,54
+MMR014008,Lawksawk,Shan (South),94,138,33
+MMR014009,Pinlaung,Shan (South),177,267,77
+MMR014010,Pekon,Shan (South),559,993,254
+MMR014011,Loilen,Shan (South),19,12,7
+MMR014012,Laihka,Shan (South),24,19,6
+MMR014013,Nansang,Shan (South),12,3,2
+MMR014014,Kunhing,Shan (South),8,2,1
+MMR014015,Kyethi,Shan (South),35,4,4
+MMR014016,Mongkaing,Shan (South),69,15,18
+MMR014017,Monghsu,Shan (South),10,4,6
+MMR014018,Langkho,Shan (South),1,3,0
+MMR014019,Mongnai,Shan (South),6,2,4
+MMR014020,Mawkmai,Shan (South),29,35,2
+MMR014021,Mongpan,Shan (South),5,4,0
+MMR015001,Lashio,Shan (North),403,504,203
+MMR015002,Hseni,Shan (North),193,214,96
+MMR015003,Mongyai,Shan (North),36,20,14
+MMR015004,Tangyan,Shan (North),20,8,9
+MMR015005,Pangsang (Panghkam),Shan (North),4,6,3
+MMR015006,Narphan,Shan (North),0,0,0
+MMR015007,Pangwaun,Shan (North),0,0,0
+MMR015008,Mongmao,Shan (North),0,0,0
+MMR015009,Muse,Shan (North),640,572,295
+MMR015010,Namhkan,Shan (North),178,118,95
+MMR015011,Kutkai,Shan (North),470,313,190
+MMR015012,Kyaukme,Shan (North),451,495,236
+MMR015013,Nawnghkio,Shan (North),788,465,544
+MMR015014,Hsipaw,Shan (North),248,127,145
+MMR015015,Namtu,Shan (North),134,26,77
+MMR015016,Namhsan,Shan (North),96,98,44
+MMR015017,Mongmit,Shan (North),178,231,108
+MMR015018,Mabein,Shan (North),29,53,14
+MMR015019,Manton,Shan (North),72,34,38
+MMR015020,Kunlong,Shan (North),32,24,17
+MMR015021,Hopang,Shan (North),6,1,4
+MMR015022,Laukkaing,Shan (North),149,306,56
+MMR015023,Konkyan,Shan (North),19,162,6
+MMR015024,Matman,Shan (North),0,0,0
+MMR016001,Kengtung,Shan (East),3,3,2
+MMR016002,Mongkhet,Shan (East),0,0,0
+MMR016003,Mongyang,Shan (East),1,2,1
+MMR016005,Mongla,Shan (East),0,0,0
+MMR016006,Monghsat,Shan (East),7,1,1
+MMR016007,Mongping,Shan (East),5,5,3
+MMR016008,Mongton,Shan (East),3,6,1
+MMR016009,Tachileik,Shan (East),16,3,14
+MMR016010,Monghpyak,Shan (East),0,0,0
+MMR016011,Mongyawng,Shan (East),6,6,2
+MMR017001,Pathein,Ayeyarwady,117,39,80
+MMR017002,Kangyidaunt,Ayeyarwady,18,5,12
+MMR017003,Thabaung,Ayeyarwady,43,14,16
+MMR017004,Ngapudaw,Ayeyarwady,24,10,15
+MMR017005,Kyonpyaw,Ayeyarwady,42,16,25
+MMR017006,Yegyi,Ayeyarwady,87,32,50
+MMR017007,Kyaunggon,Ayeyarwady,6,0,3
+MMR017008,Hinthada,Ayeyarwady,31,24,21
+MMR017009,Zalun,Ayeyarwady,13,4,9
+MMR017010,Lemyethna,Ayeyarwady,100,22,66
+MMR017011,Myanaung,Ayeyarwady,18,3,14
+MMR017012,Kyangin,Ayeyarwady,20,19,13
+MMR017013,Ingapu,Ayeyarwady,33,13,20
+MMR017014,Myaungmya,Ayeyarwady,13,0,7
+MMR017015,Einme,Ayeyarwady,3,0,1
+MMR017016,Labutta,Ayeyarwady,10,2,8
+MMR017017,Wakema,Ayeyarwady,10,3,7
+MMR017018,Mawlamyinegyun,Ayeyarwady,30,11,21
+MMR017019,Maubin,Ayeyarwady,53,14,35
+MMR017020,Pantanaw,Ayeyarwady,8,1,6
+MMR017021,Nyaungdon,Ayeyarwady,20,3,13
+MMR017022,Danubyu,Ayeyarwady,7,1,5
+MMR017023,Pyapon,Ayeyarwady,32,6,27
+MMR017024,Bogale,Ayeyarwady,22,5,16
+MMR017025,Kyaiklat,Ayeyarwady,15,4,9
+MMR017026,Dedaye,Ayeyarwady,10,2,8
+MMR018001,Zay Yar Thi Ri,Nay Pyi Taw,3,1,0
+MMR018002,Za Bu Thi Ri,Nay Pyi Taw,28,26,2
+MMR018003,Tatkon,Nay Pyi Taw,22,10,10
+MMR018004,Det Khi Na Thi Ri,Nay Pyi Taw,12,5,3
+MMR018005,Poke Ba Thi Ri,Nay Pyi Taw,10,6,3
+MMR018006,Pyinmana,Nay Pyi Taw,53,126,23
+MMR018007,Lewe,Nay Pyi Taw,22,74,13
+MMR018008,Oke Ta Ra Thi Ri,Nay Pyi Taw,9,6,2

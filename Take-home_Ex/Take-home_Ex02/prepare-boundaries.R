@@ -84,4 +84,4 @@ write_csv(st_drop_geometry(townships02) |>
           file.path(out02, "township-neighbour-audit.csv"))
 writeLines(capture.output(sessionInfo()), file.path(out02, "boundary-session-info.txt"))
 print(audit02)
-message("MIMU v9.4 validated. Conflict analysis still requires the eLearn ACLED input.")
+message("MIMU v9.4 content, geometry and neighbourhood audit complete.")

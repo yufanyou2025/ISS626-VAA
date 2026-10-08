@@ -1,0 +1,9 @@
+stage,retained,excluded_at_stage
+Original rows,87109,0
+Remove exact duplicate rows,87109,0
+Myanmar country records,87103,6
+Study window: 2021-01-01 to 2025-09-30,87103,0
+Three armed-conflict event types,54000,33103
+Finite coordinates within geographic ranges,54000,0
+Geographic precision 1 or 2,53907,93
+Unique or admin3-resolved township intersection,53899,8

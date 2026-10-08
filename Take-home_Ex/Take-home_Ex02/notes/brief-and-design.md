@@ -58,7 +58,7 @@ These are examples of communication and workflow, not sources for Myanmar findin
 
 ## Input and publication restrictions
 
-The ACLED eLearn file has not yet been supplied. Its schema, coverage, extraction date and licence context are unverified. No conflict results have been computed or inferred from other students' work.
+The supplied ACLED file was found in the local coursework folder. Its schema, sample exclusions and hash are documented in the input instructions and output audits. The analytical sample contains 53,899 events. Results are computed from the original input, not inferred from other students' work.
 
 The [MIMU layer](https://geonode.themimu.info/layers/geonode%3Ammr_polbnda_adm3_250k_mimu_1) is labelled v9.4 and dated 18 June 2023. Its metadata restricts use in online platforms without written agreement. [MIMU terms](https://themimu.info/mimu-terms-conditions), sections 2.2, 2.3 and 5.2, also restrict geospatial dataset redistribution and embedding. Keep the downloaded boundary files and any geometry-bearing derivatives local; do not put them in Git, a submission ZIP, downloadable resources or an interactive web map. The scope of static analytical map publication should be confirmed against course permission or instructor guidance before publishing maps.
 

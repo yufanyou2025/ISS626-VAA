@@ -1,0 +1,5 @@
+variable,specification,lisa_p05,lisa_bh05,gi_p05,gi_bh05
+Events,Precision 1 only,87,40,89,44
+Events,Queen,89,44,90,48
+Events,Rook,89,44,90,48
+Reported fatalities,Queen,106,72,105,72

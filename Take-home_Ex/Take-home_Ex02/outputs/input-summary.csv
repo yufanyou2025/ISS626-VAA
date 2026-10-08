@@ -1,0 +1,11 @@
+measure,value
+Input rows,87109
+Columns,31
+Exact duplicate rows,0
+Duplicate event IDs,0
+Missing event dates,0
+Missing coordinates,0
+Missing fatalities,0
+First event date,2021-01-01
+Last event date,2025-09-30
+Latest record-update timestamp (UTC),2026-09-29 22:19:21
