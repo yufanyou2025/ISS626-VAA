@@ -12,6 +12,10 @@
 
 Preparation milestones have been pushed to the `codex/take-home-ex02` GitHub branch. The final map-containing report and slides have not been published. No eLearn submission has occurred.
 
+The full report has completed a normal render from the original inputs, with result reuse disabled. Statistical checks passed for sample reconciliation, balanced cubes, significance masks, scan direction and class definitions. Browser checks found no missing figures, page errors, mobile overflow or slide clipping. The deck contains 10 content slides plus cover and contents. Principal visual interpretations are below 100 words each, and the four EHSA cluster discussions are below 80 words each.
+
+The reproducible source and statistical outputs are on GitHub at source revision `83880a4`. Map image assets and rendered map-containing pages are retained locally pending the publication clarification below. Running the documented R workflow regenerates those figures from separately obtained inputs.
+
 MIMU's boundary metadata and [Terms §2.3](https://themimu.info/mimu-terms-conditions) state that use of geospatial datasets in online platforms requires written permission. The downloaded geometry remains private. Confirmation of the course's publication permission, or clarification that its static analytical figures fall outside that restriction, is pending. The full local report can be reviewed while this is resolved.
 
 Planned production addresses, **not yet verified or ready for eLearn**:
