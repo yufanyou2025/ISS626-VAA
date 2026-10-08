@@ -1,0 +1,513 @@
+{
+  "input": 87109,
+  "analytical_events": 53899,
+  "fatalities": 89005,
+  "precise_events": 29588,
+  "zero_townships": 8,
+  "mainland_events": 53884,
+  "island_events": 15,
+  "global_i": 0.4876,
+  "global_p": 0.001,
+  "top_townships": [
+    {
+      "township_id": "MMR005012",
+      "township": "Monywa",
+      "state": "Sagaing",
+      "events": 1039,
+      "fatalities": 1771,
+      "precise_events": 615
+    },
+    {
+      "township_id": "MMR003006",
+      "township": "Kawkareik",
+      "state": "Kayin",
+      "events": 946,
+      "fatalities": 1524,
+      "precise_events": 474
+    },
+    {
+      "township_id": "MMR009020",
+      "township": "Myaing",
+      "state": "Magway",
+      "events": 934,
+      "fatalities": 1419,
+      "precise_events": 508
+    },
+    {
+      "township_id": "MMR005027",
+      "township": "Kale",
+      "state": "Sagaing",
+      "events": 886,
+      "fatalities": 1877,
+      "precise_events": 542
+    },
+    {
+      "township_id": "MMR001009",
+      "township": "Hpakant",
+      "state": "Kachin",
+      "events": 854,
+      "fatalities": 1262,
+      "precise_events": 407
+    },
+    {
+      "township_id": "MMR005004",
+      "township": "Shwebo",
+      "state": "Sagaing",
+      "events": 806,
+      "fatalities": 1551,
+      "precise_events": 479
+    },
+    {
+      "township_id": "MMR010009",
+      "township": "Madaya",
+      "state": "Mandalay",
+      "events": 789,
+      "fatalities": 1117,
+      "precise_events": 402
+    },
+    {
+      "township_id": "MMR015013",
+      "township": "Nawnghkio",
+      "state": "Shan (North)",
+      "events": 788,
+      "fatalities": 465,
+      "precise_events": 544
+    },
+    {
+      "township_id": "MMR007011",
+      "township": "Kyaukkyi",
+      "state": "Bago (East)",
+      "events": 777,
+      "fatalities": 705,
+      "precise_events": 367
+    },
+    {
+      "township_id": "MMR009019",
+      "township": "Yesagyo",
+      "state": "Magway",
+      "events": 760,
+      "fatalities": 1434,
+      "precise_events": 436
+    }
+  ],
+  "top_fatalities": [
+    {
+      "township_id": "MMR005027",
+      "township": "Kale",
+      "state": "Sagaing",
+      "events": 886,
+      "fatalities": 1877,
+      "precise_events": 542
+    },
+    {
+      "township_id": "MMR005012",
+      "township": "Monywa",
+      "state": "Sagaing",
+      "events": 1039,
+      "fatalities": 1771,
+      "precise_events": 615
+    },
+    {
+      "township_id": "MMR012009",
+      "township": "Maungdaw",
+      "state": "Rakhine",
+      "events": 599,
+      "fatalities": 1583,
+      "precise_events": 222
+    },
+    {
+      "township_id": "MMR005004",
+      "township": "Shwebo",
+      "state": "Sagaing",
+      "events": 806,
+      "fatalities": 1551,
+      "precise_events": 479
+    },
+    {
+      "township_id": "MMR003006",
+      "township": "Kawkareik",
+      "state": "Kayin",
+      "events": 946,
+      "fatalities": 1524,
+      "precise_events": 474
+    },
+    {
+      "township_id": "MMR010017",
+      "township": "Myingyan",
+      "state": "Mandalay",
+      "events": 652,
+      "fatalities": 1521,
+      "precise_events": 419
+    },
+    {
+      "township_id": "MMR009019",
+      "township": "Yesagyo",
+      "state": "Magway",
+      "events": 760,
+      "fatalities": 1434,
+      "precise_events": 436
+    },
+    {
+      "township_id": "MMR003005",
+      "township": "Myawaddy",
+      "state": "Kayin",
+      "events": 641,
+      "fatalities": 1420,
+      "precise_events": 269
+    },
+    {
+      "township_id": "MMR009020",
+      "township": "Myaing",
+      "state": "Magway",
+      "events": 934,
+      "fatalities": 1419,
+      "precise_events": 508
+    },
+    {
+      "township_id": "MMR005019",
+      "township": "Pale",
+      "state": "Sagaing",
+      "events": 537,
+      "fatalities": 1392,
+      "precise_events": 275
+    }
+  ],
+  "top10_share": 0.1592,
+  "state_totals": [
+    {
+      "state": "Sagaing",
+      "events": 12612,
+      "fatalities": 27555
+    },
+    {
+      "state": "Magway",
+      "events": 5384,
+      "fatalities": 10737
+    },
+    {
+      "state": "Mandalay",
+      "events": 4979,
+      "fatalities": 7758
+    },
+    {
+      "state": "Shan (North)",
+      "events": 4146,
+      "fatalities": 3777
+    },
+    {
+      "state": "Rakhine",
+      "events": 3222,
+      "fatalities": 6061
+    },
+    {
+      "state": "Kachin",
+      "events": 3131,
+      "fatalities": 3801
+    },
+    {
+      "state": "Tanintharyi",
+      "events": 3062,
+      "fatalities": 5077
+    },
+    {
+      "state": "Kayin",
+      "events": 2874,
+      "fatalities": 5097
+    },
+    {
+      "state": "Bago (East)",
+      "events": 2745,
+      "fatalities": 3768
+    },
+    {
+      "state": "Yangon",
+      "events": 2397,
+      "fatalities": 964
+    },
+    {
+      "state": "Mon",
+      "events": 2200,
+      "fatalities": 2718
+    },
+    {
+      "state": "Shan (South)",
+      "events": 1634,
+      "fatalities": 2472
+    },
+    {
+      "state": "Chin",
+      "events": 1594,
+      "fatalities": 3267
+    },
+    {
+      "state": "Kayah",
+      "events": 1534,
+      "fatalities": 3302
+    },
+    {
+      "state": "Bago (West)",
+      "events": 1400,
+      "fatalities": 2118
+    },
+    {
+      "state": "Ayeyarwady",
+      "events": 785,
+      "fatalities": 253
+    },
+    {
+      "state": "Nay Pyi Taw",
+      "events": 159,
+      "fatalities": 254
+    },
+    {
+      "state": "Shan (East)",
+      "events": 41,
+      "fatalities": 26
+    }
+  ],
+  "peak_month": [
+    {
+      "month": "2023-11-01",
+      "measure": "Events",
+      "count": 1466
+    }
+  ],
+  "local_counts": [
+    {
+      "variable": "Events",
+      "lisa_class": "High-high",
+      "n": 36
+    },
+    {
+      "variable": "Events",
+      "lisa_class": "Low-high",
+      "n": 1
+    },
+    {
+      "variable": "Events",
+      "lisa_class": "Low-low",
+      "n": 52
+    },
+    {
+      "variable": "Events",
+      "lisa_class": "Not significant",
+      "n": 238
+    },
+    {
+      "variable": "Reported fatalities",
+      "lisa_class": "High-high",
+      "n": 38
+    },
+    {
+      "variable": "Reported fatalities",
+      "lisa_class": "Low-high",
+      "n": 4
+    },
+    {
+      "variable": "Reported fatalities",
+      "lisa_class": "Low-low",
+      "n": 64
+    },
+    {
+      "variable": "Reported fatalities",
+      "lisa_class": "Not significant",
+      "n": 221
+    }
+  ],
+  "gi_counts": [
+    {
+      "variable": "Events",
+      "gi_class": "Cold spot",
+      "n": 51
+    },
+    {
+      "variable": "Events",
+      "gi_class": "Hot spot",
+      "n": 39
+    },
+    {
+      "variable": "Events",
+      "gi_class": "Not significant",
+      "n": 237
+    },
+    {
+      "variable": "Reported fatalities",
+      "gi_class": "Cold spot",
+      "n": 66
+    },
+    {
+      "variable": "Reported fatalities",
+      "gi_class": "Hot spot",
+      "n": 39
+    },
+    {
+      "variable": "Reported fatalities",
+      "gi_class": "Not significant",
+      "n": 222
+    }
+  ],
+  "trend_significant": 165,
+  "trend_bh": 150,
+  "block2_significant": 129,
+  "block3_significant": 114,
+  "median_lag1": 0.7087,
+  "rook_class_agreement": 1,
+  "precision_class_agreement": 0.8012,
+  "ehsa_counts": [
+    {
+      "classification": "Consecutive cold spot",
+      "n": 14
+    },
+    {
+      "classification": "Consecutive hot spot",
+      "n": 20
+    },
+    {
+      "classification": "Intensifying cold spot",
+      "n": 5
+    },
+    {
+      "classification": "New cold spot",
+      "n": 2
+    },
+    {
+      "classification": "No pattern detected",
+      "n": 188
+    },
+    {
+      "classification": "Oscillating cold spot",
+      "n": 1
+    },
+    {
+      "classification": "Oscillating hot spot",
+      "n": 8
+    },
+    {
+      "classification": "Persistent cold spot",
+      "n": 16
+    },
+    {
+      "classification": "Sporadic cold spot",
+      "n": 55
+    },
+    {
+      "classification": "Sporadic hot spot",
+      "n": 18
+    }
+  ],
+  "scan": [
+    {
+      "cluster": 1,
+      "centre": "Ramree",
+      "radius_km": 189.7967,
+      "townships": 30,
+      "early_events": 357,
+      "recent_events": 2509,
+      "early_share": 0.0221,
+      "recent_share": 0.1149,
+      "share_ratio": 5.1938,
+      "llr": 659.4119,
+      "search_adjusted_p": 0.001,
+      "members": "Ramree; Kyaukpyu; Toungup; Ann; Mindon; Kamma; Myebon; Ngape; Minhla; Thandwe; Padaung; Thayet; Minbu; Pauktaw; Pyay; Shwedaung; Kyangin; Pwintbyu; Sittwe; Sidoktaya; Minbya; Sinbaungwe; Magway; Aunglan; Thegon; Myanaung; Gwa; Mrauk-U; Paukkhaung; Salin"
+    },
+    {
+      "cluster": 2,
+      "centre": "Kyauktaga",
+      "radius_km": 93.2011,
+      "townships": 18,
+      "early_events": 347,
+      "recent_events": 2009,
+      "early_share": 0.0215,
+      "recent_share": 0.092,
+      "share_ratio": 4.2786,
+      "llr": 448.3426,
+      "search_adjusted_p": 0.001,
+      "members": "Kyauktaga; Phyu; Nyaunglebin; Kyaukkyi; Daik-U; Okpho; Htantabin; Letpadan; Oktwin; Nattalin; Minhla; Bago; Shwegyin; Gyobingauk; Zigon; Waw; Thayarwady; Taungoo"
+    },
+    {
+      "cluster": 3,
+      "centre": "Mogoke",
+      "radius_km": 62.7482,
+      "townships": 6,
+      "early_events": 336,
+      "recent_events": 1543,
+      "early_share": 0.0208,
+      "recent_share": 0.0707,
+      "share_ratio": 3.3938,
+      "llr": 271.0328,
+      "search_adjusted_p": 0.001,
+      "members": "Mogoke; Mongmit; Thabeikkyin; Singu; Kyaukme; Nawnghkio"
+    }
+  ],
+  "cases": [
+    {
+      "township_id": "MMR003006",
+      "tau": 0.5353,
+      "trend_p": 0.0016,
+      "hot_quarters": 6,
+      "cold_quarters": 0,
+      "final_gi": 6.7907,
+      "final_bin_p": 0.002,
+      "classification": "Sporadic hot spot",
+      "bh_bin_class": "New hot spot",
+      "trend_q": 0.0055,
+      "specification": "Queen",
+      "township": "Kawkareik",
+      "state": "Kayin",
+      "events": 946,
+      "fatalities": 1524,
+      "precise_events": 474,
+      "lag1": 0.6226,
+      "block2_p": 0.015,
+      "block3_p": 0.012,
+      "block2_q": 0.049,
+      "block3_q": 0.0683
+    },
+    {
+      "township_id": "MMR005012",
+      "tau": -0.1345,
+      "trend_p": 0.4415,
+      "hot_quarters": 15,
+      "cold_quarters": 2,
+      "final_gi": 1.8093,
+      "final_bin_p": 0.202,
+      "classification": "No pattern detected",
+      "bh_bin_class": "No pattern detected",
+      "trend_q": 0.5448,
+      "specification": "Queen",
+      "township": "Monywa",
+      "state": "Sagaing",
+      "events": 1039,
+      "fatalities": 1771,
+      "precise_events": 615,
+      "lag1": 0.7561,
+      "block2_p": 0.577,
+      "block3_p": 0.668,
+      "block2_q": 0.704,
+      "block3_q": 0.8025
+    },
+    {
+      "township_id": "MMR015009",
+      "tau": -0.4269,
+      "trend_p": 0.0118,
+      "hot_quarters": 2,
+      "cold_quarters": 0,
+      "final_gi": -0.983,
+      "final_bin_p": 0.408,
+      "classification": "No pattern detected",
+      "bh_bin_class": "No pattern detected",
+      "trend_q": 0.0296,
+      "specification": "Queen",
+      "township": "Muse",
+      "state": "Shan (North)",
+      "events": 640,
+      "fatalities": 572,
+      "precise_events": 295,
+      "lag1": 0.5517,
+      "block2_p": 0.049,
+      "block3_p": 0.026,
+      "block2_q": 0.1242,
+      "block3_q": 0.0924
+    }
+  ]
+}

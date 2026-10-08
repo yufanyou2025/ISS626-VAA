@@ -1,0 +1,185 @@
+---
+title: "Myanmar's changing conflict geography"
+subtitle: "January 2021–September 2025 · Take-home Exercise 2"
+author: "Yufan You"
+format:
+  revealjs:
+    theme: [simple, slides.scss]
+    slide-number: c/t
+    width: 1280
+    height: 720
+    margin: 0.06
+    transition: none
+    navigation-mode: linear
+    center: false
+    controls: true
+    progress: true
+    hash: true
+    toc: false
+    footer: "ISSS626 · Data: ACLED, accessed 8 Oct 2026 · Boundaries: MIMU v9.4"
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+s <- readRDS("Take-home_Ex/Take-home_Ex02/outputs/report-results.rds")
+n <- function(x) format(round(x), big.mark = ",", scientific = FALSE, trim = TRUE)
+pct <- function(x) paste0(round(100 * x, 1), "%")
+local <- readr::read_csv("Take-home_Ex/Take-home_Ex02/outputs/local-results.csv", show_col_types = FALSE)
+lc <- function(cl) sum(local$variable == "Events" & local$specification == "Queen" & local$lisa_class == cl)
+gc <- function(cl) sum(local$variable == "Events" & local$specification == "Queen" & local$gi_class == cl)
+```
+
+## Contents
+
+Study question and evidence  
+Clusters and changes over time  
+Redistribution, uncertainty and peacebuilding implications
+
+## Research question and study design
+
+**Where is recorded armed conflict concentrated, and where is that concentration changing?**
+
+- `r n(s$analytical_events)` events in 330 Myanmar townships, January 2021–September 2025.
+- Battles, explosions/remote violence and violence against civilians.
+- Local Moran's I and Gi* for spatial patterns. Quarterly Gi* and Mann–Kendall for change.
+- 327 townships in spatial tests. Three islands remain in descriptive counts.
+
+::: {.takeaway}
+ACLED records reported events. Counts measure recorded burden and concentration.
+:::
+
+::: {.source}
+Sources: ACLED course file, accessed 8 Oct 2026; MIMU township boundaries v9.4. Original sample: 87,109 rows.
+:::
+
+## Monthly frequency and severity
+
+![](figures/slide-monthly-pattern.png){height=420}
+
+::: {.takeaway}
+The peak is `r n(s$peak_month$count)` events in `r format(as.Date(s$peak_month$month), '%B %Y')`. Event frequency and reported fatalities follow different paths.
+:::
+
+## The recorded burden is uneven
+
+::: {.columns}
+::: {.column width="62%"}
+![](figures/slide-burden-maps.png){height=480}
+:::
+::: {.column width="38%"}
+**`r s$top_townships$township[1]`** has the most events: **`r n(s$top_townships$events[1])`**.
+
+The ten largest township totals account for **`r pct(s$top10_share)`** of recorded events.
+
+**`r s$top_fatalities$township[1]`** leads in reported fatalities.
+
+The maps use identical count bands. Neither includes a population denominator.
+:::
+:::
+
+## Clusters and spatial outliers
+
+::: {.columns}
+::: {.column width="64%"}
+![](figures/slide-lisa-maps.png){height=475}
+:::
+::: {.column width="36%"}
+Event counts show **`r lc('High-high')` high-high** townships.
+
+**`r lc('Low-high')` low-high** outliers have lower counts beside higher-count neighbours.
+
+Global Moran's I = **`r sprintf('%.3f',s$global_i)`**, permutation p = **`r sprintf('%.3f',s$global_p)`**.
+
+Primary colours require two-sided p < .05. Multiple-testing adjustment reduces the number of flags.
+:::
+:::
+
+## Gi* identifies concentrated neighbourhoods
+
+::: {.columns}
+::: {.column width="64%"}
+![](figures/slide-gistar-maps.png){height=475}
+:::
+::: {.column width="36%"}
+**`r gc('Hot spot')` event hot spots** and **`r gc('Cold spot')` cold spots** at p < .05.
+
+Gi* includes the focal township and its neighbours.
+
+Fatalities reveal a related but different burden pattern.
+
+Low recorded activity needs local verification before any safety interpretation.
+:::
+:::
+
+## Emerging patterns over 19 quarters
+
+::: {.columns}
+::: {.column width="63%"}
+![](figures/slide-ehsa-map.png){height=480}
+:::
+::: {.column width="37%"}
+**`r s$trend_significant`** townships have Mann–Kendall p < .05. **`r s$trend_bh`** remain after BH adjustment.
+
+Gi* uses current and previous-quarter neighbours against a fixed space-time reference.
+
+The map filters for significant trends. Persistent classes without a significant trend remain in the report's results table.
+:::
+:::
+
+## The trajectories explain the labels
+
+::: {.columns}
+::: {.column width="67%"}
+![](figures/slide-case-histories.png){height=475}
+:::
+::: {.column width="33%"}
+Cases include the largest burden, the largest increasing final hot spot, and the largest declining concentration.
+
+Filled points have Gi* bin p < .05.
+
+A declining concentration can coexist with a substantial accumulated burden. A class label compresses a more complicated history.
+:::
+:::
+
+## Precision and dependence affect confidence
+
+![](figures/slide-ehsa-sensitivity.png){height=400}
+
+::: {.takeaway}
+Class agreement: Queen/rook **`r pct(s$rook_class_agreement)`**; main/precision 1 only **`r pct(s$precision_class_agreement)`**. Short-block trend checks give `r s$block2_significant` and `r s$block3_significant` p < .05 results, versus `r s$trend_significant` for ordinary MK.
+:::
+
+## A spatial scan isolates redistribution
+
+::: {.columns}
+::: {.column width="51%"}
+![](figures/slide-redistribution-map.png){height=460}
+:::
+::: {.column width="49%"}
+![](figures/slide-redistribution-shares.png){height=225}
+
+The leading cluster around **`r s$scan$centre[1]`** increases its national share from **`r pct(s$scan$early_share[1])` to `r pct(s$scan$recent_share[1])`**.
+
+Search-adjusted p = **`r sprintf('%.3f',s$scan$search_adjusted_p[1])`**. Equal 21-month windows control duration and calendar-month composition.
+:::
+:::
+
+## Peacebuilding implications and limits
+
+Sustained high-burden areas support maintaining humanitarian capacity. Increasing concentrations and spatial outliers suggest where local verification may be useful.
+
+Allocation decisions also need displacement, service capacity and access information. Reporting gaps, uncertain locations and related conflict events limit statistical confidence.
+
+The scan identifies a shift in recorded geography. Its clusters are exploratory and do not define front lines or predict the next incident.
+
+::: {.takeaway}
+Use the maps to guide questions for local partners and needs assessments.
+:::
+
+[Technical report and complete methods](technical-report.qmd) · [Reproducible GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/codex/take-home-ex02/Take-home_Ex/Take-home_Ex02)
+

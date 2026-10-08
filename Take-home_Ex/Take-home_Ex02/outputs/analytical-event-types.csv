@@ -1,4 +1,4 @@
-event_type,events
-Battles,21065
-Explosions/Remote violence,22899
-Violence against civilians,9935
+event_type,events,source
+Battles,21065,"ACLED (Armed Conflict Location & Event Data), course file accessed 2026-10-08; https://acleddata.com/; original township/time aggregation and statistics"
+Explosions/Remote violence,22899,"ACLED (Armed Conflict Location & Event Data), course file accessed 2026-10-08; https://acleddata.com/; original township/time aggregation and statistics"
+Violence against civilians,9935,"ACLED (Armed Conflict Location & Event Data), course file accessed 2026-10-08; https://acleddata.com/; original township/time aggregation and statistics"

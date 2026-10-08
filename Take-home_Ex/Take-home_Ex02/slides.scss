@@ -1,0 +1,23 @@
+/*-- scss:defaults --*/
+$body-bg: #faf8f1;
+$body-color: #29372f;
+$link-color: #315747;
+$presentation-heading-color: #263c30;
+$presentation-font-size-root: 28px;
+$presentation-heading-font: Georgia, "Times New Roman", serif;
+$font-family-sans-serif: "Segoe UI", Arial, sans-serif;
+
+/*-- scss:rules --*/
+.reveal h1 {font-size: 1.8em; line-height: 1.15; font-weight: 600;}
+.reveal h2 {font-size: 1.35em; line-height: 1.15; padding-bottom: .18em; border-bottom: 2px solid #a18449; margin-bottom: .45em;}
+.reveal p, .reveal li {line-height: 1.35;}
+.reveal .columns {gap: 1.1em;}
+.reveal .column p {font-size: .83em; margin: .65em 0;}
+.reveal img {margin: 0 auto; object-fit: contain; max-width: 100%;}
+.reveal .takeaway {font-size: .9em; border-top: 1px solid #cfc7b3; padding-top: .55em; margin-top: .35em; color: #315747;}
+.reveal .source {font-size: .48em; color: #65665a; margin-top: .8em;}
+.reveal .footer {font-size: 13px; color: #777566;}
+.reveal .slide-number {font-size: 14px; color: #315747; background: transparent;}
+#title-slide {text-align: left; padding-top: 100px;}
+#title-slide .subtitle {font-size: .85em; color: #6f6a58; margin-top: 1.2em;}
+#title-slide .quarto-title-author-name {font-size: .8em;}

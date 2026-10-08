@@ -1,0 +1,310 @@
+---
+title: "Myanmar's changing conflict geography"
+subtitle: "Township concentrations, emerging patterns and the limits of reported events"
+author: "Yufan You"
+date: "2026-10-08"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    css: report.css
+    fig-cap-location: bottom
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+# A normal render executes the complete workflow. Reuse is only for layout QA
+# after the same source revision has already completed successfully.
+ex02 <- "Take-home_Ex/Take-home_Ex02"
+if (Sys.getenv("EX02_REUSE_VERIFIED") != "1") source(file.path(ex02, "analysis.R"), encoding = "UTF-8")
+s <- readRDS(file.path(ex02, "outputs/report-results.rds"))
+o <- function(file) readr::read_csv(file.path(ex02, "outputs", file), show_col_types = FALSE)
+n <- function(x) format(round(x), big.mark = ",", scientific = FALSE, trim = TRUE)
+pct <- function(x) paste0(format(round(100 * x, 1), nsmall = 1), "%")
+tab <- function(x, digits = 3) knitr::kable(x, digits = digits)
+show_code02 <- function(file) {
+  cat("<details class='workflow-code'><summary>Read the executable R code: ", file,
+      "</summary>\n\n```r\n", paste(readLines(file.path(ex02, file), warn = FALSE), collapse = "\n"),
+      "\n```\n\n</details>\n", sep = "")
+}
+local <- o("local-results.csv")
+ehsa <- o("ehsa-results.csv")
+blocks <- o("trend-block-sensitivity.csv")
+main <- dplyr::filter(ehsa, specification == "Queen")
+tot <- o("township-totals.csv")
+cases <- s$cases
+scan <- o("redistribution-scan.csv")
+local_n <- function(v, cl) sum(local$variable == v & local$specification == "Queen" & local$lisa_class == cl)
+gi_n <- function(v, cl) sum(local$variable == v & local$specification == "Queen" & local$gi_class == cl)
+```
+
+::: {.report-lead}
+**Research question:** Where is recorded armed conflict concentrated in Myanmar, and which township neighbourhoods are becoming more concentrated over time?
+
+The analysis covers **`r n(s$analytical_events)` events** and **`r n(s$fatalities)` reported fatalities**, from January 2021 to September 2025. It combines local spatial statistics with 19 quarterly observations. A spatial scan then asks where conflict gained a larger share of the national total.
+
+[Executive summary](executive-summary.qmd) · [GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/codex/take-home-ex02/Take-home_Ex/Take-home_Ex02)
+:::
+
+## Study context and design
+
+Conflict monitoring has to answer two different planning questions. A township with a large accumulated burden may need sustained humanitarian support. A township where the surrounding concentration is increasing may need closer monitoring even if its historical total is smaller. This report keeps those signals separate.
+
+The study follows the [Take-home Exercise 2 brief](https://isss626-ay2026-27aug.netlify.app/take-home_ex02.html). The geographical unit is the township, using **MIMU v9.4**, and the observation period is **1 January 2021–30 September 2025**. The brief's two references to passenger trips and hexagons are treated as editing errors because its objectives and data specification require Myanmar conflict events and townships.
+
+I use three ACLED event types: **Battles**, **Explosions/Remote violence**, and **Violence against civilians**. This operational definition focuses on armed conflict. It excludes riots, protests and strategic developments, including some events that ACLED classifies under its wider definition of political violence. One coded event is the unit of observation. Several events can share a date and location without being duplicates. Reported fatalities are an additional burden measure, with uncertainty in reporting and estimation.
+
+The questions are:
+
+1. Which townships form high or low clusters, and which contrast with their neighbours?
+2. Which neighbourhood concentrations intensify, diminish or appear intermittently?
+3. Where did the share of national recorded conflict increase between comparable early and recent windows?
+
+Counts measure the geography of **reported conflict activity**. They do not estimate the probability that an individual experiences harm. No reliable, time-matched population or exposure denominator is supplied.
+
+## Data preparation and quality assessment
+
+### Sources and input checks
+
+The original eLearn ACLED CSV contains `r n(s$input)` rows and 31 columns. Its dates cover the full study window. No exact duplicate rows or repeated event IDs were found, and dates, coordinates and fatalities have no missing values. Other fields do contain missing entries, so removing every row with any missing field would discard usable events.
+
+The source contains six records labelled **Indian Ocean**, which are excluded by the Myanmar country filter. The latest record-update timestamp is 29 September 2026, 22:19:21 UTC. That field describes a record update, not a documented export date. I accessed the supplied course file on 8 October 2026 and pin its SHA-256 hash for replication.
+
+[MIMU's GeoNode layer](https://geonode.themimu.info/layers/geonode%3Ammr_polbnda_adm3_250k_mimu_1) contains 330 polygons, all labelled P-code version 9.4. Township P-codes are complete and unique. The original WGS84 geometries are valid. `st_transform()` puts the polygons and event points in a Myanmar-centred Albers equal-area projection, avoiding reliance on a single UTM zone across the country. `st_make_valid()` is a defensive step and does not repair any invalid input polygons in this snapshot.
+
+### A sample that reconciles to the input
+
+```{r}
+tab(o("sample-audit.csv") |> dplyr::rename(Stage = stage, Retained = retained, Excluded = excluded_at_stage))
+```
+
+I exclude geographic precision 3 because its coordinates represent a broader administrative area. Precision 2 accounts for **`r pct(1 - s$precise_events / s$analytical_events)`** of the retained sample. It remains in the main analysis, but its uncertainty matters at township boundaries. A precision 1-only rerun measures the sensitivity to this choice. I do not interpret that subset as complete coverage of actual conflict. ACLED fatality zeros can also reflect the absence of a reported estimate, so they should not all be read as verified zero deaths.
+
+`st_intersects()` assigns points to townships. All retained matches are unique. Eight eligible records lie outside the polygon layer; they remain in a private inspection file and do not enter the counts. No nearest-township snap is applied. Simple normalisation matches the supplied admin3 name with the mapped township for 53,789 records. The other 110 include 102 missing admin3 names and eight different labels. The spatial intersection determines the assignment, with those discrepancies recorded as a limitation rather than silently corrected names.
+
+### Balanced time periods and neighbourhoods
+
+`expand_grid()` creates all **330 × 57 = 18,810 township-month combinations**. After joining observed counts, absent combinations become zero **recorded** events. These are not proof of no violence. Aggregation produces **330 × 19 = 6,270 township-quarter combinations**. Both cubes reconcile exactly to the retained event and fatality totals. Using complete quarters avoids treating nine months of 2025 as a full year.
+
+Queen contiguity treats shared edges or vertices as neighbours. A 10 m tolerance is small relative to the source's 1:250,000 mapping scale and handles minor digitisation gaps. Munaung, Chaungzon and Cocokyun have no Queen neighbours. They remain in descriptive outputs and the full cubes, but the spatial tests use the connected **327-township component**, representing `r n(s$mainland_events)` events. The three islands account for `r n(s$island_events)` retained events. Their maps indicate that no spatial test is available. A rook rerun tests the effect of requiring a shared edge.
+
+```{r}
+tab(o("boundary-audit.csv"))
+```
+
+## The geographical distribution of recorded conflict
+
+### Monthly changes
+
+![Monthly events and reported fatalities](figures/monthly-pattern.png){#fig-monthly fig-alt="Two monthly line charts for recorded armed-conflict events and reported fatalities, January 2021 to September 2025."}
+
+::: {.interpretation}
+The largest monthly event count is **`r n(s$peak_month$count)` in `r format(as.Date(s$peak_month$month), '%B %Y')`**. The two panels show why frequency and reported fatalities should be read separately: a month with many events need not have the highest reported fatality total. All observations are complete months, so the September 2025 endpoint does not introduce a partial-month comparison. Changes may reflect both conflict activity and changes in access to reporting.
+:::
+
+### Township burden
+
+![Recorded event and fatality totals by township](figures/burden-maps.png){#fig-burden fig-alt="Two Myanmar township maps showing event and reported fatality totals using identical count bands."}
+
+::: {.interpretation}
+**`r s$state_totals$state[1]`** has the largest state/region event total, with `r n(s$state_totals$events[1])` events. At township level, **`r s$top_townships$township[1]`** leads with `r n(s$top_townships$events[1])` events, while **`r s$top_fatalities$township[1]`** has the highest reported fatality total (`r n(s$top_fatalities$fatalities[1])`). The ten townships with the most events account for **`r pct(s$top10_share)`** of the analytical sample. These counts describe an uneven recorded burden. Large polygons are not automatically more dangerous, and unrecorded events remain outside the map.
+:::
+
+```{r}
+tab(s$top_townships |> dplyr::select(Township = township, `State/region` = state, Events = events, `Reported fatalities` = fatalities))
+```
+
+## Local measures of spatial association
+
+### What the tests assess
+
+Global Moran's I supplies a broad check: **I = `r sprintf('%.3f', s$global_i)`**, with **permutation p = `r sprintf('%.3f', s$global_p)`**. The alternative is positive autocorrelation. The 999 permutations randomly reassign event totals over the fixed township graph. This supports examining local concentrations, but it does not identify their causes.
+
+Local Moran's I compares a township's deviation from the mean with its neighbours' average deviation. Row-standardised Queen weights exclude the township itself. High-high and low-low are clusters; high-low and low-high are spatial outliers. `localmoran_perm()` holds the focal value fixed and permutes neighbour values, without repeated draws within a simulated neighbourhood. Quadrants use the mean-centred variable and its spatial lag, not the sign of I alone.
+
+Getis–Ord Gi* asks whether a neighbourhood sum is unusually high or low. Its weights include the focal township. `localG_perm()` provides conditional permutation inference. I use the alternative-aware **two-sided simulated p-value**, rather than the folded tail probability. All primary LMSA colours require **p < .05**. Benjamini–Hochberg (BH) adjusted values are retained to show the effect of testing many townships. These are exploratory tests of spatially exchangeable values, not a model of population exposure or conflict mechanisms.
+
+### Clusters and outliers
+
+![Significant Local Moran clusters and outliers](figures/lisa-maps.png){#fig-lisa fig-alt="Local Moran cluster maps for events and fatalities, with non-significant townships neutral and islands untested."}
+
+::: {.interpretation}
+For events, Local Moran's I identifies **`r local_n('Events','High-high')` high-high** and **`r local_n('Events','Low-low')` low-low** townships. It also flags `r local_n('Events','High-low')` high-low and `r local_n('Events','Low-high')` low-high outliers. High-low locations deserve a separate reading: they have relatively high counts beside lower-count neighbours, rather than belonging to an extensive high-count cluster. Reported fatalities give a different classification because severity and event frequency do not rank every township identically. Grey areas have insufficient evidence at the chosen threshold, which is different from evidence of no conflict.
+:::
+
+```{r}
+outliers <- local |> dplyr::filter(specification == "Queen", variable == "Events", lisa_class %in% c("High-low", "Low-high")) |>
+  dplyr::left_join(dplyr::select(tot, township_id, township, state), by = "township_id") |>
+  dplyr::arrange(moran_p) |> dplyr::select(Township = township, `State/region` = state, Events = value, Class = lisa_class, p = moran_p, `BH q` = moran_q)
+tab(outliers)
+```
+
+### Hot and cold neighbourhoods
+
+![Significant Getis–Ord Gi star neighbourhoods](figures/gistar-maps.png){#fig-gistar fig-alt="Significant Gi star hot and cold spots for event counts and reported fatalities."}
+
+::: {.interpretation}
+Gi* identifies **`r gi_n('Events','Hot spot')` event hot spots** and **`r gi_n('Events','Cold spot')` cold spots**. The corresponding fatality analysis identifies `r gi_n('Reported fatalities','Hot spot')` hot spots. Gi* includes the focal township, so a significant neighbourhood does not require every member to have a high individual count. A cold spot means a relatively low recorded total under this comparison; it does not establish safety. The apparent certainty also falls when multiple testing is considered, as the table below shows.
+:::
+
+```{r}
+tab(o("local-significance.csv") |> dplyr::filter(specification == "Queen") |>
+      dplyr::select(Variable = variable, `Local Moran p < .05` = lisa_p05, `Local Moran BH q < .05` = lisa_bh05,
+                    `Gi* p < .05` = gi_p05, `Gi* BH q < .05` = gi_bh05))
+```
+
+## Emerging hot spot analysis
+
+### Space-time Gi* and Mann–Kendall
+
+`spacetime()` constructs the quarterly cube and checks its balance. I then explicitly build each bin's neighbourhood from the township and its Queen neighbours in the current and immediately preceding quarter (**k = 1**). The combined space-time weights sum to one. The first quarter has no earlier quarter and therefore a shorter temporal neighbourhood. Its results are an endpoint-sensitive baseline.
+
+`spdep::localG_perm()` computes Gi* on this explicit graph. Standardisation uses the mean and variance across **all 6,213 mainland township-quarter bins**, and conditional permutations hold the focal bin fixed while reassigning other bin values across that space-time reference. I use its alternative-aware two-sided simulated p-value, not its folded tail probability. This differs from sfdep 0.2.5's classroom routine, which combines quarter-specific standardisation with permutations pooled across periods. A fixed reference makes the interpretation here explicit: high or low concentration relative to the complete observed space-time distribution. National changes in event frequency can therefore contribute to temporal trends. The redistribution scan later conditions on national window totals to address that separate issue.
+
+Mann–Kendall tests the ordered series of **space-time Gi*** at each township. Positive tau means increasing concentration against this fixed reference; it is not a rate of change in event counts.
+
+Classification rules are explicit in `methods.R`: a new class has only its final bin significant in that family; a consecutive class has a final uninterrupted run; intensifying, persistent and diminishing classes require at least 90% of bins in the same family. The trend direction separates intensification from diminution. Sporadic and oscillating classes require a significant final bin; oscillating locations have also experienced the opposite family. Historical classes have at least 90% qualifying earlier bins and a final bin outside that family. These are transparent R adaptations of the [Esri pattern definitions](https://doc.esri.com/en/arcgis-pro/latest/tool-reference/space-time-pattern-mining/learnmoreemerging.html), not a claim to reproduce ArcGIS's complete FDR implementation.
+
+### Patterns with significant temporal evidence
+
+![Emerging hot spot classes filtered by significant Mann Kendall trends](figures/ehsa-map.png){#fig-ehsa fig-alt="EHSA classes for townships whose space-time Gi star trend has Mann Kendall p below 0.05."}
+
+::: {.interpretation}
+**`r s$trend_significant` of 327 townships** have ordinary Mann–Kendall p < .05; **`r s$trend_bh`** remain after BH adjustment across township trend tests. The map shows classified patterns only where the trend has p < .05. This meets the brief's significance filter but deliberately omits persistent locations without a significant trend. Their classes remain in the table and downloadable results. Increasing Gi* indicates a rising neighbourhood concentration against the fixed space-time reference. It can reflect national escalation as well as a geographical change, which motivates the separate redistribution scan.
+:::
+
+Of the significant trends, **`r sum(main$trend_p < .05 & main$classification != 'No pattern detected')`** also satisfy an EHSA class. A trend alone does not guarantee a hot- or cold-spot pattern under the final-bin and persistence rules.
+
+```{r}
+tab(main |> dplyr::group_by(classification) |>
+      dplyr::summarise(`All townships` = dplyr::n(), `MK p < .05` = sum(trend_p < .05),
+                       `MK BH q < .05` = sum(trend_q < .05), .groups = "drop") |>
+      dplyr::rename(Class = classification))
+```
+
+### Reading the histories behind the classes
+
+::: {.cluster-interpretation}
+**Consecutive hot spots.** Fourteen townships in this class also have significant MK trends. The largest event totals include Madaya in Mandalay, Nawnghkio in northern Shan, and Yesagyo in Magway. These locations finish with an uninterrupted run of significant high-concentration quarters. The pattern points to sustained recent pressure across several regions, rather than a single nationwide centre. The run length describes continuity at the quarterly scale; it does not establish uninterrupted daily fighting.
+:::
+
+::: {.cluster-interpretation}
+**Sporadic hot spots.** Twelve locations have significant trends, including Kawkareik and Myawaddy in Kayin and Kyaukkyi in eastern Bago. They end as hot spots after an intermittent history, without a significant cold-spot episode. This eastern and southeastern concentration suggests recurring pressure that a cumulative map alone cannot distinguish from continuous concentration. Kawkareik's history below helps show the difference.
+:::
+
+::: {.cluster-interpretation}
+**Oscillating hot spots.** Seven locations combine a significant trend with a final hot bin and an earlier cold episode. Examples include Kyauktaga in eastern Bago, Taungtha in Mandalay and Ramree in Rakhine. Their locations span more than one part of Myanmar. The common feature is a switch in the statistical history, not a claim that they share the same conflict mechanism. Changes in reporting could contribute to those switches.
+:::
+
+::: {.cluster-interpretation}
+**Cold-spot patterns.** Significant consecutive and sporadic cold classes are prominent among Yangon townships. The five intensifying cold spots include Lanmadaw and several Shan townships. Matman has zero recorded events in the retained sample. This is especially important for interpretation: a statistically low concentration and a downward Gi* trend cannot demonstrate peace, adequate reporting or low humanitarian need. These patterns require contextual checking before any operational use.
+:::
+
+![Space time Gi star histories for three selected townships](figures/case-histories.png){#fig-histories fig-alt="Quarterly space-time Gi star trajectories for the largest-burden township, a selected increasing final hot spot, and a declining concentration."}
+
+::: {.interpretation}
+The cases use explicit selection rules rather than choosing attractive trajectories. They include the largest event total, the largest-burden final hot spot with a significant positive trend, and the largest-burden location with a significant negative trend. Filled points mark significant Gi* bins. Muse's declining concentration illustrates that a substantial accumulated count can coexist with weak recent hot-spot evidence. Abrupt changes also warn against treating a single monotonic trend as a full account of the conflict's history.
+:::
+
+```{r}
+tab(cases |> dplyr::select(Township = township, `State/region` = state, Events = events, Class = classification,
+                          tau, `MK p` = trend_p, `MK BH q` = trend_q, `2-quarter block p` = block2_p))
+```
+
+### How robust are the patterns?
+
+![Emerging hot spot maps under alternative neighbourhood and precision choices](figures/ehsa-sensitivity.png){#fig-sensitivity fig-alt="Comparison of EHSA maps under Queen neighbours, rook neighbours and precision 1-only event inclusion."}
+
+::: {.interpretation}
+Queen and rook produce the same EHSA class for **`r pct(s$rook_class_agreement)`** of mainland townships. Agreement with the precision 1-only analysis is **`r pct(s$precision_class_agreement)`**. The latter changes the reporting subset as well as location certainty, so disagreement cannot be attributed entirely to coordinate error. The main results should therefore be read as patterns in the chosen recorded sample. Areas that remain consistent across specifications provide a firmer basis for follow-up than those whose class changes.
+:::
+
+Gi* series have median lag-one autocorrelation **`r sprintf('%.2f', s$median_lag1)`**. Temporal neighbourhoods overlap, and ordinary Mann–Kendall assumes independence under its usual null. I therefore shuffle contiguous two-quarter and three-quarter blocks, recomputing the trend score for 999 permutations. The corresponding p < .05 counts are **`r s$block2_significant`** and **`r s$block3_significant`**, compared with `r s$trend_significant` under ordinary MK. These block tests preserve dependence inside short blocks, but neither guarantee removal of longer dependence nor account fully for seasonality. They are sensitivity evidence, not a universal correction. Bin-level BH classes are also saved in `ehsa-results.csv`; their adjustment family is all 6,213 mainland quarter bins per specification.
+
+## Value-added analysis: a spatial scan of redistribution
+
+### Why the extra method adds a different answer
+
+EHSA concerns neighbourhood concentration through time. The spatial scan asks a narrower comparison: **where did a larger share of national recorded events move between an early and recent window?** I compare January 2021–September 2022 with January 2024–September 2025. Both contain 21 months, with the same calendar-month composition. The intervening period is deliberately omitted from this contrast, while it remains in EHSA.
+
+A Bernoulli spatial scan treats recent events as cases and early events as controls. Circular candidates expand around township interior points, include 1–30 townships, and contain at most 20% of the combined early/recent events. The likelihood ratio compares the recent-event fraction inside a circle with the fraction outside. This conditions on reporting geography rather than using a population denominator. The null randomly reallocates period labels while holding township totals and the national recent-event total fixed. Each of 999 simulations repeats the entire search; the observed statistic is compared with the simulated **maximum**, accounting for the search over circles. At most three non-overlapping clusters are reported. The R implementation follows the [Bernoulli scan likelihood and Monte Carlo logic](https://www.satscan.org/papers/k-cstm1997.pdf); it does not run SaTScan software.
+
+![Spatial redistribution clusters with search adjusted significance](figures/redistribution-map.png){#fig-scan fig-alt="Three non-overlapping township groups with an increased recent share of recorded conflict, identified by a Bernoulli spatial scan."}
+
+::: {.interpretation}
+The strongest selected cluster is centred on **`r scan$centre[1]`**, spans `r scan$townships[1]` townships, and increases its share from **`r pct(scan$early_share[1])` to `r pct(scan$recent_share[1])`**. Its recent-to-early share ratio is **`r sprintf('%.2f', scan$share_ratio[1])`**, with search-adjusted p = **`r sprintf('%.3f', scan$search_adjusted_p[1])`**. This identifies a geographic shift beyond a general national increase. The cluster boundary depends on circular candidates and township representative points; it is not a front line or a forecast. Spatial and temporal dependence between related conflict events may make event-label permutations overconfident, so the scan remains exploratory.
+:::
+
+![Early and recent national shares for spatial scan clusters](figures/redistribution-shares.png){#fig-shares fig-alt="Grouped bars comparing each selected scan cluster's share of mainland events in the early and recent windows."}
+
+::: {.interpretation}
+The share comparison makes the scan's contribution visible. It distinguishes an increase in a cluster's importance within the national record from an increase that simply follows the countrywide total. The reported groups are non-overlapping, but they do not partition Myanmar and are not ranked aid-allocation recommendations. Differences in reporting access between the two windows could also shift recorded shares.
+:::
+
+```{r}
+tab(scan |> dplyr::select(Cluster = cluster, Centre = centre, Townships = townships, `Early events` = early_events,
+                         `Recent events` = recent_events, `Share ratio` = share_ratio, `Search-adjusted p` = search_adjusted_p))
+```
+
+## Integrated findings and peacebuilding implications
+
+Accumulated counts, local spatial association and temporal change answer different questions. **Monywa has the largest event total but no formal EHSA pattern under the stated rules.** Its burden is still substantial. Kawkareik illustrates a significant increasing concentration, while the scan's leading group around **`r scan$centre[1]`** identifies a shift towards recent events. A single ranking would hide those differences. Reported fatalities add another dimension: they describe estimated severity and can change the priority suggested by event frequency alone.
+
+For humanitarian preparedness, sustained high-burden neighbourhoods support maintaining capacity over time. Significant increasing concentrations suggest locations where field teams could check changing displacement, medical demand and access constraints. High-low outliers call for local verification because a township can stand apart from its immediate surroundings. The analysis does not locate safe travel corridors or justify tactical decisions.
+
+Township labels should start a discussion with local organisations, not settle it. Before reallocating support, combine the statistical evidence with current needs assessments, service capacity, displacement data and operational access. A cold spot may have fewer recorded events because reporting is difficult. Likewise, a diminishing hot spot may still face serious harm despite a declining relative concentration.
+
+## Limitations and what I would improve
+
+- **Reporting and measurement:** ACLED records reported events and uncertain fatality estimates. Access and source coverage can vary geographically and over time. There is no credible population-risk estimate here.
+- **Location uncertainty:** precision 2 makes up a substantial part of the sample. The precision 1 rerun changes which events are represented, not just their spatial accuracy. Eight unmatched points and eight conflicting non-missing township labels warrant source-level checking.
+- **Scale and boundaries:** the v9.4 layer is held fixed throughout the period. Township aggregation can conceal local variation and does not represent changing territorial control. Border neighbours outside Myanmar are absent from the spatial comparison.
+- **Statistical reference:** permutation tests assume exchangeability. Conflict episodes generate related events; overlapping space-time neighbourhoods induce dependence. BH and short-block checks improve transparency but do not establish independent evidence for every coloured township.
+- **Design sensitivity:** the first EHSA quarter lacks a lagged period; 19 quarters offer limited trend resolution. Circular scan candidates can miss irregular corridors. The chosen scan windows and maximum cluster size influence the findings.
+
+The most useful next step is to investigate the locations whose conclusions change with event precision, then add displacement or service-access information with a compatible observation period. This would improve the planning interpretation more than adding another map of the same counts.
+
+## Reproducing the analysis
+
+Open the repository's RStudio project. Download the original eLearn ACLED CSV to `Take-home_Ex/Take-home_Ex02/data/raw/`. The boundary script downloads MIMU v9.4 and checks its content hashes. Install packages recorded in `outputs/package-versions.csv`, then run:
+
+```{r}
+#| eval: false
+#| echo: true
+source("Take-home_Ex/Take-home_Ex02/analysis.R", encoding = "UTF-8")
+# Or render the report directly; its setup executes the same full workflow:
+# quarto render Take-home_Ex/Take-home_Ex02/technical-report.qmd
+```
+
+The seed is **6262026** for local tests, EHSA and block checks, and **6262126** for the scan. The local permutation code uses one core. Scripts check input hashes, row reconciliation, keys, cube balance and finite results. The report reads computed outputs for its numerical claims. The slides consume these same results after the report completes. Raw events, event-level intermediates and boundary geometry stay local. Published material contains original analytical figures and statistical summaries, with source attribution. Input access is required to reproduce the analysis.
+
+### Executable workflow
+
+The preparation code establishes the study window, records the sample exclusions and builds the cube. The analysis code sets the statistical reference and retains each Gi* series. The scan code implements a separate redistribution question. Figure code uses consistent count bands and neutral fills for non-significant areas. These are the same files called by a normal report render; the folds below display them without executing a second time.
+
+```{r}
+#| results: asis
+for (file in c("config.R", "prepare-boundaries.R", "prepare-events.R", "methods.R", "analysis.R", "scan.R", "visualise.R")) show_code02(file)
+```
+
+## References
+
+- ACLED. [Codebook](https://acleddata.com/sites/default/files/wp-content-archive/uploads/2024/09/ACLED-Codebook-2024.pdf), 3 October 2024. Myanmar course dataset accessed 8 October 2026; filtered to the stated dates and three event types, spatially aggregated to townships and time periods.
+- Raleigh, C., Kishi, R., & Linke, A. (2023). Political instability patterns are obscured by conflict dataset scope conditions, sources, and coding choices. *Humanities and Social Sciences Communications*. [doi:10.1057/s41599-023-01559-4](https://doi.org/10.1057/s41599-023-01559-4).
+- Myanmar Information Management Unit. [Myanmar Township Boundaries MIMU v9.4](https://geonode.themimu.info/layers/geonode%3Ammr_polbnda_adm3_250k_mimu_1), published 18 June 2023, accessed 8 October 2026. Boundaries and names do not imply official endorsement or acceptance by the United Nations. [Terms](https://themimu.info/mimu-terms-conditions).
+- Anselin, L. (1995). Local indicators of spatial association—LISA. *Geographical Analysis*, 27, 93–115. [doi:10.1111/j.1538-4632.1995.tb00338.x](https://doi.org/10.1111/j.1538-4632.1995.tb00338.x).
+- Bivand, R. & contributors. [spdep Local Moran documentation](https://r-spatial.github.io/spdep/reference/localmoran.html) and [local G/G* documentation](https://r-spatial.github.io/spdep/reference/localG.html). Installed versions recorded with the outputs.
+- Parry, J. & Locke, D. H. [sfdep documentation](https://sfdep.josiahparry.com/). Version 0.2.5 supplies the cube structure; its Gi* reference was inspected when choosing the explicit spdep space-time implementation.
+- Esri. [How Emerging Hot Spot Analysis works](https://doc.esri.com/en/arcgis-pro/latest/tool-reference/space-time-pattern-mining/learnmoreemerging.html). Pattern definitions adapted explicitly in R.
+- Kulldorff, M. (1997). A spatial scan statistic. *Communications in Statistics—Theory and Methods*, 26, 1481–1496. [Original paper](https://www.satscan.org/papers/k-cstm1997.pdf).
+- McLeod, A. I. [Kendall R package](https://cran.r-project.org/package=Kendall). Mann–Kendall implementation and time-series assumptions.
+
+The [Khant Min Naing](https://is415-geospatial-with-khant.netlify.app/take-home_ex/take-home_ex02/take-home_ex02.html) and [Matthew Ho](https://is415-gaa-matthew-ho.netlify.app/takehomeex/takehomeex2/the2.html) submissions informed the organisation and explanation of the workflow. This study uses its own Myanmar inputs, analytical decisions and computed results.

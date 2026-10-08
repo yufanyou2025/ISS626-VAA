@@ -1,0 +1,31 @@
+specification,classification,townships
+Precision 1 only,Consecutive cold spot,8
+Precision 1 only,Consecutive hot spot,21
+Precision 1 only,Intensifying cold spot,7
+Precision 1 only,New cold spot,1
+Precision 1 only,No pattern detected,202
+Precision 1 only,Oscillating cold spot,2
+Precision 1 only,Oscillating hot spot,4
+Precision 1 only,Persistent cold spot,15
+Precision 1 only,Sporadic cold spot,55
+Precision 1 only,Sporadic hot spot,12
+Queen,Consecutive cold spot,14
+Queen,Consecutive hot spot,20
+Queen,Intensifying cold spot,5
+Queen,New cold spot,2
+Queen,No pattern detected,188
+Queen,Oscillating cold spot,1
+Queen,Oscillating hot spot,8
+Queen,Persistent cold spot,16
+Queen,Sporadic cold spot,55
+Queen,Sporadic hot spot,18
+Rook,Consecutive cold spot,14
+Rook,Consecutive hot spot,20
+Rook,Intensifying cold spot,5
+Rook,New cold spot,2
+Rook,No pattern detected,188
+Rook,Oscillating cold spot,1
+Rook,Oscillating hot spot,8
+Rook,Persistent cold spot,16
+Rook,Sporadic cold spot,55
+Rook,Sporadic hot spot,18

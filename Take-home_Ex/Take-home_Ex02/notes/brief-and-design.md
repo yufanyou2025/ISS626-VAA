@@ -24,9 +24,9 @@ The two references to passenger trips and hexagons conflict with the objectives,
 
 1. Where are reported armed-conflict events concentrated, and which townships contrast with their neighbours?
 2. Which concentrations persist, intensify or emerge between 2021 and September 2025?
-3. Does an event-count priority map also capture the geography of reported fatalities, or does it miss a different form of burden?
+3. Where did the share of nationwide recorded conflict increase between comparable early and recent windows?
 
-The third question is a possible extension, subject to data inspection. A spatial scan statistic with an event-count offset could identify clusters of unusually high reported fatalities per recorded event. It would address severity conditional on reporting, not population risk. It should only be retained if it adds interpretable evidence beyond the core maps; no bonus is assumed.
+The third question is addressed with a Bernoulli spatial scan of early versus recent event labels. Equal 21-month windows and conditioning on national totals distinguish geographical redistribution from countrywide escalation. Circular candidates are tested against maximum statistics from 999 whole-search simulations. Related conflict events, reporting change and circle design remain limitations. Reported fatalities are a secondary burden measure in the core LMSA rather than a claim about civilian mortality risk.
 
 ## Decisions to verify against the supplied data
 
@@ -39,6 +39,7 @@ The third question is a possible extension, subject to data inspection. A spatia
 - **Neighbours:** Queen contiguity with a documented 10 m snapping tolerance; rook sensitivity. Three island townships have no Queen neighbours. Retain them in descriptive counts and the full cube, and mark spatial inference unavailable unless a defensible separate neighbourhood is adopted. Do not connect them to the mainland without justification.
 - **LMSA:** no self-neighbour for Local Moran; self included for Gi*. Conditional permutations and p < .05, with BH adjustment shown as a robustness check. State the null model and distinguish a high-value cluster from a high-low outlier.
 - **EHSA:** include present and previous quarter in the space-time neighbourhood; retain the calculated space-time Gi* series. Run Mann–Kendall on that series, not on raw event counts or unrelated spatial-only scores. Explain the classification rule, trend significance and the treatment of persistent clusters separately.
+- **Gi* reference:** the explicit graph uses `spdep::localG_perm()` over all 6,213 mainland township-quarter bins, including the focal bin, with conditional two-sided permutations and normalised combined weights. This fixed reference differs from sfdep 0.2.5's slice standardisation. The cube structure still uses sfdep. National temporal changes can contribute to EHSA; the scan separately conditions on window totals.
 - **Uncertainty:** compare Queen/rook and temporal aggregation where useful. Inspect serial dependence before treating ordinary Mann–Kendall p-values as reliable. A trend in relative spatial concentration is not automatically growth in absolute violence.
 
 ## Report narrative
