@@ -10,23 +10,24 @@
 
 ## Publication status
 
-Preparation milestones have been pushed to the `codex/take-home-ex02` GitHub branch. The final map-containing report and slides have not been published. No eLearn submission has occurred.
+Published on **17 October 2026** through the existing GitHub/Vercel production workflow, at website revision `9ce5f4f`. Exercise 2 is in the **Take-home Exercise** menu on all 18 pages with shared navigation, including Hands-on Exercise 7. Both executive-summary decks include a **Coursework home** link. No eLearn submission has occurred.
 
-The full report has completed a normal render from the original inputs, with result reuse disabled. Statistical checks passed for sample reconciliation, balanced cubes, significance masks, scan direction and class definitions. Browser checks found no missing figures, page errors, mobile overflow or slide clipping. The deck contains 10 content slides plus cover and contents. Principal visual interpretations are below 100 words each, and the four EHSA cluster discussions are below 80 words each.
+The full report completed a normal render from the original inputs on 8 October. Statistical checks passed for sample reconciliation, balanced cubes, significance masks, scan direction and class definitions. The publication update changes navigation and source links; it does not change the analytical results. Browser checks found no missing figures, page errors, mobile overflow or slide clipping. The deck contains 10 content slides plus cover and contents. Principal visual interpretations are below 100 words each, and the four EHSA cluster discussions are below 80 words each.
 
-The reproducible source and statistical outputs are on GitHub at source revision `83880a4`. Map image assets and rendered map-containing pages are retained locally pending the publication clarification below. Running the documented R workflow regenerates those figures from separately obtained inputs.
+Public checks on 17 October passed for all 18 shared menus and all 18 internal menu destinations. The browser followed Hands-on Exercise 7 → Exercise 2 report → executive summary → coursework home, checked both slide-deck home links, and tested the mobile menu without signing in.
 
-MIMU's boundary metadata and [Terms §2.3](https://themimu.info/mimu-terms-conditions) state that use of geospatial datasets in online platforms requires written permission. The downloaded geometry remains private. Confirmation of the course's publication permission, or clarification that its static analytical figures fall outside that restriction, is pending. The full local report can be reviewed while this is resolved.
+The site publishes static analytical figures and statistical summaries. Raw ACLED records, event-level intermediates, MIMU geometry and geometry-bearing derivatives remain excluded from Git, the site and the ZIP. Input access instructions and source terms are documented in `data/README.md`.
 
-Planned production addresses, **not yet verified or ready for eLearn**:
+Verified submission addresses:
 
-| Item | Planned URL |
+| Item | URL |
 |---|---|
+| Coursework home | https://iss-626-vaa.vercel.app/ |
 | Technical report | https://iss-626-vaa.vercel.app/Take-home_Ex/Take-home_Ex02/technical-report.html |
 | Executive summary | https://iss-626-vaa.vercel.app/Take-home_Ex/Take-home_Ex02/executive-summary.html |
-| GitHub source | https://github.com/yufanyou2025/ISS626-VAA/tree/codex/take-home-ex02/Take-home_Ex/Take-home_Ex02 |
+| GitHub source | https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex02 |
 
-After publication clearance: push the final source and rendered website through the existing production workflow, verify both pages and all coursework links without signing in, then enter the required links in eLearn. Retain the submission receipt. Do not submit the planned URLs before publication verification.
+Enter the required report, slides and GitHub links in eLearn and retain the submission receipt. Check the activity for any additional declaration or submission field. The submission ZIP records its exact Git revision in `PACKAGE_REVISION.txt` and the adjacent manifest.
 
 ## Deadline
 
