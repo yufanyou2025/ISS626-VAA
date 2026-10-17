@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="yufanyou2025">
+<meta name="dcterms.date" content="2026-10-17">
+
+<title>Hands-on Exercise 7: Measuring eldercare accessibility – ISS626-VAA</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">ISS626-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="/Take-home_Ex/Take-home_Ex01/technical-report.html">
+ <span class="dropdown-text">Exercise 1: Technical Report</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Take-home_Ex/Take-home_Ex01/executive-summary.html">
+ <span class="dropdown-text">Exercise 1: Executive Summary</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="https://github.com/yufanyou2025/ISS626-VAA">
+ <span class="dropdown-text">GitHub repository</span></a>
+  </li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html">
+ <span class="dropdown-text">Hands-on Exercise 1A: Geospatial Data Science</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html">
+ <span class="dropdown-text">Hands-on Exercise 1B: Thematic Mapping</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.html">
+ <span class="dropdown-text">Hands-on Exercise 2A: First-order Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.html">
+ <span class="dropdown-text">Hands-on Exercise 2B: Second-order Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exercise 3: Spatio-temporal Point Patterns</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html">
+ <span class="dropdown-text">Hands-on Exercise 4: Spatial Weights and Applications</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
+ <span class="dropdown-text">Hands-on Exercise 5A: Global Spatial Autocorrelation</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
+ <span class="dropdown-text">Hands-on Exercise 5B: Local Spatial Autocorrelation</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html">
+ <span class="dropdown-text">Hands-on Exercise 7: Eldercare Accessibility</span></a>
+  </li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="/In-class_Ex/In-class_Ex04/In-class_Ex04.html">
+ <span class="dropdown-text">In-class Exercise 4: Geographically Weighted Statistics</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/In-class_Ex/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-class Exercise 5: Emerging Hot Spot Analysis</span></a>
+  </li>
+        <li>
+    <a class="dropdown-item" href="/In-class_Ex/In-class_Ex06/In-class_Ex06.html">
+ <span class="dropdown-text">In-class Exercise 6: EHSA Sensitivity</span></a>
+  </li>
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-question" id="toc-the-question" class="nav-link active" data-scroll-target="#the-question"><span class="header-section-number">1</span> The question</a></li>
+  <li><a href="#preparing-and-checking-the-data" id="toc-preparing-and-checking-the-data" class="nav-link" data-scroll-target="#preparing-and-checking-the-data"><span class="header-section-number">2</span> Preparing and checking the data</a></li>
+  <li><a href="#hansen-potential-accessibility" id="toc-hansen-potential-accessibility" class="nav-link" data-scroll-target="#hansen-potential-accessibility"><span class="header-section-number">3</span> Hansen potential accessibility</a></li>
+  <li><a href="#kd2sfca-a-bounded-catchment" id="toc-kd2sfca-a-bounded-catchment" class="nav-link" data-scroll-target="#kd2sfca-a-bounded-catchment"><span class="header-section-number">4</span> KD2SFCA: a bounded catchment</a></li>
+  <li><a href="#sam-accounting-for-competition" id="toc-sam-accounting-for-competition" class="nav-link" data-scroll-target="#sam-accounting-for-competition"><span class="header-section-number">5</span> SAM: accounting for competition</a></li>
+  <li><a href="#comparing-methods-and-regions" id="toc-comparing-methods-and-regions" class="nav-link" data-scroll-target="#comparing-methods-and-regions"><span class="header-section-number">6</span> Comparing methods and regions</a></li>
+  <li><a href="#catchment-sensitivity" id="toc-catchment-sensitivity" class="nav-link" data-scroll-target="#catchment-sensitivity"><span class="header-section-number">7</span> Catchment sensitivity</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned"><span class="header-section-number">8</span> What I learned</a></li>
+  <li><a href="#sources-and-reproducibility" id="toc-sources-and-reproducibility" class="nav-link" data-scroll-target="#sources-and-reproducibility"><span class="header-section-number">9</span> Sources and reproducibility</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hands-on Exercise 7: Measuring eldercare accessibility</h1>
+<p class="subtitle lead">How three measures read the same Singapore origin–destination network</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>yufanyou2025 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="the-question" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-question"><span class="header-section-number">1</span> The question</h2>
+<p>Where do Singapore’s eldercare centres appear easier to reach from the supplied hexagon origins, and how much does that answer change with the accessibility measure? I follow the data-preparation, Hansen, KD2SFCA and spatial accessibility measure (SAM) sequence in <a href="https://r4gdsa.netlify.app/chap17.html">Chapter 17 of <em>R for Geospatial Data Science and Analytics</em></a>. I then compare their <strong>relative</strong> rankings and test the five-kilometre catchment choice. This is an exercise in method, not an assessment of whether actual older residents have enough services.</p>
+<p>The analysis uses the ZIP supplied for this exercise, not substituted web data. Its four inputs are Master Plan 2014 subzones, a hexagon grid, eldercare centre points and a precomputed network origin–destination (OD) matrix. The workbook describes three inputs as course-prepared teaching data. I therefore keep the raw archive and extracted data local; the site publishes my scripts, summaries and figures, but not the underlying OD records or shapefiles. The <a href="README.md">reproduction notes</a> and <a href="outputs/input-manifest.csv">input manifest</a> identify the exact files and checksums.</p>
+</section>
+<section id="preparing-and-checking-the-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="preparing-and-checking-the-data"><span class="header-section-number">2</span> Preparing and checking the data</h2>
+<p>The archive contains 323 subzones, 3125 hexagon origins, 120 eldercare destinations and 375,000 OD pairs. That is exactly 3125 × 120: every origin has one cost to every destination. The OD file has no missing or duplicated pair, and its total cost equals entry + network + exit cost within a numerical tolerance. Nine subzone geometries were initially invalid and were repaired before the regional join.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Validation check</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Subzones</td>
+<td style="text-align: left;">323</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hexagon origins</td>
+<td style="text-align: left;">3125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eldercare destinations</td>
+<td style="text-align: left;">120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OD pairs</td>
+<td style="text-align: left;">375000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Invalid subzones before repair</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Invalid subzones after repair</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missing or duplicate OD pairs</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minimum network distance (km)</td>
+<td style="text-align: left;">0.037</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maximum network distance (km)</td>
+<td style="text-align: left;">56.351</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CRS / cost unit</td>
+<td style="text-align: left;">EPSG:3414 / kilometres</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The shapefiles already use the SVY21 metre grid, although their <code>.prj</code> metadata omit the EPSG authority code. I <strong>assign</strong> EPSG:3414 to those existing coordinates; I do not transform them as though they were longitude and latitude. The OD cost is supplied in metres. Dividing by 1,000 makes the distance matrix consistent with the kilometres used by <code>SpatialAcc::ac()</code> and the five-kilometre catchment.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>subzones <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"Hands-on_Ex/Hands-on_Ex07/data/geospatial/MP14_SUBZONE_NO_SEA_PL.shp"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hexagons <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"Hands-on_Ex/Hands-on_Ex07/data/geospatial/hexagons.shp"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>centres <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"Hands-on_Ex/Hands-on_Ex07/data/geospatial/ELDERCARE.shp"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>subzones <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_valid</span>(sf<span class="sc">::</span><span class="fu">st_set_crs</span>(subzones, <span class="dv">3414</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>hexagons <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_set_crs</span>(hexagons, <span class="dv">3414</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>centres <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_set_crs</span>(centres, <span class="dv">3414</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>od <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"Hands-on_Ex/Hands-on_Ex07/data/aspatial/OD_Matrix.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(od[, <span class="fu">c</span>(<span class="st">"origin_id"</span>, <span class="st">"destination_id"</span>, <span class="st">"total_cost"</span>)],</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">names_from =</span> destination_id, <span class="at">values_from =</span> total_cost)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Align the rows and columns explicitly with the sf feature IDs before modelling.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>wide <span class="ot">&lt;-</span> wide[<span class="fu">match</span>(hexagons<span class="sc">$</span>fid, wide<span class="sc">$</span>origin_id), ]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>distance_km <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(wide[, <span class="fu">as.character</span>(centres<span class="sc">$</span>fid)]) <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The complete <a href="prepare.R">preparation script</a> also verifies the archive checksum, every required component, feature IDs, geometry validity and OD arithmetic. The <a href="analysis.R">analysis script</a> is the full runnable RStudio workflow. Both expect the repository as the working directory.</p>
+</section>
+<section id="hansen-potential-accessibility" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="hansen-potential-accessibility"><span class="header-section-number">3</span> Hansen potential accessibility</h2>
+<p>Following the chapter, I give each hexagon demand 100 and each centre capacity 100, then call Hansen potential with a distance-decay power of 0.5. This rewards proximity but allows more distant centres to contribute. The score has no direct interpretation as a count of available places. Its median is 88.7 in this dataset.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>demand <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">100</span>, <span class="fu">nrow</span>(hexagons))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>capacity <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">100</span>, <span class="fu">nrow</span>(centres))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>hansen <span class="ot">&lt;-</span> SpatialAcc<span class="sc">::</span><span class="fu">ac</span>(demand, capacity, distance_km,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">power =</span> <span class="fl">0.5</span>, <span class="at">family =</span> <span class="st">"Hansen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/hansen-map.png" class="img-fluid figure-img" alt="Singapore hexagon choropleth: Hansen potential is strongest across central and north-eastern areas, with small brown centre markers."></p>
+<figcaption>Hansen potential accessibility at Singapore hexagon origins, with eldercare centres overlaid.</figcaption>
+</figure>
+</div>
+<p>The darker central corridor is expected under a cumulative measure: several nearby destinations contribute to one origin. I joined each hexagon’s representative point to a planning region for a broad comparison. The Central Region’s median Hansen score is 355.2, against 15.8 in the West. This is a spatial description of the <strong>supplied centre network and synthetic weights</strong>, not evidence that one region’s eldercare needs are met better.</p>
+</section>
+<section id="kd2sfca-a-bounded-catchment" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="kd2sfca-a-bounded-catchment"><span class="header-section-number">4</span> KD2SFCA: a bounded catchment</h2>
+<p>The kernel-density two-step floating catchment area (KD2SFCA) calculation uses a five-kilometre catchment and power 2, as in the workbook. It relates weighted capacity to demand in overlapping service areas. Unlike Hansen potential, an origin with no reachable centre within the threshold receives zero.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>kd5 <span class="ot">&lt;-</span> SpatialAcc<span class="sc">::</span><span class="fu">ac</span>(demand, capacity, distance_km,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">d0 =</span> <span class="dv">5</span>, <span class="at">power =</span> <span class="dv">2</span>, <span class="at">family =</span> <span class="st">"KD2SFCA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/kd2sfca-map.png" class="img-fluid figure-img" alt="Singapore hexagon map of five-kilometre KD2SFCA scores, with many low or zero values away from reachable centres."></p>
+<figcaption>Five-kilometre KD2SFCA accessibility at the hexagon origins.</figcaption>
+</figure>
+</div>
+<p>Here 1,281 of the 3,125 origins have a zero five-kilometre score; the OD matrix confirms that every one of these has no destination within five kilometres. The median KD2SFCA score is only 3.25^{-8}, so the map uses its own legend and I do not compare its numeric values with Hansen scores. A zero is a property of this <strong>model catchment</strong>, not a proof that residents have no eldercare options.</p>
+</section>
+<section id="sam-accounting-for-competition" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sam-accounting-for-competition"><span class="header-section-number">5</span> SAM: accounting for competition</h2>
+<p>The spatial accessibility measure (SAM) uses a power-2 distance decay without the same hard five-kilometre cutoff. It gives a third way to account for the relationship between destination capacity and competing origins. The central tendency is 0.869; the resulting map remains concentrated nearer the existing centres.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sam <span class="ot">&lt;-</span> SpatialAcc<span class="sc">::</span><span class="fu">ac</span>(demand, capacity, distance_km,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">power =</span> <span class="dv">2</span>, <span class="at">family =</span> <span class="st">"SAM"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/sam-map.png" class="img-fluid figure-img" alt="Singapore hexagon map of SAM scores, with the strongest pattern in central areas and lower values towards the west."></p>
+<figcaption>Spatial accessibility measure scores at the hexagon origins.</figcaption>
+</figure>
+</div>
+</section>
+<section id="comparing-methods-and-regions" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="comparing-methods-and-regions"><span class="header-section-number">6</span> Comparing methods and regions</h2>
+<p>The three raw scales differ, so I first rank origins <strong>within</strong> each method. Their Spearman rank correlations are 0.905 for Hansen versus KD2SFCA, 0.986 for Hansen versus SAM, and 0.909 for KD2SFCA versus SAM. The broad geography is similar, but local rankings do move when the catchment and competition rules change. The percentile panels deliberately compare ranks, not equivalent score units.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/method-ranks.png" class="img-fluid figure-img" alt="Three side-by-side Singapore hexagon maps displaying within-method accessibility percentiles."></p>
+<figcaption>Within-method percentiles for Hansen, KD2SFCA and SAM.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/region-boxplots.png" class="img-fluid figure-img" alt="Boxplots of log-transformed accessibility scores across five Singapore planning regions, separately faceted by method."></p>
+<figcaption>Regional distributions of the three accessibility measures.</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Planning region</th>
+<th style="text-align: right;">Hexagons</th>
+<th style="text-align: right;">Hansen median</th>
+<th style="text-align: right;">KD2SFCA median</th>
+<th style="text-align: right;">KD2SFCA zeros</th>
+<th style="text-align: right;">SAM median</th>
+<th style="text-align: right;">Nearest centre, median km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CENTRAL REGION</td>
+<td style="text-align: right;">596</td>
+<td style="text-align: right;">355.214</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">2.371</td>
+<td style="text-align: right;">2.211</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NORTH-EAST REGION</td>
+<td style="text-align: right;">317</td>
+<td style="text-align: right;">233.089</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1.802</td>
+<td style="text-align: right;">2.438</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EAST REGION</td>
+<td style="text-align: right;">498</td>
+<td style="text-align: right;">81.031</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">207</td>
+<td style="text-align: right;">0.791</td>
+<td style="text-align: right;">4.320</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NORTH REGION</td>
+<td style="text-align: right;">631</td>
+<td style="text-align: right;">59.602</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">293</td>
+<td style="text-align: right;">0.720</td>
+<td style="text-align: right;">4.811</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WEST REGION</td>
+<td style="text-align: right;">1066</td>
+<td style="text-align: right;">15.770</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">701</td>
+<td style="text-align: right;">0.408</td>
+<td style="text-align: right;">7.663</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The regional boxplots show substantial variation <em>within</em> each region; a regional median is not a substitute for the origin-level pattern. Seventeen hexagons have representative points outside the subzone-region polygons. They remain in the maps and method comparison but are omitted from this regional table, rather than being assigned an invented region.</p>
+</section>
+<section id="catchment-sensitivity" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="catchment-sensitivity"><span class="header-section-number">7</span> Catchment sensitivity</h2>
+<p>I repeated KD2SFCA at ten kilometres to see how sensitive the zero result is to the threshold. Origins with no centre in range fall from 1281 at five kilometres to 639 at ten. The figure partitions all origins by their nearest network distance: 1844 within five kilometres, 642 in the next band, and 639 beyond ten.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/catchment-counts.png" class="img-fluid figure-img" alt="Three bars count hexagons with an eldercare destination within five kilometres, only five to ten kilometres away, or beyond ten kilometres."></p>
+<figcaption>Hexagon counts by network distance to the nearest eldercare centre.</figcaption>
+</figure>
+</div>
+<p>The threshold meaningfully changes the apparent coverage. The longest nearest-centre network distance is 32.5 km, although a distance is still not a travel time or a measure of practical access. I would want population by age, actual service capacity, eligibility, mobility and public-transport time before using these surfaces for a planning decision.</p>
+</section>
+<section id="what-i-learned" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="what-i-learned"><span class="header-section-number">8</span> What I learned</h2>
+<p>The most useful lesson was that the OD matrix’s ordering matters as much as the formula: a 3,125-by-120 matrix can be dimensionally correct and still connect the wrong origins to centres. Checking every <code>fid</code> before modelling made the workflow more trustworthy. I also learned that a high correlation between two accessibility maps does not make their scores interchangeable. Hansen describes cumulative opportunity, while the five-kilometre KD2SFCA imposes a boundary that leaves many origins at zero. Finally, changing that boundary to ten kilometres showed me how much of the result is an analytical choice rather than a fixed feature of Singapore.</p>
+<p>This exercise is limited by the prepared network, its unspecified centre-data vintage, and the identical 100-unit demand and capacity assignments. It cannot establish service adequacy, individual access, or causal effects. The regional summaries are descriptive only; no uncertainty interval or significance test is implied.</p>
+</section>
+<section id="sources-and-reproducibility" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sources-and-reproducibility"><span class="header-section-number">9</span> Sources and reproducibility</h2>
+<ul>
+<li><a href="https://r4gdsa.netlify.app/chap17.html">Chapter 17, <em>R for Geospatial Data Science and Analytics</em></a>, workflow and method parameters (accessed 17 October 2026).</li>
+<li><a href="https://search.r-project.org/CRAN/refmans/SpatialAcc/html/ac.html">SpatialAcc <code>ac()</code> documentation</a>, R function used for the three measures (accessed 17 October 2026).</li>
+<li>User-supplied <code>Hands-on Exercise 7.zip</code>, received 17 October 2026. The archive does not identify a separate publisher or collection date for the course-prepared layers. See the <a href="outputs/input-manifest.csv">manifest</a>, <a href="outputs/input-audit.csv">audit</a> and <a href="outputs/session-info.txt">session details</a>.</li>
+<li><a href="prepare.R">Preparation script</a> · <a href="analysis.R">Full analysis script</a> · <a href="README.md">Reproduction notes</a> · <a href="figures/hansen-map.png">Download the Hansen PNG</a>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
