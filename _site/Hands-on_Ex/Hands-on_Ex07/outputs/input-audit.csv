@@ -1,0 +1,11 @@
+check,result
+Subzones,323
+Hexagon origins,3125
+Eldercare destinations,120
+OD pairs,375000
+Invalid subzones before repair,9
+Invalid subzones after repair,0
+Missing or duplicate OD pairs,0
+Minimum network distance (km),0.037
+Maximum network distance (km),56.351
+CRS / cost unit,EPSG:3414 / kilometres

@@ -103,6 +103,17 @@ Mapping local Moran and Gi* results, with permutation tests and sensitivity to n
 
 [Explore Exercise 5B →](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.qmd)
 :::
+
+::: {.portfolio-card}
+::: {.portfolio-number}
+07 / Service access
+:::
+### Measuring eldercare accessibility
+
+Comparing Hansen, two-step catchment and spatial accessibility measures across Singapore's hexagon network.
+
+[Explore Exercise 7 →](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.qmd)
+:::
 :::
 
 ## In-class Exercise

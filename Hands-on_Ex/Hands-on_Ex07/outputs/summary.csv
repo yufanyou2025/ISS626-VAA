@@ -1,0 +1,13 @@
+measure,value
+Subzones,323
+Hexagon origins,3125
+Eldercare destinations,120
+Complete origin-destination pairs,375000
+Hexagons outside region polygons,17
+Hexagons with no centre within 5 km,1281
+Hexagons with no centre within 10 km,639
+Median nearest-network distance (km),4.0640102148
+Maximum nearest-network distance (km),32.450076016800004
+Hansen median,88.72174986510377
+KD2SFCA 5 km median,3.254851092512834e-8
+SAM median,0.8688001889300202
