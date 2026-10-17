@@ -1,0 +1,12 @@
+check,result
+Subzones,323
+Hexagon origins,3125
+Eldercare destinations,120
+OD pairs,375000
+Invalid subzones repaired,9
+Missing or duplicate OD pairs,0
+Unassigned planning regions,17
+Distance unit,network kilometres
+Demand / capacity assumption,100 per origin / 100 per centre
+Catchment limit,5 km (four bounded methods)
+Gaussian scale,2 km (no hard cutoff)

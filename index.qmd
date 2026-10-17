@@ -151,6 +151,17 @@ Testing whether Queen or rook contiguity changes Hunan's county-level hot-spot c
 [Explore In-class Exercise 6 →](In-class_Ex/In-class_Ex06/In-class_Ex06.qmd)
 :::
 
+::: {.portfolio-card}
+::: {.portfolio-number}
+07 / Service catchments
+:::
+### Geography of eldercare accessibility
+
+Comparing nearest-centre distance with five floating catchment measures and their different distance rules.
+
+[Explore In-class Exercise 7 →](In-class_Ex/In-class_Ex07/In-class_Ex07.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.
