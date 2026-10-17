@@ -16,7 +16,7 @@ format:
     progress: true
     hash: true
     toc: false
-    footer: "ISSS626 · Data: ACLED, accessed 8 Oct 2026 · Boundaries: MIMU v9.4"
+    footer: "[Coursework home](/index.html) · ISSS626 · Data: ACLED, accessed 8 Oct 2026 · Boundaries: MIMU v9.4"
     embed-resources: true
 execute:
   echo: false
@@ -181,5 +181,5 @@ The scan identifies a shift in recorded geography. Its clusters are exploratory 
 Use the maps to guide questions for local partners and needs assessments.
 :::
 
-[Technical report and complete methods](technical-report.qmd) · [Reproducible GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/codex/take-home-ex02/Take-home_Ex/Take-home_Ex02)
+[Technical report and complete methods](technical-report.qmd) · [Reproducible GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex02)
 

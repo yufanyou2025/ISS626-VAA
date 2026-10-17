@@ -235,7 +235,7 @@
     "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#research-question",
     "title": "Road fatalities in Greater Bangkok",
     "section": "Research question",
-    "text": "Research question\nWhere are located fatality records concentrated, and does clustering remain after allowing intensity to vary?\nThe analysis covers 530 records in six provinces.\nOne record represents a recorded fatality, not necessarily one distinct crash."
+    "text": "Research question\nWhere are located fatality records concentrated, and what changes when streets define the distance?\nThe regional analysis covers 530 records in six provinces. A central Bangkok street-network example uses 22 matched records.\nOne record represents a recorded fatality, not necessarily one distinct crash."
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01/executive-summary.html#study-area",
@@ -368,14 +368,14 @@
     "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#what-the-checks-establish",
     "title": "Road fatalities in Greater Bangkok",
     "section": "What the checks establish",
-    "text": "What the checks establish\n\n\n\n\n\n\n\n\nCheck\nResult\nInterpretation\n\n\n\n\nKDE bandwidth\nBroad concentration persists\nUseful regional description\n\n\nRepeated locations\n530 records → 503 locations\nBroad ordinary-L pattern remains\n\n\nIntensity bandwidth\nAdjusted curve changes substantially\nNo stable interaction conclusion\n\n\n\n\nAt 3 km bandwidth, one point contributes 30.0% of the total inverse-intensity weight."
+    "text": "What the checks establish\n\n\n\n\n\n\n\n\nCheck\nResult\nInterpretation\n\n\n\n\nRegional planar KDE\nBroad Bangkok concentration\nGuides local inspection\n\n\nRoad matching\n22 of 22 focus records\nPositions are near mapped roads\n\n\nNetwork KDE\nColour follows connected streets\nShows route-based concentration\n\n\nNetwork K/G\nUniform-by-road-length reference\nExploratory local comparison\n\n\n\n\nThe network map adds street context, but neither analysis measures risk per road user."
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01/executive-summary.html#conclusion-and-limitations",
     "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#conclusion-and-limitations",
     "title": "Road fatalities in Greater Bangkok",
     "section": "Conclusion and limitations",
-    "text": "Conclusion and limitations\nLocated records are concentrated, but the evidence for interaction between separate crashes is not robust.\nMissing locations, incomplete-year coverage, uncertain event identity, and planar distances limit interpretation.\nTechnical report and references · GitHub project\n\nMain sources: Kaggle / DDC compilation; geoBoundaries / OpenStreetMap; Thailand NSO; sf and spatstat documentation."
+    "text": "Conclusion and limitations\nLocated records are concentrated. The focused road map shows where a small matched subset lies along streets.\nMissing locations, incomplete-year coverage, uncertain crash identity, and a 2026 road snapshot limit interpretation. Evidence for interaction between separate crashes remains unresolved.\nTechnical report and references · GitHub project\n\nMain sources: Kaggle / DDC; geoBoundaries; OpenStreetMap contributors; R4GDSA Chapter 7; Gelb’s spNetwork documentation."
   },
   {
     "objectID": "index.html#take-home-exercise-1",
@@ -1468,5 +1468,26 @@
     "title": "Hands-on Exercise 7: Measuring eldercare accessibility",
     "section": "9 Sources and reproducibility",
     "text": "9 Sources and reproducibility\n\nChapter 17, R for Geospatial Data Science and Analytics, workflow and method parameters (accessed 17 October 2026).\nSpatialAcc ac() documentation, R function used for the three measures (accessed 17 October 2026).\nUser-supplied Hands-on Exercise 7.zip, received 17 October 2026. The archive does not identify a separate publisher or collection date for the course-prepared layers. See the manifest, audit and session details.\nPreparation script · Full analysis script · Reproduction notes · Download the Hansen PNG."
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01/executive-summary.html#a-closer-look-at-roads-in-central-bangkok",
+    "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#a-closer-look-at-roads-in-central-bangkok",
+    "title": "Road fatalities in Greater Bangkok",
+    "section": "A closer look at roads in central Bangkok",
+    "text": "A closer look at roads in central Bangkok\n\n\n22 records fall inside an 8 × 8 km square around the regional density peak; 22 match the mapped road component within 100 m.\n\n\nRoads: © OpenStreetMap contributors (ODbL), September 2026. Fatality records: Kaggle / DDC, January–September 2024."
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01/executive-summary.html#density-follows-routes-not-a-square-grid",
+    "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#density-follows-routes-not-a-square-grid",
+    "title": "Road fatalities in Greater Bangkok",
+    "section": "Density follows routes, not a square grid",
+    "text": "Density follows routes, not a square grid\n\n\nContinuous network KDE colours road segments by recorded fatalities per network kilometre. The display scale is 700 m of route distance.\n\n\nspNetwork quartic kernel, lixel centres, max_depth 8. The focused subset is exploratory; no traffic denominator is available."
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01/executive-summary.html#network-k-and-g-offer-a-different-comparison",
+    "href": "Take-home_Ex/Take-home_Ex01/executive-summary.html#network-k-and-g-offer-a-different-comparison",
+    "title": "Road fatalities in Greater Bangkok",
+    "section": "Network K and G offer a different comparison",
+    "text": "Network K and G offer a different comparison\n\n\n39 simulations place the same number of points approximately uniformly by road length. Pointwise bands do not give a global test.\n\n\nspNetwork network K/G; 100 m simulation resolution and steps to 1.5 km. The focus was selected from the observed pattern."
   }
 ]

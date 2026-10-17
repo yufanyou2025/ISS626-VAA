@@ -51,7 +51,7 @@ gi_n <- function(v, cl) sum(local$variable == v & local$specification == "Queen"
 
 The analysis covers **`r n(s$analytical_events)` events** and **`r n(s$fatalities)` reported fatalities**, from January 2021 to September 2025. It combines local spatial statistics with 19 quarterly observations. A spatial scan then asks where conflict gained a larger share of the national total.
 
-[Executive summary](executive-summary.qmd) · [GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/codex/take-home-ex02/Take-home_Ex/Take-home_Ex02)
+[Executive summary](executive-summary.qmd) · [GitHub project](https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex02)
 :::
 
 ## Study context and design

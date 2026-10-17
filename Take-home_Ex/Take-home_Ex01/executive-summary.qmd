@@ -16,7 +16,7 @@ format:
     progress: true
     hash: true
     toc: false
-    footer: "ISSS626 · Take-home Exercise 1"
+    footer: "[Coursework home](/index.html) · ISSS626 · Take-home Exercise 1"
     embed-resources: true
 ---
 
