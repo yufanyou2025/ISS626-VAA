@@ -162,6 +162,17 @@ Comparing nearest-centre distance with five floating catchment measures and thei
 [Explore In-class Exercise 7 →](In-class_Ex/In-class_Ex07/In-class_Ex07.qmd)
 :::
 
+::: {.portfolio-card}
+::: {.portfolio-number}
+08 / Retail geography
+:::
+### Modelling store trade areas
+
+Allocating Taichung village demand across stores with a Huff model, then comparing modelled market shares with observed sales shares.
+
+[Explore In-class Exercise 8 →](In-class_Ex/In-class_Ex08/In-class_Ex08.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.

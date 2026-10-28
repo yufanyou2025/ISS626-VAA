@@ -1,0 +1,10 @@
+check,value
+Source villages,622
+Villages with matched positive population,617
+Villages excluded for missing/zero population,5
+Modeled stores,28
+Sales rows,5499
+Sales codes outside the 28-store network,206
+Projected CRS,EPSG:3826
+Store attractiveness assumption,100 for each store
+Distance measure,straight-line metres from point-on-surface

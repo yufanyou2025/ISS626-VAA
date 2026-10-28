@@ -970,7 +970,7 @@
     "href": "index.html#in-class-exercise",
     "title": "Evidence, place & perspective",
     "section": "In-class Exercise",
-    "text": "In-class Exercise\n\n\n04 / Local economic variation\n\n\nGeographically weighted summary statistics\nComparing local means, robust summaries and kernel choices across Hunan’s counties.\nExplore In-class Exercise 4 →\n\n\n\n\n05 / Economic change through time\n\n\nEmerging hot spot analysis\nFollowing county GDP per capita across 17 years with space-time Gi*, Mann–Kendall trends and careful significance checks.\nExplore In-class Exercise 5 →\n\n\n\n\n06 / Neighbourhood sensitivity\n\n\nEmerging hot spots revisited\nTesting whether Queen or rook contiguity changes Hunan’s county-level hot-spot classifications.\nExplore In-class Exercise 6 →\n\n\n\n\n07 / Service catchments\n\n\nGeography of eldercare accessibility\nComparing nearest-centre distance with five floating catchment measures and their different distance rules.\nExplore In-class Exercise 7 →"
+    "text": "In-class Exercise\n\n\n04 / Local economic variation\n\n\nGeographically weighted summary statistics\nComparing local means, robust summaries and kernel choices across Hunan’s counties.\nExplore In-class Exercise 4 →\n\n\n\n\n05 / Economic change through time\n\n\nEmerging hot spot analysis\nFollowing county GDP per capita across 17 years with space-time Gi*, Mann–Kendall trends and careful significance checks.\nExplore In-class Exercise 5 →\n\n\n\n\n06 / Neighbourhood sensitivity\n\n\nEmerging hot spots revisited\nTesting whether Queen or rook contiguity changes Hunan’s county-level hot-spot classifications.\nExplore In-class Exercise 6 →\n\n\n\n\n07 / Service catchments\n\n\nGeography of eldercare accessibility\nComparing nearest-centre distance with five floating catchment measures and their different distance rules.\nExplore In-class Exercise 7 →\n\n\n\n\n08 / Retail geography\n\n\nModelling store trade areas\nAllocating Taichung village demand across stores with a Huff model, then comparing modelled market shares with observed sales shares.\nExplore In-class Exercise 8 →"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html",
@@ -1398,5 +1398,75 @@
     "title": "Evidence, place & perspective",
     "section": "Take-home Exercise 2",
     "text": "Take-home Exercise 2\nMyanmar’s changing conflict geography, January 2021–September 2025 examines township clusters, emerging concentrations and the redistribution of recorded armed conflict.\n\nTechnical report\nExecutive summary\nSource project on GitHub"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "",
+    "text": "I followed the sequence in Chapter 18, Retail Trade Area Analysis: prepare village demand and store supply, calculate a distance matrix, estimate Huff probabilities, and aggregate expected customers. The class screenshot adds one useful final step: assigning each village to its highest-probability store and drawing a trade-area map. My question is how much geography alone can explain the allocation of demand across this 28-store network.\nThe inputs come from the course-provided Hands-on_Ex08.zip (received 28 October 2026): STORES_TC, TOWN_TC and VILLAGE_TC shapefiles, 2019 village population, and a store-sales table. The shapefiles are in TWD97 / TM2 zone 121 (EPSG:3826), whose coordinates are measured in metres. I do not republish the raw ZIP because its redistribution terms were not provided. The complete RStudio analysis script, preparation script, reproduction notes, input checks and SHA-256 input manifest are available with this page. The sales observation period is not documented in the supplied file, so I do not label its totals as 2019 sales.\n\n\n\n\n\n\n\n\n\nInput check\nResult\n\n\n\n\nSource villages\n622\n\n\nVillages with matched positive population\n617\n\n\nVillages excluded for missing/zero population\n5\n\n\nModeled stores\n28\n\n\nSales rows\n5499\n\n\nSales codes outside the 28-store network\n206\n\n\nProjected CRS\nEPSG:3826\n\n\nStore attractiveness assumption\n100 for each store\n\n\nDistance measure\nstraight-line metres from point-on-surface\n\n\n\n\n\nFive of the 622 village polygons lack a matched, positive population record and are left out of the model. The store-sales file contains 234 distinct codes, but only 28 match the modelled network; other codes are not counted as the network’s sales. These exclusions matter when interpreting the predicted and observed shares."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#question-and-materials",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#question-and-materials",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "",
+    "text": "I followed the sequence in Chapter 18, Retail Trade Area Analysis: prepare village demand and store supply, calculate a distance matrix, estimate Huff probabilities, and aggregate expected customers. The class screenshot adds one useful final step: assigning each village to its highest-probability store and drawing a trade-area map. My question is how much geography alone can explain the allocation of demand across this 28-store network.\nThe inputs come from the course-provided Hands-on_Ex08.zip (received 28 October 2026): STORES_TC, TOWN_TC and VILLAGE_TC shapefiles, 2019 village population, and a store-sales table. The shapefiles are in TWD97 / TM2 zone 121 (EPSG:3826), whose coordinates are measured in metres. I do not republish the raw ZIP because its redistribution terms were not provided. The complete RStudio analysis script, preparation script, reproduction notes, input checks and SHA-256 input manifest are available with this page. The sales observation period is not documented in the supplied file, so I do not label its totals as 2019 sales.\n\n\n\n\n\n\n\n\n\nInput check\nResult\n\n\n\n\nSource villages\n622\n\n\nVillages with matched positive population\n617\n\n\nVillages excluded for missing/zero population\n5\n\n\nModeled stores\n28\n\n\nSales rows\n5499\n\n\nSales codes outside the 28-store network\n206\n\n\nProjected CRS\nEPSG:3826\n\n\nStore attractiveness assumption\n100 for each store\n\n\nDistance measure\nstraight-line metres from point-on-surface\n\n\n\n\n\nFive of the 622 village polygons lack a matched, positive population record and are left out of the model. The store-sales file contains 234 distinct codes, but only 28 match the modelled network; other codes are not counted as the network’s sales. These exclusions matter when interpreting the predicted and observed shares."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#preparing-village-demand-and-store-supply",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#preparing-village-demand-and-store-supply",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "2 Preparing village demand and store supply",
+    "text": "2 Preparing village demand and store supply\nI remove hyphens from the population table’s V_ID before joining it to VILLCODE. I aggregate sales by store code before joining the 28 store features, rather than allowing repeated transaction rows to duplicate spatial features. Following the workbook’s teaching setting, each store gets the same attractiveness value, 100. This is not a measured store floor area; it deliberately makes the allocation depend on distance alone.\n\n\nShow R code\npop &lt;- readr::read_csv(\"data/aspatial/pop2019.csv\") |&gt;\n  dplyr::mutate(V_ID = gsub(\"-\", \"\", V_ID, fixed = TRUE))\nsales &lt;- readr::read_csv(\"data/aspatial/Store_sales_data.csv\") |&gt;\n  dplyr::group_by(`Store Code`) |&gt;\n  dplyr::summarise(Total_Sales = sum(Amount, na.rm = TRUE),\n                   .groups = \"drop\")\nvillage &lt;- dplyr::left_join(village_sf, pop,\n                            by = dplyr::join_by(VILLCODE == V_ID)) |&gt;\n  dplyr::filter(!is.na(P_CNT), P_CNT &gt; 0)\nstores &lt;- dplyr::left_join(stores_sf, sales,\n                           by = dplyr::join_by(Store_CD == `Store Code`)) |&gt;\n  dplyr::mutate(Store_size = 100)\n\n\nThe excerpt shows the join logic; the running preparation script supplies the explicit file paths, key checks, CRS assertion and input manifest.\n\n\n\nModelled Taichung villages and the 28 stores."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#building-the-villagestore-distance-matrix",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#building-the-villagestore-distance-matrix",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "3 Building the village–store distance matrix",
+    "text": "3 Building the village–store distance matrix\nFor each village I use st_point_on_surface() to get an origin point inside its polygon. st_distance() in EPSG:3826 gives straight-line distances in metres. After pivoting the matrix, I check there is exactly one row for each village–store pair: 17,276 rows in all. A point on the polygon is a convenient spatial proxy, not a household address, and straight-line distance is not road travel time.\n\n\nShow R code\norigins &lt;- sf::st_point_on_surface(village)\ndistance_matrix &lt;- units::drop_units(sf::st_distance(origins, stores))\n# Pivot to VILLCODE, Store_CD and distance; then verify every pair is unique."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#huff-probabilities-and-the-bt-example",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#huff-probabilities-and-the-bt-example",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "4 Huff probabilities and the BT example",
+    "text": "4 Huff probabilities and the BT example\nI use the MCI package’s huff.shares() with attraction exponent gamma = 1 and distance exponent lambda = -2. The probability that village (i) chooses store (j) is\n[ p_{ij}= {k A_k^d{ik}^}. ]\nWith every (A_j=100), this is a normalized inverse-square distance model. The script independently recomputes that formula and verifies that the 28 probabilities for each village sum to one.\n\n\nShow R code\nhuff &lt;- MCI::huff.shares(interaction,\n                         \"VILLCODE\", \"Store_CD\", \"Store_size\", \"distance\",\n                         gamma = 1, lambda = -2)\nstopifnot(max(abs(dplyr::summarise(\n  dplyr::group_by(huff, VILLCODE), total = sum(p_ij))$total - 1)) &lt; 1e-8)\n\n\n\n\n\nEstimated probability of choosing store BT from each modelled village.\n\n\nThe median local probability for BT is 1.9%. That low median does not mean BT is weak in its immediate neighbourhood: its darker catchment is compact, while the many distant villages dilute the citywide median. This is a modelled choice probability, not observed customer movement."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#assigning-the-leading-store",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#assigning-the-leading-store",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "5 Assigning the leading store",
+    "text": "5 Assigning the leading store\nThe class screenshot shows a categorical map of trade areas. I assign each village to the store with its largest (p_{ij}), breaking any ties by store code. In the equal-size version of the Huff model, this is exactly the nearest store; the analysis script checks that identity against the distance matrix. The median leading-store probability is 41.2%, so a coloured village is not necessarily an exclusive or even majority market for its leading store.\n\n\n\nTrade areas of the 28 stores, using each village’s highest Huff probability.\n\n\nThis map follows the screenshot’s trade-area composition, but the coloured boundaries should not be mistaken for barriers to cross-shopping. The underlying probabilities still spread every village’s demand across all 28 stores."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#expected-customers-and-observed-sales-shares",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#expected-customers-and-observed-sales-shares",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "6 Expected customers and observed sales shares",
+    "text": "6 Expected customers and observed sales shares\nshares.total() weights each village’s probabilities by its population. The resulting sum_E_j values are expected people, not sales in currency. I verified their sum equals the 2,804,359 people represented by the matched villages. To compare like with like as far as the data allow, I divide each store’s modelled people by total modelled people and each store’s sales by total sales within the same 28-store network. The comparison is of relative shares, not equivalent units or a formal validation against customer counts.\n\n\n\nModelled population share versus observed sales share for each store.\n\n\nThe two share rankings have a Spearman correlation of 0.573, while the mean absolute store-level difference is 0.91 percentage points. For example, TG’s modelled share is 3.4% against 1.1% of network sales. The gap is worth investigating, but I cannot attribute it to store performance: equal attractiveness, straight-line distance, spending per customer and the unknown sales period can all contribute.\n\n\n\n\n\nStore\nModelled share\nSales share\nGap (pp)\n\n\n\n\nTG\n0.034\n0.011\n2.228\n\n\nQH\n0.038\n0.019\n1.926\n\n\nZS\n0.037\n0.018\n1.889\n\n\nSQ\n0.031\n0.015\n1.612\n\n\nDD\n0.029\n0.044\n-1.474\n\n\nZK\n0.031\n0.044\n-1.202"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#a-small-distance-decay-sensitivity-check",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#a-small-distance-decay-sensitivity-check",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "7 A small distance-decay sensitivity check",
+    "text": "7 A small distance-decay sensitivity check\nI recalculated the model with distance exponents of −1, −2 and −3 while keeping the equal store sizes. BT’s median local probability changes substantially, but its population-weighted network share remains close to five per cent. More generally, the leading-store assignments do not change here: with identical attractiveness, any negative exponent still ranks stores by distance. This is a check on model specification, not an estimate of the true customer-choice exponent.\n\n\n\n\n\nDistance exponent\nBT weighted share\nBT median village probability\n\n\n\n\n-1\n0.0459\n0.0316\n\n\n-2\n0.0493\n0.0187\n\n\n-3\n0.0490\n0.0068"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#what-i-learned",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#what-i-learned",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "8 What I learned",
+    "text": "8 What I learned\nThe most useful distinction for me was between a probability surface and a trade-area label. The BT map retains the gradual decline and competition, while the 28-colour map compresses each village to one winner. With equal store size, that colourful result is ultimately a nearest-store map; it does not reveal a separately estimated commercial pull.\nThe second lesson was about units. Multiplying village population by Huff probabilities produces an allocation of people, not a revenue forecast. Normalized shares permit a cautious comparison with the sales table, but they do not control for spending, store scale, transport links or temporal mismatch. A stronger follow-up would use measured store area or transaction counts by origin, road-network travel times, and an estimated distance-decay parameter before judging the model’s predictive value."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#sources",
+    "href": "In-class_Ex/In-class_Ex08/In-class_Ex08.html#sources",
+    "title": "In-class Exercise 8: Modelling retail trade areas",
+    "section": "9 Sources",
+    "text": "9 Sources\n\nR for Geospatial Data Science and Analytics, Chapter 18: Retail Trade Area Analysis — analytical sequence and Huff-model teaching settings.\nMCI package documentation — Huff share and total functions.\nCourse-provided Hands-on_Ex08.zip, received 28 October 2026 — Taichung stores, villages, population and sales. The manifest records exact input hashes; the raw data are not redistributed."
   }
 ]

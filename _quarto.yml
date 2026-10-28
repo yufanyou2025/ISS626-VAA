@@ -27,6 +27,13 @@ project:
     - "In-class_Ex/In-class_Ex07/analysis.R"
     - "In-class_Ex/In-class_Ex07/README.md"
     - "!In-class_Ex/In-class_Ex07/cache/"
+    - "In-class_Ex/In-class_Ex08/figures/"
+    - "In-class_Ex/In-class_Ex08/outputs/"
+    - "In-class_Ex/In-class_Ex08/analysis.R"
+    - "In-class_Ex/In-class_Ex08/prepare.R"
+    - "In-class_Ex/In-class_Ex08/README.md"
+    - "!In-class_Ex/In-class_Ex08/data/"
+    - "!In-class_Ex/In-class_Ex08/cache/"
     - "Hands-on_Ex/Hands-on_Ex04/figures/"
     - "Hands-on_Ex/Hands-on_Ex04/outputs/"
     - "!Hands-on_Ex/Hands-on_Ex04/data/"
@@ -107,6 +114,8 @@ website:
             href: "In-class_Ex/In-class_Ex06/In-class_Ex06.qmd"
           - text: "In-class Exercise 7: Eldercare Catchment Methods"
             href: "In-class_Ex/In-class_Ex07/In-class_Ex07.qmd"
+          - text: "In-class Exercise 8: Retail Trade Areas"
+            href: "In-class_Ex/In-class_Ex08/In-class_Ex08.qmd"
     right:
       - href: index.qmd
         text: Home

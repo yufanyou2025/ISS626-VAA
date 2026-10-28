@@ -1,0 +1,9 @@
+measure,value
+Modeled villages,617
+Stores,28
+Village-store pairs,17276
+Population represented,2804359
+BT median local probability,0.01870452391293173
+Median leading-store probability,0.41239955124554356
+Spearman rank correlation,0.5730706075533661
+Mean absolute share gap (percentage points),0.9114096609657868
