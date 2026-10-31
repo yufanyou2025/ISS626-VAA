@@ -41,7 +41,12 @@ body:not(:has(.report-actions)) .header-section-number { color: #81745b; }
 body:not(:has(.report-actions)) :is(table,.table) { color: #252b2c; font-variant-numeric: tabular-nums; font-size: .9rem; }
 body:not(:has(.report-actions)) thead { background: #e8e4da; border-bottom: 2px solid #a18449; }
 body:not(:has(.report-actions)) :is(td,th) { padding: .65rem .8rem; border-color: #dcd7cb; }
-body:not(:has(.report-actions)) .code-fold { margin: 1rem 0; padding: .7rem 1rem; border: 1px solid #dcd7cb; background: #fffefa; border-radius: 3px; }
+body:not(:has(.report-actions)) .code-fold { margin: 1rem 0; padding: .7rem 1rem; border: 1px solid #dcd7cb; background: #fffefa; border-radius: 3px; max-width: 100%; overflow-x: auto; }
+body:not(:has(.report-actions)) .cell,
+body:not(:has(.report-actions)) .code-copy-outer-scaffold { min-width: 0; max-width: 100%; overflow-x: auto; }
+@media (max-width: 600px) {
+  html, body { overflow-x: hidden; }
+}
 body:not(:has(.report-actions)) .code-fold summary { color: #73551c; font-size: .85rem; font-weight: 600; }
 body:not(:has(.report-actions)) div.sourceCode { background: #eeece6; border: 0; box-shadow: none; }
 body:not(:has(.report-actions)) code { color: #3b5954; }

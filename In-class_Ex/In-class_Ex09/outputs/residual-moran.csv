@@ -1,0 +1,3 @@
+model,Moran_I,Monte_Carlo_p,neighbours_within_1500m_isolated,permutations
+Revised OLS,0.14388758038615426,0.002,0,499
+Adaptive GWR,-0.01605054821169814,0.028,0,499

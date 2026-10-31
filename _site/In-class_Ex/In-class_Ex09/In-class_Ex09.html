@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="yufanyou2025">
+<meta name="dcterms.date" content="2026-10-31">
+
+<title>Hands-on Exercise 9: Hedonic pricing across Singapore – ISS626-VAA</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISS626-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/technical-report.html">
+ <span class="dropdown-text">Exercise 1: Technical Report</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/executive-summary.html">
+ <span class="dropdown-text">Exercise 1: Executive Summary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/technical-report.html">
+ <span class="dropdown-text">Exercise 2: Technical Report</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/executive-summary.html">
+ <span class="dropdown-text">Exercise 2: Executive Summary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/yufanyou2025/ISS626-VAA">
+ <span class="dropdown-text">GitHub repository</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01a.html">
+ <span class="dropdown-text">Hands-on Exercise 1A: Geospatial Data Science</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01b.html">
+ <span class="dropdown-text">Hands-on Exercise 1B: Thematic Mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02a.html">
+ <span class="dropdown-text">Hands-on Exercise 2A: First-order Point Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02b.html">
+ <span class="dropdown-text">Hands-on Exercise 2B: Second-order Point Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exercise 3: Spatio-temporal Point Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html">
+ <span class="dropdown-text">Hands-on Exercise 4: Spatial Weights and Applications</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
+ <span class="dropdown-text">Hands-on Exercise 5A: Global Spatial Autocorrelation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
+ <span class="dropdown-text">Hands-on Exercise 5B: Local Spatial Autocorrelation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html">
+ <span class="dropdown-text">Hands-on Exercise 7: Eldercare Accessibility</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex04/In-class_Ex04.html">
+ <span class="dropdown-text">In-class Exercise 4: Geographically Weighted Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-class Exercise 5: Emerging Hot Spot Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex06/In-class_Ex06.html">
+ <span class="dropdown-text">In-class Exercise 6: EHSA Sensitivity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex07/In-class_Ex07.html">
+ <span class="dropdown-text">In-class Exercise 7: Eldercare Catchment Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex08/In-class_Ex08.html">
+ <span class="dropdown-text">In-class Exercise 8: Retail Trade Areas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex09/In-class_Ex09.html">
+ <span class="dropdown-text">Hands-on Exercise 9: Hedonic Pricing</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aim-and-data" id="toc-aim-and-data" class="nav-link active" data-scroll-target="#aim-and-data"><span class="header-section-number">1</span> Aim and data</a></li>
+  <li><a href="#exploring-prices-and-locations" id="toc-exploring-prices-and-locations" class="nav-link" data-scroll-target="#exploring-prices-and-locations"><span class="header-section-number">2</span> Exploring prices and locations</a></li>
+  <li><a href="#from-simple-to-multiple-regression" id="toc-from-simple-to-multiple-regression" class="nav-link" data-scroll-target="#from-simple-to-multiple-regression"><span class="header-section-number">3</span> From simple to multiple regression</a></li>
+  <li><a href="#diagnosing-the-global-model" id="toc-diagnosing-the-global-model" class="nav-link" data-scroll-target="#diagnosing-the-global-model"><span class="header-section-number">4</span> Diagnosing the global model</a></li>
+  <li><a href="#fixed-and-adaptive-gwr" id="toc-fixed-and-adaptive-gwr" class="nav-link" data-scroll-target="#fixed-and-adaptive-gwr"><span class="header-section-number">5</span> Fixed and adaptive GWR</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned"><span class="header-section-number">6</span> What I learned</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources"><span class="header-section-number">7</span> Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hands-on Exercise 9: Hedonic pricing across Singapore</h1>
+<p class="subtitle lead">Global and geographically weighted models of 2015 condominium resales</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>yufanyou2025 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="aim-and-data" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="aim-and-data"><span class="header-section-number">1</span> Aim and data</h2>
+<p>I followed the sequence in <a href="https://r4gdsa.netlify.app/chap13.html">Chapter 13, <em>Calibrating Hedonic Pricing Model for Private Highrise Property with GWR Method</em></a>: prepare spatial and transaction data, inspect the outcome and predictors, fit global hedonic regressions, check their residuals, then compare fixed and adaptive geographically weighted regression (GWR). The practical question is whether one set of price coefficients describes the whole 2015 resale sample adequately.</p>
+<p>The course-provided <code>Hands-on_Ex09.zip</code> contains 2015 condominium resale records and the Master Plan 2014 subzone shapefile. I used the archive found on the Desktop on 31 October 2026. It contains no data dictionary or redistribution permission, so I do not publish the raw files. The <a href="analysis.R">RStudio analysis script</a>, <a href="prepare.R">data preparation script</a>, <a href="README.md">reproduction guide</a>, <a href="outputs/input-audit.csv">input audit</a> and <a href="outputs/input-manifest.csv">SHA-256 manifest</a> let a reader check what was used.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Input check</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Condominium resale records</td>
+<td style="text-align: left;">1436</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Master Plan 2014 subzones</td>
+<td style="text-align: left;">323</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Invalid source subzone geometries repaired</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transactions outside the subzone union</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Repeated transaction coordinates retained</td>
+<td style="text-align: left;">69</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Missing analysis values</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Analysis CRS</td>
+<td style="text-align: left;">EPSG:3414 (metres)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome period</td>
+<td style="text-align: left;">2015 resale transactions</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The polygon file identifies its coordinate system as SVY21 but has no numeric EPSG identifier. After repairing nine invalid polygons, I transform it to EPSG:3414. The transaction longitude and latitude fields are WGS84 coordinates, which I transform from EPSG:4326 to the same metre-based system. All 1,436 records fall inside the subzone union. I retain the 69 records at repeated coordinates: they can represent separate sales at one property, and deleting them would change the transaction sample without evidence of duplication.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>subzones <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"data/geospatial/MP14_SUBZONE_WEB_PL.shp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_make_valid</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3414</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>condo <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/aspatial/Condo_resale_2015.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"LONGITUDE"</span>, <span class="st">"LATITUDE"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3414</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The excerpt shows the core transformations; <a href="prepare.R">the running script</a> supplies project-relative paths and validation checks.</p>
+</section>
+<section id="exploring-prices-and-locations" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="exploring-prices-and-locations"><span class="header-section-number">2</span> Exploring prices and locations</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/price-distribution.png" class="img-fluid figure-img" alt="Histogram of 1,436 condominium resale transactions with a long right tail reaching S$18 million."></p>
+<figcaption>Distribution of 2015 condominium resale prices.</figcaption>
+</figure>
+</div>
+<p>The median sale is S$1,383,222, while the maximum is S$1.8e+07. This long upper tail matters for a level-price regression: a few very expensive homes can have disproportionate influence. I calculate a log-price field for exploratory checking, but keep the workbook’s level-price outcome for the main OLS–GWR comparison so the models remain on the same scale.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/size-price.png" class="img-fluid figure-img" alt="Scatterplot of area in square metres against resale price in S$ million, with a positive OLS trend and several expensive outliers."></p>
+<figcaption>Relationship between floor area and resale price.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/transaction-map.png" class="img-fluid figure-img" alt="Singapore map with condominium transaction points coloured by log selling price over pale subzone polygons."></p>
+<figcaption>2015 resale locations over Master Plan 2014 subzones.</figcaption>
+</figure>
+</div>
+<p>The transactions are concentrated in developed parts of the island rather than spread uniformly across all 323 subzones. An empty subzone on this map is not evidence of low prices; it may simply have no transaction in this dataset. The interactive version below allows closer inspection of the points.</p>
+<iframe src="figures/transaction-interactive.html" title="Interactive map of 2015 condominium resales" style="width:100%;height:580px;border:1px solid #d7d1c5;border-radius:8px" loading="lazy">
+</iframe>
+</section>
+<section id="from-simple-to-multiple-regression" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="from-simple-to-multiple-regression"><span class="header-section-number">3</span> From simple to multiple regression</h2>
+<p>The simple model relates sale price to floor area. The revised multiple model keeps the set of structural and proximity variables used in the chapter. I also fit the chapter’s broader initial model to show how the revision changes model fit. <code>LEASEHOLD_99YR</code> is not entered alongside the intercept and the other tenure indicators. I do not treat a small p-value as proof that a proximity measure causes a price change: location, building quality and buyer selection can confound the associations.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(SELLING_PRICE <span class="sc">~</span> AREA_SQM, <span class="at">data =</span> sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>(condo09))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>revised <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  SELLING_PRICE <span class="sc">~</span> AREA_SQM <span class="sc">+</span> AGE <span class="sc">+</span> PROX_CBD <span class="sc">+</span> PROX_CHILDCARE <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    PROX_MRT <span class="sc">+</span> PROX_ELDERLYCARE <span class="sc">+</span> PROX_URA_GROWTH_AREA <span class="sc">+</span> PROX_PARK <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    PROX_PRIMARY_SCH <span class="sc">+</span> PROX_SHOPPING_MALL <span class="sc">+</span> PROX_BUS_STOP <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    NO_Of_UNITS <span class="sc">+</span> FAMILY_FRIENDLY <span class="sc">+</span> FREEHOLD,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>(condo09)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">R&lt;U+00B2&gt;</th>
+<th style="text-align: right;">In-sample RMSE (S$)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Simple OLS</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">43587.77</td>
+<td style="text-align: right;">0.452</td>
+<td style="text-align: right;">942005.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Full OLS</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">42970.77</td>
+<td style="text-align: right;">0.652</td>
+<td style="text-align: right;">750799.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Revised OLS</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">42967.14</td>
+<td style="text-align: right;">0.651</td>
+<td style="text-align: right;">751998.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Floor area alone explains 45.2% of the sample price variation. The revised model explains 65.1%. Its floor-area coefficient is about S<span class="math inline">\(12,778 per additional square metre and its age coefficient is about S\)</span>-24,688 per additional year, conditional on the other included fields. These are fitted sample associations, not isolated causal effects. The revised model has slightly lower AICc than the full one, even though its in-sample RMSE is marginally higher; adding variables can improve raw fit without sufficiently offsetting the complexity penalty.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/predictor-correlation.png" class="img-fluid figure-img" alt="Square correlation heatmap for 14 structural and locational predictors, with copper for negative and forest green for positive correlations."></p>
+<figcaption>Correlations among the revised hedonic predictors.</figcaption>
+</figure>
+</div>
+<p>The largest variance inflation factor in the revised model is 3.26. That does not remove all concern about local collinearity: GWR uses much smaller effective neighbourhoods than the global model, so its local coefficients can be less stable even when the global VIFs look moderate.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Predictor</th>
+<th style="text-align: right;">VIF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">PROX_CHILDCARE</td>
+<td style="text-align: right;">3.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PROX_BUS_STOP</td>
+<td style="text-align: right;">2.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PROX_PRIMARY_SCH</td>
+<td style="text-align: right;">2.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PROX_MRT</td>
+<td style="text-align: right;">1.91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PROX_CBD</td>
+<td style="text-align: right;">1.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PROX_ELDERLYCARE</td>
+<td style="text-align: right;">1.52</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="diagnosing-the-global-model" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="diagnosing-the-global-model"><span class="header-section-number">4</span> Diagnosing the global model</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ols-residual-diagnostic.png" class="img-fluid figure-img" alt="Scatterplot of OLS residuals against fitted resale prices, showing the zero line, a smooth trend and large positive outliers."></p>
+<figcaption>Residuals against fitted values for the revised OLS model.</figcaption>
+</figure>
+</div>
+<p>The residual plot shows a long positive tail and a pattern that the linear model does not fully absorb. I therefore treat its conventional coefficient tests cautiously. A log-price model is a useful alternative to explore, but it changes coefficient interpretation and cannot be compared with the level-price model by directly reading their AICc values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ols-residual-map.png" class="img-fluid figure-img" alt="Singapore map of OLS errors at transaction locations, using a diverging copper-to-forest scale capped symmetrically for visual display."></p>
+<figcaption>Spatial distribution of revised OLS residuals.</figcaption>
+</figure>
+</div>
+<p>For the map only, I cap residual colours symmetrically at the 98th percentile of absolute errors, about S$1,753,110. The regression and spatial test use the uncapped errors. Without this display cap, the S$12.2 million maximum positive residual would flatten nearly all other map colours.</p>
+<p>Following the chapter, I define neighbours within 1,500 metres using projected coordinates and row-standardised weights. The graph has 10 disconnected components but no isolated transaction. I use 499 permutations and an explicitly two-sided, plus-one Monte Carlo comparison. Its smallest attainable p-value is 0.002, not zero.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">dnearneigh</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(condo), <span class="dv">0</span>, <span class="dv">1500</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wt <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb, <span class="at">style =</span> <span class="st">"W"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20261031</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">moran.mc</span>(<span class="fu">residuals</span>(revised), wt, <span class="at">nsim =</span> <span class="dv">499</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The running script computes a plus-one rank p-value from test$res.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Residual set</th>
+<th style="text-align: right;">Moran’s I</th>
+<th style="text-align: right;">Two-sided Monte Carlo p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Revised OLS</td>
+<td style="text-align: right;">0.144</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adaptive GWR</td>
+<td style="text-align: right;">-0.016</td>
+<td style="text-align: right;">0.028</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The revised OLS residual Moran’s I is 0.144 with p = 0.002. Nearby model errors are more similar than a random permutation would usually produce under this neighbour definition. This is evidence of remaining spatial structure, not proof that one specific omitted variable caused it.</p>
+</section>
+<section id="fixed-and-adaptive-gwr" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="fixed-and-adaptive-gwr"><span class="header-section-number">5</span> Fixed and adaptive GWR</h2>
+<p>I use the same revised formula and same records for both local models. The chapter’s Gaussian kernel and leave-one-out cross-validation choose a fixed distance bandwidth of 971 metres and an adaptive bandwidth of 30 nearest observations. The latter grows its geographical reach where transactions are sparse and contracts in dense areas. Both distances are computed in EPSG:3414, so the fixed value is metres, not degrees.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bw_fixed <span class="ot">&lt;-</span> GWmodel<span class="sc">::</span><span class="fu">bw.gwr</span>(revised_formula09, <span class="at">data =</span> sf_sp09,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">approach =</span> <span class="st">"CV"</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">adaptive =</span> <span class="cn">FALSE</span>, <span class="at">longlat =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> GWmodel<span class="sc">::</span><span class="fu">gwr.basic</span>(revised_formula09, <span class="at">data =</span> sf_sp09,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bw =</span> bw_fixed, <span class="at">kernel =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">adaptive =</span> <span class="cn">FALSE</span>, <span class="at">longlat =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>bw_adaptive <span class="ot">&lt;-</span> GWmodel<span class="sc">::</span><span class="fu">bw.gwr</span>(revised_formula09, <span class="at">data =</span> sf_sp09,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">approach =</span> <span class="st">"CV"</span>, <span class="at">kernel =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">adaptive =</span> <span class="cn">TRUE</span>, <span class="at">longlat =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>adaptive <span class="ot">&lt;-</span> GWmodel<span class="sc">::</span><span class="fu">gwr.basic</span>(revised_formula09, <span class="at">data =</span> sf_sp09,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">bw =</span> bw_adaptive, <span class="at">kernel =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">adaptive =</span> <span class="cn">TRUE</span>, <span class="at">longlat =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">R&lt;U+00B2&gt;</th>
+<th style="text-align: right;">In-sample RMSE (S$)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Revised OLS</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">42967.14</td>
+<td style="text-align: right;">0.651</td>
+<td style="text-align: right;">751998.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fixed GWR</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">42263.61</td>
+<td style="text-align: right;">0.891</td>
+<td style="text-align: right;">420080.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adaptive GWR</td>
+<td style="text-align: right;">1436</td>
+<td style="text-align: right;">41982.22</td>
+<td style="text-align: right;">0.891</td>
+<td style="text-align: right;">419595.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The adaptive GWR has a lower AICc (4.1982^{4}) than both fixed GWR (4.2264^{4}) and revised OLS (4.2967^{4}). Its in-sample RMSE is about S$419,596, against S$751,999 for OLS. This is a substantial improvement in <em>fit</em> on the transactions used to calibrate the models. It is not an independent forecast test: flexible local regressions can fit the observed locations closely, and a new-place or future-sale assessment needs spatially separated validation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/local-r2.png" class="img-fluid figure-img" alt="Singapore transaction-point map shaded by local R-squared of the adaptive geographically weighted regression."></p>
+<figcaption>Local R-squared of the adaptive GWR model.</figcaption>
+</figure>
+</div>
+<p>The median local R² is 0.907, but the 10th and 90th percentiles range from 0.806 to 0.975. The map identifies where the model fits the 2015 observations differently. It does not mean the model is equally reliable at unobserved addresses.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/local-area-coefficient.png" class="img-fluid figure-img" alt="Singapore transaction-point map of the adaptive GWR floor-area coefficient in Singapore dollars per square metre, with visible spatial variation."></p>
+<figcaption>Local floor-area coefficients from adaptive GWR.</figcaption>
+</figure>
+</div>
+<p>The local floor-area coefficient stays positive in this fit. Its median is about S$7,782 per square metre, with a 10th–90th percentile range of roughly S$4,839–S$15,908. That variation is interesting, but I would check local condition numbers and coefficient uncertainty before treating individual points as precise local valuations.</p>
+<p>The adaptive GWR residual Moran’s I is -0.016 with a two-sided permutation p of 0.028. Its magnitude is much smaller than the OLS residual value, but the test still detects a slight negative pattern at the 1.5 km scale. I would not describe the residuals as fully spatially independent.</p>
+</section>
+<section id="what-i-learned" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="what-i-learned"><span class="header-section-number">6</span> What I learned</h2>
+<p>This exercise made the scale of a model comparison more concrete. Floor area is strongly associated with resale price, but it leaves much of the 2015 price variation unexplained. Adding the chapter’s structural and accessibility fields helps; allowing coefficients to vary over space improves the fitted model further. The local map also shows why a single global “price per square metre” can conceal variation across the observed market.</p>
+<p>I also learned to separate a model’s fit from its evidential strength. The GWR bandwidth is selected from these same sales, and the local maps describe these same locations. The higher in-sample R² is not a promise of better predictions for a new development. Repeated coordinates, expensive outliers, disconnected neighbour components, and unknown construction of the proximity measures all limit interpretation. A next step would use spatially blocked holdouts, measured property attributes missing here, and a sensitivity analysis on the local bandwidth before making a valuation claim.</p>
+</section>
+<section id="sources" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sources"><span class="header-section-number">7</span> Sources</h2>
+<ul>
+<li><a href="https://r4gdsa.netlify.app/chap13.html">R for Geospatial Data Science and Analytics, Chapter 13</a> — exercise sequence, model formulas and Gaussian GWR settings.</li>
+<li><a href="https://www.jstatsoft.org/article/view/v063i17">Gollini et al.&nbsp;(2015), <em>GWmodel: An R Package for Exploring Spatial Heterogeneity Using Geographically Weighted Models</em></a> — GWR methods and implementation.</li>
+<li>Course-provided <code>Hands-on_Ex09.zip</code>, accessed 31 October 2026 — 2015 resale CSV and Master Plan 2014 subzone boundary. Exact <a href="outputs/input-manifest.csv">input hashes</a> are recorded; the raw archive is not redistributed.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

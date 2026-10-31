@@ -1,0 +1,3 @@
+model,CV_bandwidth,unit
+Fixed Gaussian GWR,971.3408191161669,metres
+Adaptive Gaussian GWR,30,nearest observations

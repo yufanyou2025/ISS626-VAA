@@ -1,0 +1,9 @@
+check,result
+Condominium resale records,1436
+Master Plan 2014 subzones,323
+Invalid source subzone geometries repaired,9
+Transactions outside the subzone union,0
+Repeated transaction coordinates retained,69
+Missing analysis values,0
+Analysis CRS,EPSG:3414 (metres)
+Outcome period,2015 resale transactions

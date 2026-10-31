@@ -34,6 +34,13 @@ project:
     - "In-class_Ex/In-class_Ex08/README.md"
     - "!In-class_Ex/In-class_Ex08/data/"
     - "!In-class_Ex/In-class_Ex08/cache/"
+    - "In-class_Ex/In-class_Ex09/figures/"
+    - "In-class_Ex/In-class_Ex09/outputs/"
+    - "In-class_Ex/In-class_Ex09/analysis.R"
+    - "In-class_Ex/In-class_Ex09/prepare.R"
+    - "In-class_Ex/In-class_Ex09/README.md"
+    - "!In-class_Ex/In-class_Ex09/data/"
+    - "!In-class_Ex/In-class_Ex09/cache/"
     - "Hands-on_Ex/Hands-on_Ex04/figures/"
     - "Hands-on_Ex/Hands-on_Ex04/outputs/"
     - "!Hands-on_Ex/Hands-on_Ex04/data/"
@@ -116,6 +123,8 @@ website:
             href: "In-class_Ex/In-class_Ex07/In-class_Ex07.qmd"
           - text: "In-class Exercise 8: Retail Trade Areas"
             href: "In-class_Ex/In-class_Ex08/In-class_Ex08.qmd"
+          - text: "Hands-on Exercise 9: Hedonic Pricing"
+            href: "In-class_Ex/In-class_Ex09/In-class_Ex09.qmd"
     right:
       - href: index.qmd
         text: Home

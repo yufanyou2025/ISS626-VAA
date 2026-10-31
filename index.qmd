@@ -173,6 +173,17 @@ Allocating Taichung village demand across stores with a Huff model, then compari
 [Explore In-class Exercise 8 →](In-class_Ex/In-class_Ex08/In-class_Ex08.qmd)
 :::
 
+::: {.portfolio-card}
+::: {.portfolio-number}
+09 / Housing markets
+:::
+### Hedonic pricing across Singapore
+
+Comparing a global resale-price model with geographically weighted estimates and checking where its assumptions remain strained.
+
+[Explore Hands-on Exercise 9 →](In-class_Ex/In-class_Ex09/In-class_Ex09.qmd)
+:::
+
 ## Take-home Exercise 1
 
 **Road fatalities in Greater Bangkok, January–September 2024** examines the distribution of located fatality records and the limits of interpreting spatial concentrations.
