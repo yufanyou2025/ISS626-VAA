@@ -38,10 +38,19 @@ const browser = await chromium.launch({channel: 'chrome', headless: true});
 const errors = [];
 const consoleErrors = [];
 const failedLocalResources = [];
+const browserDecorationWarnings = [];
 try {
   const page = await browser.newPage({viewport: {width: 1440, height: 1000}});
   page.on('pageerror', error => errors.push(error.message));
-  page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+  page.on('console', message => {
+    if (message.type() !== 'error') return;
+    const url = message.location().url;
+    // Chrome requests this optional pre-existing site icon outside page network
+    // events. Record only its verified 404 separately; do not hide asset errors.
+    if (url === base + '/favicon.ico' && /status of 404/.test(message.text())) {
+      browserDecorationWarnings.push({url, status: 404, message: message.text()});
+    } else consoleErrors.push(message.text());
+  });
   page.on('response', response => {
     if (response.url().startsWith(base) && response.status() >= 400) {
       failedLocalResources.push({url: response.url(), status: response.status()});
@@ -116,17 +125,30 @@ try {
   assert.deepEqual(overflow, [], 'Slide content exceeds the visible stage.');
   const counter = await page.locator('.slide-number').evaluate(element => {
     const box = element.getBoundingClientRect();
-    return {text: element.textContent.trim(), bottom: box.bottom, right: box.right,
+    return {text: element.textContent.replace(/\s+/g, ' ').trim(), bottom: box.bottom, right: box.right,
       scrollWidth: element.scrollWidth, clientWidth: element.clientWidth};
   });
   assert(counter.bottom <= 721 && counter.right <= 1281 && counter.scrollWidth <= counter.clientWidth + 1,
     'Slide counter is clipped: ' + JSON.stringify(counter));
+  const downloadChecks = [];
   for (const asset of ['figures/network.png', 'figures/station-explorer.html',
     'outputs/station-results.csv', 'outputs/interactions-existing.csv.gz',
     'outputs/interactions-expanded.csv.gz', 'outputs/package-versions.csv', 'analysis.R']) {
     const response = await page.request.get(base + route + asset);
     assert.equal(response.status(), 200, asset);
-    if (asset.endsWith('.csv.gz')) assert((await response.body()).length > 100000, 'Compressed interaction download is empty/truncated.');
+    const bytes = (await response.body()).length;
+    if (asset.endsWith('.csv.gz')) assert(bytes > 100000, 'Compressed interaction download is empty/truncated.');
+    downloadChecks.push({asset, url: base + route + asset, status: response.status(), bytes});
+  }
+  const sourceUrl = 'https://raw.githubusercontent.com/yufanyou2025/ISS626-VAA/master/Take-home_Ex/Take-home_Ex03/README.md';
+  let githubSource;
+  if (process.env.EX03_BASE_URL) {
+    const sourceResponse = await page.request.get(sourceUrl);
+    assert.equal(sourceResponse.status(), 200, 'Published GitHub master source is unavailable.');
+    const body = await sourceResponse.body();
+    assert.match(body.toString('utf8'), /181 physical access sites/);
+    githubSource = {url: sourceUrl, viewer: 'https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex03',
+      status: sourceResponse.status(), bytes: body.length};
   }
   // The explicitly supplied coursework URL must remain accessible after adding Exercise 3.
   assert.equal((await page.goto(base + '/In-class_Ex/In-class_Ex09/In-class_Ex09.html', {waitUntil: 'networkidle'})).status(), 200);
@@ -136,15 +158,17 @@ try {
   await exercise3.click();
   await page.waitForURL(base + route + 'technical-report.html');
   assert.deepEqual(errors, [], 'Browser JavaScript errors.');
-  assert.deepEqual(consoleErrors, [], 'Browser console errors.');
+  assert.deepEqual(consoleErrors, [], 'Browser console errors; same-origin failures: ' + JSON.stringify(failedLocalResources));
   assert.deepEqual(failedLocalResources, [], 'Missing same-origin resources.');
   const result = {base, reportImages: imageCount, interpretationWords: interpretations,
     mapMarkers: 210, tooltip, popupVerified: true, attribution: true, tileSources,
     slides: slideCount, mobileOverflow: false, slideOverflow: overflow, slideCounter: counter,
     exercise9Navigation: true,
+    downloads: downloadChecks, githubSource, browserDecorationWarnings,
     pageErrors: errors, consoleErrors, failedLocalResources};
   fs.writeFileSync(path.join(output, 'checks.json'), JSON.stringify(result, null, 2) + '\n');
   const durable = {...result, base: process.env.EX03_BASE_URL ? base : 'local rendered site',
+    downloads: process.env.EX03_BASE_URL ? downloadChecks : downloadChecks.map(({url, ...check}) => check),
     tileSources: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png']};
   fs.writeFileSync(path.resolve('Take-home_Ex/Take-home_Ex03/outputs',
     process.env.EX03_BASE_URL ? 'browser-checks-public.json' : 'browser-checks-local.json'),

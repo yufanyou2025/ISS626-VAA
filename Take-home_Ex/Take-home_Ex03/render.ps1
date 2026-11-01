@@ -12,7 +12,9 @@ try {
         if ($LASTEXITCODE -ne 0) { throw 'Executive summary render failed.' }
         quarto render index.qmd
         if ($LASTEXITCODE -ne 0) { throw 'Home page render failed.' }
-        node scripts/sync-rendered-navigation.mjs
-        if ($LASTEXITCODE -ne 0) { throw 'Navigation synchronization failed.' }
+        if (Test-Path -LiteralPath '.git') {
+            node scripts/sync-rendered-navigation.mjs
+            if ($LASTEXITCODE -ne 0) { throw 'Navigation synchronization failed.' }
+        }
     } finally { Pop-Location }
 } finally { $env:LC_ALL = $previousLocale03 }

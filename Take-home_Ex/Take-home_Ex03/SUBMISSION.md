@@ -11,9 +11,9 @@
 
 Analysis and local rendering are complete. All 24 numerical checks passed. Local browser checks confirmed seven figures, a working 210-marker OpenStreetMap explorer, the Exercise 9-to-Exercise 3 menu path, mobile layout and all 12 slides without clipping or console errors. Eight visual interpretations contain 49-64 words each. Full interaction tables contain 341,004 existing-network pairs and 395,640 expanded-network pairs, with unique pair keys, preserved origin weights and per-origin probabilities summing to one. Evidence is in `outputs/model-verification.csv`, `outputs/browser-checks-local.json` and `outputs/submission-checks.json`.
 
-Public publication and final submission-package verification are pending. Addresses below are intended destinations until public checks are recorded. No eLearn submission has occurred.
+The public report, slides, interactive map, full interaction downloads, GitHub source and Exercise 9 menu path were verified without signing in on **1 November 2026**. Vercel reports successful deployment of analytical release `7fa2561bbe991d4308128d8a48a5d25b6312aa46`. Public browser evidence is in `outputs/browser-checks-public.json`, with deployment status in `outputs/deployment-status.json`. The final package revision is recorded in `PACKAGE_REVISION.txt` inside the ZIP and in its adjacent manifest. No eLearn submission has occurred.
 
-| Item | Intended address |
+| Item | Verified address |
 |---|---|
 | Technical report | https://iss-626-vaa.vercel.app/Take-home_Ex/Take-home_Ex03/technical-report.html |
 | Executive summary | https://iss-626-vaa.vercel.app/Take-home_Ex/Take-home_Ex03/executive-summary.html |

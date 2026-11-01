@@ -29,5 +29,8 @@ Compare fitted results with simple baselines and examine spatial holdout error. 
 ## Work record
 
 - 1 November 2026: read the current brief; fetched and integrated upstream coursework through f325a0b; inspected the supplied TrainStation_Sep2026.zip; assessed data availability and the calibration design.
+- 1 November 2026: validated the January ridership archive, merged Stevens' two raw codes, reconciled the HDB address join and verified the seven Cantonment blocks against official OneMap records.
+- 1 November 2026: calibrated the morning model, completed geographic holdouts, produced the expanded network and accessibility screens, and verified 24 numerical checks.
+- 1 November 2026: rendered the report and 10-content-slide summary; inspected desktop, mobile, interactive map and slide layouts; published the source and website; verified the public pages and downloads without signing in.
 
 Commits use actual work and normal timestamps.
