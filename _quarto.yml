@@ -3,6 +3,12 @@ project:
   output-dir: _site
   execute-dir: project
   resources:
+    - "Take-home_Ex/Take-home_Ex03/figures/"
+    - "Take-home_Ex/Take-home_Ex03/outputs/"
+    - "Take-home_Ex/Take-home_Ex03/*.R"
+    - "!Take-home_Ex/Take-home_Ex03/data/"
+    - "!Take-home_Ex/Take-home_Ex03/cache/"
+    - "!Take-home_Ex/Take-home_Ex03/notes/"
     - "!Take-home_Ex/Take-home_Ex02/data/"
     - "!Take-home_Ex/Take-home_Ex02/cache/"
     - "!Take-home_Ex/Take-home_Ex02/notes/"
@@ -89,6 +95,10 @@ website:
             href: "Take-home_Ex/Take-home_Ex02/technical-report.qmd"
           - text: "Exercise 2: Executive Summary"
             href: "Take-home_Ex/Take-home_Ex02/executive-summary.qmd"
+          - text: "Exercise 3: Technical Report"
+            href: "Take-home_Ex/Take-home_Ex03/technical-report.qmd"
+          - text: "Exercise 3: Executive Summary"
+            href: "Take-home_Ex/Take-home_Ex03/executive-summary.qmd"
           - text: "GitHub repository"
             href: "https://github.com/yufanyou2025/ISS626-VAA"
       - text: "Hands-on Exercise"

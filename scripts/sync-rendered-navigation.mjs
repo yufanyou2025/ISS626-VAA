@@ -10,6 +10,7 @@ const homepage = fs.readFileSync(path.join(root,'index.html'),'utf8');
 let header = homepage.match(headerPattern)?.[0];
 if (!header || !header.includes('Hands-on_Ex02b.html')) throw Error('Render the updated homepage first');
 header = header.replaceAll('href="./','href="/').replaceAll('nav-link active','nav-link').replaceAll(' aria-current="page"','').replaceAll('</li>  ','</li>');
+header = header.replace(/[\t ]+$/gm, '');
 let count=0;
 function visit(dir) {
   for (const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -24,6 +25,7 @@ function visit(dir) {
          !relative.startsWith('_site/In-class_Ex/In-class_Ex07/') &&
          !relative.startsWith('_site/In-class_Ex/In-class_Ex08/') &&
          !relative.startsWith('_site/In-class_Ex/In-class_Ex09/') &&
+         !relative.startsWith('_site/Take-home_Ex/Take-home_Ex03/') &&
          !relative.startsWith('_site/Hands-on_Ex/Hands-on_Ex05/') &&
          !relative.startsWith('_site/Hands-on_Ex/Hands-on_Ex07/')) continue;
       const html=fs.readFileSync(file,'utf8');

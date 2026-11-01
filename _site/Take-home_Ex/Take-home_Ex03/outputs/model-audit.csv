@@ -1,0 +1,9 @@
+check,value
+Origin grid mass difference,0
+Maximum existing probability sum error,2.220446049250313e-16
+Maximum expanded probability sum error,2.220446049250313e-16
+Existing aggregate mass difference,-2.3283064365386963e-10
+Expanded aggregate mass difference,0
+Station-volume unmatched identifiers,0
+Main optimizer convergence code,0
+Expanded sites nearer-or-equal for each HDB building,1

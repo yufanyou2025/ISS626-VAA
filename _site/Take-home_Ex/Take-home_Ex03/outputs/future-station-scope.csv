@@ -1,0 +1,37 @@
+station_code,station_name,future_lines,merged_station_id,source
+CR2,Aviation Park,CRL,CR2,ura
+CR3,Loyang,CRL,CR3,ura
+CR4,Pasir Ris East,CRL,CR4,ura
+CR5,Pasir Ris,CRL,EW1,ura
+CR6,Tampines North,CRL,CR6,ura
+CR7,Defu,CRL,CR7,ura
+CR8,Hougang,CRL,NE14,ura
+CR9,Serangoon North,CRL,CR9,ura
+CR10,Tavistock,CRL,CR10,ura
+CR11,Ang Mo Kio,CRL,NS16,ura
+CR12,Teck Ghee,CRL,CR12,ura
+CR13,Bright Hill,CRL,TE7,ura
+JE1,Tengah Plantation,JRL,JE1,ura
+JE2,Tengah Park,JRL,JE2,ura
+JE3,Bukit Batok West,JRL,JE3,ura
+JE4,Toh Guan,JRL,JE4,ura
+JE5,Jurong East,JRL,EW24/NS1,ura
+JE6,Jurong Town Hall,JRL,JE6,ura
+JE7,Pandan Reservoir,JRL,JE7,ura
+JS1,Choa Chu Kang,JRL,NS4/BP1,ura
+JS2,Choa Chu Kang West,JRL,JS2,ura
+JS3,Tengah,JRL,JS3,ura
+JS4,Hong Kah,JRL,JS4,ura
+JS5,Corporation,JRL,JS5,ura
+JS6,Jurong West,JRL,JS6,ura
+JS7,Bahar Junction,JRL,JS7,ura
+JS8,Boon Lay,JRL,EW27,ura
+JS9,Enterprise,JRL,JS9,ura
+JS10,Tukang,JRL,JS10,ura
+JS11,Jurong Hill,JRL,JS11,ura
+JS12,Jurong Pier,JRL,JS12,ura
+JW1,Gek Poh,JRL,JW1,ura
+JW2,Tawas,JRL,JW2,ura
+JW3,Nanyang Gateway,JRL,JW3,ura
+JW4,Nanyang Crescent,JRL,JW4,ura
+JW5,Peng Kang Hill,JRL,JW5,ura

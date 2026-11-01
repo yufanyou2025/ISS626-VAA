@@ -1,0 +1,4 @@
+threshold_m,buildings,dwelling_units_total,dwellings_before,dwellings_after,dwellings_newly_served,dwellings_still_beyond,buildings_newly_served
+600,10740,1167327,637627,735649,98022,431678,987
+800,10740,1167327,849354,956719,107365,210608,1074
+1000,10740,1167327,984487,1073883,89396,93444,911

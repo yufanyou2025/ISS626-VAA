@@ -1,0 +1,8 @@
+st_cod,street,method,votes,vote_share,block_street,jaccard,jaccard_runner_up,n_blocks_code,agrees_with_block_sets,street_key,accepted
+NOW00N,NTH WOODLANDS WAY,block_sets,0,NA,NTH WOODLANDS WAY,0.6,0.0541,3,FALSE,NTH WOODLANDS WAY,FALSE
+PAA07B,NA,unresolved,0,NA,CHAI CHEE ST,0.3889,0.36,15,FALSE,NA,FALSE
+PAC04H,NA,unresolved,0,NA,PK CRES,1,0.3333,1,FALSE,NA,FALSE
+PAH04B,NA,unresolved,0,NA,TEBAN GDNS RD,0.4167,0.3788,55,FALSE,NA,FALSE
+PAR09C,NA,unresolved,0,NA,CLEMENTI ST 13,0.3636,0.3,6,FALSE,NA,FALSE
+PAT06T,NA,unresolved,0,NA,TELOK BLANGAH DR,0.3617,0.3594,40,FALSE,NA,FALSE
+WOS18M,NA,unresolved,0,NA,WOODLANDS SQ,0.2857,0,2,FALSE,NA,FALSE

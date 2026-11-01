@@ -199,3 +199,11 @@ Comparing a global resale-price model with geographically weighted estimates and
 - [Technical report](Take-home_Ex/Take-home_Ex02/technical-report.qmd)
 - [Executive summary](Take-home_Ex/Take-home_Ex02/executive-summary.qmd)
 - [Source project on GitHub](https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex02)
+
+## Take-home Exercise 3
+
+**New rail access, changing station catchments** examines how the specified Jurong Region and Cross Island lines could redistribute weekday morning station entries, and where they bring HDB homes closer to rail.
+
+- [Technical report](Take-home_Ex/Take-home_Ex03/technical-report.qmd)
+- [Executive summary](Take-home_Ex/Take-home_Ex03/executive-summary.qmd)
+- [Source project on GitHub](https://github.com/yufanyou2025/ISS626-VAA/tree/master/Take-home_Ex/Take-home_Ex03)

@@ -1,0 +1,35 @@
+{
+  "base": "local rendered site",
+  "reportImages": 7,
+  "interpretationWords": [
+    55,
+    62,
+    61,
+    57,
+    52,
+    49,
+    53,
+    64
+  ],
+  "mapMarkers": 210,
+  "tooltip": "Segar",
+  "popupVerified": true,
+  "attribution": true,
+  "tileSources": [
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+  ],
+  "slides": 12,
+  "mobileOverflow": false,
+  "slideOverflow": [],
+  "slideCounter": {
+    "text": "12\n\t\t\t\t\t/\n\t\t\t\t\t12",
+    "bottom": 710,
+    "right": 1270,
+    "scrollWidth": 74,
+    "clientWidth": 74
+  },
+  "exercise9Navigation": true,
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedLocalResources": []
+}

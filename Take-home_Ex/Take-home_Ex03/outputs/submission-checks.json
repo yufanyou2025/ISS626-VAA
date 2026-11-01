@@ -1,0 +1,26 @@
+{
+  "report_images": 7,
+  "interpretation_words": [
+    55,
+    62,
+    61,
+    57,
+    52,
+    49,
+    53,
+    64
+  ],
+  "content_slides": 10,
+  "total_slides": 12,
+  "broken_local_links": [],
+  "tracked_excluded_inputs": [],
+  "published_excluded_inputs": [],
+  "observed_stations": 181,
+  "tracked_git_check": "passed",
+  "origins": 1884,
+  "expanded_stations": 210,
+  "compressed_output_rows": {
+    "interactions-existing.csv.gz": 341004,
+    "interactions-expanded.csv.gz": 395640
+  }
+}

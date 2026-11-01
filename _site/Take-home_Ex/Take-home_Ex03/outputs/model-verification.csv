@@ -1,0 +1,25 @@
+check,value,passed
+Existing physical sites,181,TRUE
+Expanded physical sites,210,TRUE
+Unique source HDB origins,10740,TRUE
+Dwelling market potential,1167327,TRUE
+January weekday morning volume conserved,883309.190476191,TRUE
+New physical alternatives,29,TRUE
+Existing physical sites with added lines,7,TRUE
+Main optimizer converged,0,TRUE
+Finite coefficients inside declared bounds,2.723618; 1.741238,TRUE
+Coefficient boundary flags (diagnostic),0,TRUE
+Selected optimization loss equals best start,0.812012126197437,TRUE
+existing complete origin-destination pairs,341004,TRUE
+existing probability row-sum maximum error,2.22044604925031e-16,TRUE
+existing volumes reconstructed from interaction frame,6.3664629124105e-11,TRUE
+existing aggregate count conservation error,-2.3283064365387e-10,TRUE
+expanded complete origin-destination pairs,395640,TRUE
+expanded probability row-sum maximum error,2.22044604925031e-16,TRUE
+expanded volumes reconstructed from interaction frame,9.45874489843845e-11,TRUE
+expanded aggregate count conservation error,0,TRUE
+Spatial holdout prediction coverage,181,TRUE
+Building-point access mass reconciliation,3,TRUE
+All sensitivity optimizers converged,0; 0; 0; 0,TRUE
+Independent MCI probability check,7.7715611723761e-16,TRUE
+Synthetic held-out outcome leakage check,0,TRUE

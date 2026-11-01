@@ -1,0 +1,2 @@
+# Frozen reference inputs are byte-checked during preparation.
+Take-home_Ex/Take-home_Ex03/data/reference/*.csv text eol=lf

@@ -1,0 +1,3 @@
+parameter,estimate,lower,upper,at_boundary
+decay,2.723618038599047,0.5,5,FALSE
+beta_lines,1.7412376450561171,0,2,FALSE
