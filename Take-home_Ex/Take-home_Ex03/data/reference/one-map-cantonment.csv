@@ -1,0 +1,8 @@
+"st_cod","block","postal_code","road_name","access_date","source_url","response_sha256"
+"CAN04Y","1A","085101","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085101&returnGeom=Y&getAddrDetails=Y&pageNum=1","bf11f4f55ad7ecc6e2ce1f133a73efcb26765386d79d769b6d2d1f6d69e48c3b"
+"CAN04Y","1B","085201","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085201&returnGeom=Y&getAddrDetails=Y&pageNum=1","91042f849a8cb3ca253ce67cedfe7b1428e285d6e21f6626d2164bedc3bbf044"
+"CAN04Y","1C","085301","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085301&returnGeom=Y&getAddrDetails=Y&pageNum=1","6a28518e44663d923a768aae8d02b957f2c072d17dcd2b30a0ed7ef369c14eee"
+"CAN04Y","1D","085401","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085401&returnGeom=Y&getAddrDetails=Y&pageNum=1","c57a64b8f1cc67f455e88e4d5299b6329d876dc44a752f65657dd66e96b3ea07"
+"CAN04Y","1E","085501","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085501&returnGeom=Y&getAddrDetails=Y&pageNum=1","5439cdc2c72ac373b368b44fa937e6e88fcb2c1208d6236ae2a5b7022d951f8b"
+"CAN04Y","1F","085601","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085601&returnGeom=Y&getAddrDetails=Y&pageNum=1","dbf6c0f4004a561e54ef32093932279bd1d523314f48ee1838d3010e1374f619"
+"CAN04Y","1G","085701","CANTONMENT ROAD","2026-11-01","https://www.onemap.gov.sg/api/common/elastic/search?searchVal=085701&returnGeom=Y&getAddrDetails=Y&pageNum=1","5709034e4dd07d1c70d878206972a61d9cd3604be2489f6b87b78e4efb1cbffe"

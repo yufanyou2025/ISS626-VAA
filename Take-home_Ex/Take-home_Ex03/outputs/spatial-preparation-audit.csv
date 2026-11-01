@@ -1,0 +1,12 @@
+check,value
+HDB source invalid polygons repaired,4
+HDB street-code mappings accepted,653
+HDB source codes missing from bridge,0
+Matched eligible dwelling coverage,1.0000
+Official station footprint features,234
+Existing observed physical stations Jan2026,181
+Future line-station entries,36
+Future entries merged with existing physical stations,7
+New physical station alternatives,29
+Expanded physical choice set,210
+Distance CRS,EPSG:3414; straight-line metres
