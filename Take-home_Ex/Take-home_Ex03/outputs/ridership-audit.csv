@@ -1,0 +1,19 @@
+measure,value
+Input hourly/day-type rows,7259
+Valid TRAIN rows in January 2026,7259
+Exact duplicate rows,0
+Duplicate month/day-type/hour/station keys,0
+Missing required cells,0
+Negative or fractional volume cells,0
+Distinct observed source station codes,182
+Physical access sites after Stevens merge,181
+Station/day-type/hour combinations not present within observed 20 hours,21
+Station codes with fewer than 40 source rows,12
+January days,31
+Non-holiday weekdays,21
+Monthly tap-ins,88683630
+Monthly tap-outs,88390800
+Monthly in/out difference,292830
+Weekday monthly tap-ins,64945301
+Weekend/holiday monthly tap-ins,23738329
+Weekday 06:00-09:59 monthly tap-ins,18549493
